@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2214FAEE27B94158000EE453 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2214FAED27B94158000EE453 /* SettingsView.swift */; };
+		2214FAEF27B94158000EE453 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2214FAED27B94158000EE453 /* SettingsView.swift */; };
 		2221394E27B7CC7900599E60 /* ProjectSortApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2221393E27B7CC7800599E60 /* ProjectSortApp.swift */; };
 		2221394F27B7CC7900599E60 /* ProjectSortApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2221393E27B7CC7800599E60 /* ProjectSortApp.swift */; };
 		2221395027B7CC7900599E60 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2221393F27B7CC7800599E60 /* ContentView.swift */; };
@@ -36,11 +38,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2214FAED27B94158000EE453 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		2221393E27B7CC7800599E60 /* ProjectSortApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectSortApp.swift; sourceTree = "<group>"; };
 		2221393F27B7CC7800599E60 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		2221394027B7CC7900599E60 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		2221394527B7CC7900599E60 /* ProjectSort.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ProjectSort.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		2221394B27B7CC7900599E60 /* ProjectSort.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ProjectSort.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		2221394527B7CC7900599E60 /* MyerTidy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyerTidy.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		2221394B27B7CC7900599E60 /* MyerTidy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyerTidy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2221394D27B7CC7900599E60 /* macOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = macOS.entitlements; sourceTree = "<group>"; };
 		2221395C27B7D6C600599E60 /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
 		2221395F27B7DE3800599E60 /* UIExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIExtensions.swift; sourceTree = "<group>"; };
@@ -101,8 +104,8 @@
 		2221394627B7CC7900599E60 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				2221394527B7CC7900599E60 /* ProjectSort.app */,
-				2221394B27B7CC7900599E60 /* ProjectSort.app */,
+				2221394527B7CC7900599E60 /* MyerTidy.app */,
+				2221394B27B7CC7900599E60 /* MyerTidy.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -140,6 +143,7 @@
 				2221396B27B8BFAA00599E60 /* DropAreaView.swift */,
 				2221396E27B8CB1100599E60 /* ActionButton.swift */,
 				2221399B27B908E000599E60 /* AboutView.swift */,
+				2214FAED27B94158000EE453 /* SettingsView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -147,9 +151,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		2221394427B7CC7900599E60 /* ProjectSort (iOS) */ = {
+		2221394427B7CC7900599E60 /* MyerTidy (iOS) */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 2221395627B7CC7900599E60 /* Build configuration list for PBXNativeTarget "ProjectSort (iOS)" */;
+			buildConfigurationList = 2221395627B7CC7900599E60 /* Build configuration list for PBXNativeTarget "MyerTidy (iOS)" */;
 			buildPhases = (
 				2221394127B7CC7900599E60 /* Sources */,
 				2221394227B7CC7900599E60 /* Frameworks */,
@@ -159,14 +163,14 @@
 			);
 			dependencies = (
 			);
-			name = "ProjectSort (iOS)";
+			name = "MyerTidy (iOS)";
 			productName = "ProjectSort (iOS)";
-			productReference = 2221394527B7CC7900599E60 /* ProjectSort.app */;
+			productReference = 2221394527B7CC7900599E60 /* MyerTidy.app */;
 			productType = "com.apple.product-type.application";
 		};
-		2221394A27B7CC7900599E60 /* ProjectSort (macOS) */ = {
+		2221394A27B7CC7900599E60 /* MyerTidy (macOS) */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 2221395927B7CC7900599E60 /* Build configuration list for PBXNativeTarget "ProjectSort (macOS)" */;
+			buildConfigurationList = 2221395927B7CC7900599E60 /* Build configuration list for PBXNativeTarget "MyerTidy (macOS)" */;
 			buildPhases = (
 				2221394727B7CC7900599E60 /* Sources */,
 				2221394827B7CC7900599E60 /* Frameworks */,
@@ -176,9 +180,9 @@
 			);
 			dependencies = (
 			);
-			name = "ProjectSort (macOS)";
+			name = "MyerTidy (macOS)";
 			productName = "ProjectSort (macOS)";
-			productReference = 2221394B27B7CC7900599E60 /* ProjectSort.app */;
+			productReference = 2221394B27B7CC7900599E60 /* MyerTidy.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -199,7 +203,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 2221393C27B7CC7800599E60 /* Build configuration list for PBXProject "ProjectSort" */;
+			buildConfigurationList = 2221393C27B7CC7800599E60 /* Build configuration list for PBXProject "MyerTidy" */;
 			compatibilityVersion = "Xcode 13.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -213,8 +217,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				2221394427B7CC7900599E60 /* ProjectSort (iOS) */,
-				2221394A27B7CC7900599E60 /* ProjectSort (macOS) */,
+				2221394427B7CC7900599E60 /* MyerTidy (iOS) */,
+				2221394A27B7CC7900599E60 /* MyerTidy (macOS) */,
 			);
 		};
 /* End PBXProject section */
@@ -254,6 +258,7 @@
 				2221395D27B7D6C600599E60 /* MainViewModel.swift in Sources */,
 				2221396027B7DE3800599E60 /* UIExtensions.swift in Sources */,
 				2221396C27B8BFAA00599E60 /* DropAreaView.swift in Sources */,
+				2214FAEE27B94158000EE453 /* SettingsView.swift in Sources */,
 				2221396527B7F74400599E60 /* MediaInfo.swift in Sources */,
 				2221396F27B8CB1100599E60 /* ActionButton.swift in Sources */,
 			);
@@ -272,6 +277,7 @@
 				2221395E27B7D6C600599E60 /* MainViewModel.swift in Sources */,
 				2221396127B7DE3800599E60 /* UIExtensions.swift in Sources */,
 				2221396D27B8BFAA00599E60 /* DropAreaView.swift in Sources */,
+				2214FAEF27B94158000EE453 /* SettingsView.swift in Sources */,
 				2221396627B7F74400599E60 /* MediaInfo.swift in Sources */,
 				2221397027B8CB1100599E60 /* ActionButton.swift in Sources */,
 			);
@@ -428,7 +434,7 @@
 				);
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.juniperphoton.projectsort.ProjectSort;
-				PRODUCT_NAME = ProjectSort;
+				PRODUCT_NAME = MyerTidy;
 				SDKROOT = iphoneos;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -458,7 +464,7 @@
 				);
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.juniperphoton.projectsort.ProjectSort;
-				PRODUCT_NAME = ProjectSort;
+				PRODUCT_NAME = MyerTidy;
 				SDKROOT = iphoneos;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -480,15 +486,16 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 12.1;
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 0.5;
 				PRODUCT_BUNDLE_IDENTIFIER = com.juniperphoton.projectsort.ProjectSort;
-				PRODUCT_NAME = ProjectSort;
+				PRODUCT_NAME = MyerTidy;
 				SDKROOT = macosx;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -508,15 +515,16 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 12.1;
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 0.5;
 				PRODUCT_BUNDLE_IDENTIFIER = com.juniperphoton.projectsort.ProjectSort;
-				PRODUCT_NAME = ProjectSort;
+				PRODUCT_NAME = MyerTidy;
 				SDKROOT = macosx;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -526,7 +534,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		2221393C27B7CC7800599E60 /* Build configuration list for PBXProject "ProjectSort" */ = {
+		2221393C27B7CC7800599E60 /* Build configuration list for PBXProject "MyerTidy" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				2221395427B7CC7900599E60 /* Debug */,
@@ -535,7 +543,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		2221395627B7CC7900599E60 /* Build configuration list for PBXNativeTarget "ProjectSort (iOS)" */ = {
+		2221395627B7CC7900599E60 /* Build configuration list for PBXNativeTarget "MyerTidy (iOS)" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				2221395727B7CC7900599E60 /* Debug */,
@@ -544,7 +552,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		2221395927B7CC7900599E60 /* Build configuration list for PBXNativeTarget "ProjectSort (macOS)" */ = {
+		2221395927B7CC7900599E60 /* Build configuration list for PBXNativeTarget "MyerTidy (macOS)" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				2221395A27B7CC7900599E60 /* Debug */,

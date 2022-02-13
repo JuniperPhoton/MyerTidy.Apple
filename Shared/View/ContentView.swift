@@ -26,19 +26,38 @@ struct ContentView: View {
         case .Main:
             VStack(spacing: 12) {
                 HStack {
-                    Text("AppName").font(.largeTitle.bold()).frame(maxWidth: .infinity, alignment: .topLeading)
+                    Text("AppName").font(.largeTitle.bold()).frame(alignment: .topLeading)
+                    Spacer().frame(width: 20)
+
+                    if (viewModel.loading) {
+                        ProgressView().controlSize(.small).transition(.opacity)
+                    }
+                    
+                    Spacer()
                     
                     Image(systemName: "gear").renderingMode(.template).resizable().frame(width: 20, height: 20, alignment: .center).foregroundColor(colorScheme.getBodyTextColor())
+                        .hidden()
                         .onTapGesture {
                             navigateTo(page: .Settings)
                         }
+                    
+                    VStack {
+                        if (viewModel.toastText != nil) {
+                            Text(viewModel.toastText!).foregroundColor(.black)
+                                .padding(8)
+                                .background(RoundedRectangle(cornerRadius: 6).fill(Color.white))
+                                .addShadow()
+                                .transition(.move(edge: .trailing))
+                        }
+                    }.padding(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 8)).frame(width: 200, height: 60, alignment: .trailing).clipped()
+                    
                     Spacer().frame(width: 20)
                     Image(systemName: "info.circle").renderingMode(.template).resizable().frame(width: 20, height: 20, alignment: .center).foregroundColor(colorScheme.getBodyTextColor())
                         .onTapGesture {
                             navigateTo(page: .About)
                         }
                     Spacer().frame(width: 16)
-                }
+                }.frame(height: 60)
                 
                 if (viewModel.hasSelctedFolder) {
                     contentView().transition(AnyTransition.asymmetric(insertion: .offset(x: -100, y: 0), removal: .offset(x: 100, y: 0)).combined(with: .opacity).animation(.easeInOut(duration: 0.2)))
@@ -53,7 +72,7 @@ struct ContentView: View {
             AboutView{
                 navigateTo(page: .Main)
             }.mainPageFrame()
-                .transition(AnyTransition.asymmetric(insertion: .offset(x: 0, y: 500), removal: .offset(x: 0, y: 500)).combined(with: .opacity).animation(.easeIn(duration: 0.2)))
+                .transition(AnyTransition.asymmetric(insertion: .offset(x: 0, y: 200), removal: .offset(x: 0, y: 200)).combined(with: .opacity).animation(.easeIn(duration: 0.2)))
         case .Settings:
             AboutView{
                 navigateTo(page: .Main)
@@ -103,7 +122,7 @@ struct ContentView: View {
                 
                 Spacer()
                 
-                ActionButton(title: "AddMoreButton", icon: "folder.badge.plus", foregroundColor: colorScheme.getBodyTextColor(), backgroundColor: colorScheme.getPrimaryComplementaryColor()) {
+                ActionButton(title: "AddMoreButton", icon: "folder.badge.plus", foregroundColor: colorScheme.getOnSecondaryColor(), backgroundColor: colorScheme.getSecondaryColor().opacity(0.8)) {
                     selectFolder()
                 }.addShadow()
                 
@@ -112,7 +131,7 @@ struct ContentView: View {
                         viewModel.clear()
                     }
                 }.addShadow()
-            }.frame(maxWidth: .infinity)
+            }.frame(maxWidth: .infinity).opacity(viewModel.loading ? 0.5 : 1.0).disabled(viewModel.loading)
             
         }.frame(maxWidth: .infinity, alignment: .leading)
     }
@@ -132,9 +151,7 @@ struct ContentView: View {
         folderPicker.begin { response in
             if response == .OK {
                 withAnimation {
-                    folderPicker.urls.forEach { url in
-                        viewModel.addMediaFolder(forUrl: url)
-                    }
+                    viewModel.addMediaFolders(urls: folderPicker.urls)
                 }
             }
         }

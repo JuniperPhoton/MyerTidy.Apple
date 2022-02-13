@@ -5,7 +5,7 @@
 "OperationTitle"="OPERATION";
 "ActionGroup"="Group";
 "ActionDelete"="Delete";
-"%@ItemsText"="%@ items";
+"%@ItemsText"="%@ files";
 "TidyUpButton"="TIDY UP!";
 "AddMoreButton"="ADD MORE";
 "ClearButton"="CLEAR";
@@ -13,3 +13,4 @@
 "OperationByKindDesc"="This operation will move files with same extension to one folder.";
 "Feedback"="Feedback by email";
 "AboutText"="MyerTidy helps you organize your media files before performing advanced edit operations.";
+"Success"="🎉 Success to tidy up!";

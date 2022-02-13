@@ -12,7 +12,7 @@ import UniformTypeIdentifiers
 enum SortState {
     case Pending
     case Delete
-    case Sort
+    case Group
     case Complete
 }
 
@@ -21,20 +21,56 @@ class MainViewModel: ObservableObject {
     
     @Published var state: SortState = SortState.Pending
     @Published var stateText: String? = nil
+    @Published var loading = false
+    
+    @Published var toastText: LocalizedStringKey? = nil
+    
+    private var toastDismissWorkItem: DispatchWorkItem? = nil
     
     var hasSelctedFolder: Bool {
         get {
             return !mediaFolders.isEmpty
         }
     }
-        
+
     func clear() {
         mediaFolders.removeAll()
+        clearToast()
+    }
+    
+    func showToast(text: LocalizedStringKey?, duration: Double = 4.0) {
+        toastDismissWorkItem?.cancel()
+
+        withAnimation {
+            toastText = text
+        }
+        
+        if (text == nil) {
+            return
+        }
+        
+        toastDismissWorkItem = DispatchWorkItem {
+            withAnimation {
+                self.toastText = nil
+            }
+        }
+        
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + duration, execute: toastDismissWorkItem!)
+    }
+    
+    func clearToast() {
+        showToast(text: nil)
     }
     
     func addMediaFolder(folder: MediaFolder) {
         self.mediaFolders.append(folder)
         parseMediaInfos(mediaFolder: folder)
+    }
+    
+    func addMediaFolders(urls: [URL]) {
+        urls.forEach { url in
+            addMediaFolder(forUrl: url)
+        }
     }
     
     func addMediaFolder(forUrl: URL) {
@@ -68,26 +104,35 @@ class MainViewModel: ObservableObject {
     }
     
     func performSort() {
-        DispatchQueue.global().async {
-            self.performWith {
-                self.mediaFolders.forEach { folder in
-                    self.performSort(url: folder.selectedFolderURL, mediaInfos: folder.mediaInfos)
+        withAnimation {
+            loading = true
+        }
+        DispatchQueue.global().asyncAfter(deadline: DispatchTime.now() + 0.5) {
+            self.mediaFolders.forEach { folder in
+                self.performSort(url: folder.selectedFolderURL, mediaInfos: folder.mediaInfos)
+            }
+            DispatchQueue.main.async {
+                withAnimation {
+                    self.loading = false
                 }
+                self.showToast(text: LocalizedStringKey("Success"))
             }
         }
     }
     
     private func parseMediaInfos(mediaFolder: MediaFolder) {
+        withAnimation {
+            loading = true
+        }
         DispatchQueue.global().async {
             let mediaInfos = self.parseDirectoryInfos(rootURL: mediaFolder.selectedFolderURL)
             DispatchQueue.main.async {
                 mediaFolder.mediaInfos = mediaInfos
+                withAnimation {
+                    self.loading = false
+                }
             }
         }
-    }
-    
-    private func performWith(action: () -> Void) {
-        action()
     }
     
     private func performSort(url: URL, mediaInfos: [MediaInfo]) {

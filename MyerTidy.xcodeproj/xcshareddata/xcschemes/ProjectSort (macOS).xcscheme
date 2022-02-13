@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "2221394A27B7CC7900599E60"
-               BuildableName = "ProjectSort.app"
-               BlueprintName = "ProjectSort (macOS)"
-               ReferencedContainer = "container:ProjectSort.xcodeproj">
+               BuildableName = "MyerTidy.app"
+               BlueprintName = "MyerTidy (macOS)"
+               ReferencedContainer = "container:MyerTidy.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -34,6 +34,7 @@
       buildConfiguration = "Debug"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
+      language = "zh-Hans"
       launchStyle = "0"
       useCustomWorkingDirectory = "NO"
       ignoresPersistentStateOnLaunch = "NO"
@@ -45,9 +46,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "2221394A27B7CC7900599E60"
-            BuildableName = "ProjectSort.app"
-            BlueprintName = "ProjectSort (macOS)"
-            ReferencedContainer = "container:ProjectSort.xcodeproj">
+            BuildableName = "MyerTidy.app"
+            BlueprintName = "MyerTidy (macOS)"
+            ReferencedContainer = "container:MyerTidy.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </LaunchAction>
@@ -62,9 +63,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "2221394A27B7CC7900599E60"
-            BuildableName = "ProjectSort.app"
-            BlueprintName = "ProjectSort (macOS)"
-            ReferencedContainer = "container:ProjectSort.xcodeproj">
+            BuildableName = "MyerTidy.app"
+            BlueprintName = "MyerTidy (macOS)"
+            ReferencedContainer = "container:MyerTidy.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>
