@@ -13,6 +13,18 @@
 		2221395127B7CC7900599E60 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2221393F27B7CC7800599E60 /* ContentView.swift */; };
 		2221395227B7CC7900599E60 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2221394027B7CC7900599E60 /* Assets.xcassets */; };
 		2221395327B7CC7900599E60 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2221394027B7CC7900599E60 /* Assets.xcassets */; };
+		2221395D27B7D6C600599E60 /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2221395C27B7D6C600599E60 /* MainViewModel.swift */; };
+		2221395E27B7D6C600599E60 /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2221395C27B7D6C600599E60 /* MainViewModel.swift */; };
+		2221396027B7DE3800599E60 /* UIExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2221395F27B7DE3800599E60 /* UIExtensions.swift */; };
+		2221396127B7DE3800599E60 /* UIExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2221395F27B7DE3800599E60 /* UIExtensions.swift */; };
+		2221396527B7F74400599E60 /* MediaInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2221396427B7F74400599E60 /* MediaInfo.swift */; };
+		2221396627B7F74400599E60 /* MediaInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2221396427B7F74400599E60 /* MediaInfo.swift */; };
+		2221396927B81E0200599E60 /* MediaFolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2221396827B81E0200599E60 /* MediaFolder.swift */; };
+		2221396A27B81E0200599E60 /* MediaFolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2221396827B81E0200599E60 /* MediaFolder.swift */; };
+		2221396C27B8BFAA00599E60 /* DropAreaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2221396B27B8BFAA00599E60 /* DropAreaView.swift */; };
+		2221396D27B8BFAA00599E60 /* DropAreaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2221396B27B8BFAA00599E60 /* DropAreaView.swift */; };
+		2221396F27B8CB1100599E60 /* ActionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2221396E27B8CB1100599E60 /* ActionButton.swift */; };
+		2221397027B8CB1100599E60 /* ActionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2221396E27B8CB1100599E60 /* ActionButton.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +34,12 @@
 		2221394527B7CC7900599E60 /* ProjectSort.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ProjectSort.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2221394B27B7CC7900599E60 /* ProjectSort.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ProjectSort.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2221394D27B7CC7900599E60 /* macOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = macOS.entitlements; sourceTree = "<group>"; };
+		2221395C27B7D6C600599E60 /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
+		2221395F27B7DE3800599E60 /* UIExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIExtensions.swift; sourceTree = "<group>"; };
+		2221396427B7F74400599E60 /* MediaInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaInfo.swift; sourceTree = "<group>"; };
+		2221396827B81E0200599E60 /* MediaFolder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaFolder.swift; sourceTree = "<group>"; };
+		2221396B27B8BFAA00599E60 /* DropAreaView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropAreaView.swift; sourceTree = "<group>"; };
+		2221396E27B8CB1100599E60 /* ActionButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionButton.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,9 +72,12 @@
 		2221393D27B7CC7800599E60 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				2221396727B7F7C600599E60 /* View */,
+				2221396327B7F73900599E60 /* Model */,
+				2221396227B7F72E00599E60 /* ViewModel */,
 				2221393E27B7CC7800599E60 /* ProjectSortApp.swift */,
-				2221393F27B7CC7800599E60 /* ContentView.swift */,
 				2221394027B7CC7900599E60 /* Assets.xcassets */,
+				2221395F27B7DE3800599E60 /* UIExtensions.swift */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -76,6 +97,33 @@
 				2221394D27B7CC7900599E60 /* macOS.entitlements */,
 			);
 			path = macOS;
+			sourceTree = "<group>";
+		};
+		2221396227B7F72E00599E60 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				2221395C27B7D6C600599E60 /* MainViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		2221396327B7F73900599E60 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				2221396427B7F74400599E60 /* MediaInfo.swift */,
+				2221396827B81E0200599E60 /* MediaFolder.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		2221396727B7F7C600599E60 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				2221393F27B7CC7800599E60 /* ContentView.swift */,
+				2221396B27B8BFAA00599E60 /* DropAreaView.swift */,
+				2221396E27B8CB1100599E60 /* ActionButton.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -178,6 +226,12 @@
 			files = (
 				2221395027B7CC7900599E60 /* ContentView.swift in Sources */,
 				2221394E27B7CC7900599E60 /* ProjectSortApp.swift in Sources */,
+				2221396927B81E0200599E60 /* MediaFolder.swift in Sources */,
+				2221395D27B7D6C600599E60 /* MainViewModel.swift in Sources */,
+				2221396027B7DE3800599E60 /* UIExtensions.swift in Sources */,
+				2221396C27B8BFAA00599E60 /* DropAreaView.swift in Sources */,
+				2221396527B7F74400599E60 /* MediaInfo.swift in Sources */,
+				2221396F27B8CB1100599E60 /* ActionButton.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -187,6 +241,12 @@
 			files = (
 				2221395127B7CC7900599E60 /* ContentView.swift in Sources */,
 				2221394F27B7CC7900599E60 /* ProjectSortApp.swift in Sources */,
+				2221396A27B81E0200599E60 /* MediaFolder.swift in Sources */,
+				2221395E27B7D6C600599E60 /* MainViewModel.swift in Sources */,
+				2221396127B7DE3800599E60 /* UIExtensions.swift in Sources */,
+				2221396D27B8BFAA00599E60 /* DropAreaView.swift in Sources */,
+				2221396627B7F74400599E60 /* MediaInfo.swift in Sources */,
+				2221397027B8CB1100599E60 /* ActionButton.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
