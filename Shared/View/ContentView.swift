@@ -48,10 +48,12 @@ struct ContentView: View {
             }.padding(24)
                 .mainPageFrame()
                 .background(colorScheme.getBackgroundColor())
+                .transition(AnyTransition.asymmetric(insertion: .offset(x: 0, y: 200), removal: .offset(x: 0, y: 200)).combined(with: .opacity).animation(.easeIn(duration: 0.2)))
         case .About:
             AboutView{
                 navigateTo(page: .Main)
-            }.mainPageFrame().transition(AnyTransition.asymmetric(insertion: .offset(x: 0, y: 500), removal: .offset(x: 0, y: 500)).combined(with: .opacity).animation(.easeIn(duration: 0.3)))
+            }.mainPageFrame()
+                .transition(AnyTransition.asymmetric(insertion: .offset(x: 0, y: 500), removal: .offset(x: 0, y: 500)).combined(with: .opacity).animation(.easeIn(duration: 0.2)))
         case .Settings:
             AboutView{
                 navigateTo(page: .Main)
