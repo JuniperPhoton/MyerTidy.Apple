@@ -10,8 +10,14 @@ import SwiftUI
 @main
 struct ProjectSortApp: App {
     var body: some Scene {
+        #if os(macOS)
         WindowGroup {
             ContentView()
         }.windowStyle(.hiddenTitleBar)
+        #else
+        WindowGroup {
+            ContentView()
+        }
+        #endif
     }
 }

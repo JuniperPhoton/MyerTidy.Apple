@@ -8,6 +8,10 @@
 import SwiftUI
 import UniformTypeIdentifiers
 
+#if os(iOS)
+import UIKit
+#endif
+
 enum Page {
     case Main
     case About
@@ -136,18 +140,23 @@ struct ContentView: View {
         }.frame(maxWidth: .infinity, alignment: .leading)
     }
     
+#if os(iOS)
+    private var pickFileDelegate = UIDelegate()
+#endif
+    
     private func selectFolder() {
+#if os(macOS)
         let folderChooserPoint = CGPoint(x: 0, y: 0)
         let folderChooserSize = CGSize(width: 500, height: 600)
         let folderChooserRectangle = CGRect(origin: folderChooserPoint, size: folderChooserSize)
         let folderPicker = NSOpenPanel(contentRect: folderChooserRectangle, styleMask: .miniaturizable, backing: .buffered, defer: true)
-        
+
         folderPicker.canChooseDirectories = true
         folderPicker.canChooseFiles = false
         folderPicker.allowsMultipleSelection = true
         folderPicker.canDownloadUbiquitousContents = true
         folderPicker.canResolveUbiquitousConflicts = true
-        
+
         folderPicker.begin { response in
             if response == .OK {
                 withAnimation {
@@ -155,8 +164,28 @@ struct ContentView: View {
                 }
             }
         }
+#else
+        pickFileDelegate.vm = viewModel
+        
+        let documentPicker = UIDocumentPickerViewController(forOpeningContentTypes: [UTType.folder])
+        documentPicker.delegate = pickFileDelegate
+        documentPicker.allowsMultipleSelection = true
+        UIApplication.shared.windows[0].rootViewController?.present(documentPicker, animated: true) {
+            print("done presenting")
+        }
+#endif
     }
 }
+
+#if os(iOS)
+class UIDelegate: NSObject, UIDocumentPickerDelegate {
+    weak var vm: MainViewModel? = nil
+    
+    func documentPicker(_ controller: UIDocumentPickerViewController, didPickDocumentsAt urls: [URL]) {
+        vm?.addMediaFolders(urls: urls)
+    }
+}
+#endif
 
 struct CardView: View {
     @Environment(\.colorScheme) var colorScheme
