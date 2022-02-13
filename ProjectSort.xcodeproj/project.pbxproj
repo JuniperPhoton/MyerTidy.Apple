@@ -25,6 +25,14 @@
 		2221396D27B8BFAA00599E60 /* DropAreaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2221396B27B8BFAA00599E60 /* DropAreaView.swift */; };
 		2221396F27B8CB1100599E60 /* ActionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2221396E27B8CB1100599E60 /* ActionButton.swift */; };
 		2221397027B8CB1100599E60 /* ActionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2221396E27B8CB1100599E60 /* ActionButton.swift */; };
+		2221397627B8F06500599E60 /* ColorScheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2221397527B8F06500599E60 /* ColorScheme.swift */; };
+		2221397727B8F06500599E60 /* ColorScheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2221397527B8F06500599E60 /* ColorScheme.swift */; };
+		2221399727B902C100599E60 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2221399527B902C100599E60 /* Localizable.strings */; };
+		2221399827B902C100599E60 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2221399527B902C100599E60 /* Localizable.strings */; };
+		2221399C27B908E000599E60 /* AboutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2221399B27B908E000599E60 /* AboutView.swift */; };
+		2221399D27B908E000599E60 /* AboutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2221399B27B908E000599E60 /* AboutView.swift */; };
+		2221399F27B90D4B00599E60 /* AboutViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2221399E27B90D4B00599E60 /* AboutViewModel.swift */; };
+		222139A027B90D4B00599E60 /* AboutViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2221399E27B90D4B00599E60 /* AboutViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +48,12 @@
 		2221396827B81E0200599E60 /* MediaFolder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaFolder.swift; sourceTree = "<group>"; };
 		2221396B27B8BFAA00599E60 /* DropAreaView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropAreaView.swift; sourceTree = "<group>"; };
 		2221396E27B8CB1100599E60 /* ActionButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionButton.swift; sourceTree = "<group>"; };
+		2221397527B8F06500599E60 /* ColorScheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorScheme.swift; sourceTree = "<group>"; };
+		2221399627B902C100599E60 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		2221399927B902C600599E60 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		2221399A27B9076600599E60 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		2221399B27B908E000599E60 /* AboutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutView.swift; sourceTree = "<group>"; };
+		2221399E27B90D4B00599E60 /* AboutViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +77,7 @@
 		2221393827B7CC7800599E60 = {
 			isa = PBXGroup;
 			children = (
+				2221399527B902C100599E60 /* Localizable.strings */,
 				2221393D27B7CC7800599E60 /* Shared */,
 				2221394C27B7CC7900599E60 /* macOS */,
 				2221394627B7CC7900599E60 /* Products */,
@@ -78,6 +93,7 @@
 				2221393E27B7CC7800599E60 /* ProjectSortApp.swift */,
 				2221394027B7CC7900599E60 /* Assets.xcassets */,
 				2221395F27B7DE3800599E60 /* UIExtensions.swift */,
+				2221397527B8F06500599E60 /* ColorScheme.swift */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -103,6 +119,7 @@
 			isa = PBXGroup;
 			children = (
 				2221395C27B7D6C600599E60 /* MainViewModel.swift */,
+				2221399E27B90D4B00599E60 /* AboutViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -122,6 +139,7 @@
 				2221393F27B7CC7800599E60 /* ContentView.swift */,
 				2221396B27B8BFAA00599E60 /* DropAreaView.swift */,
 				2221396E27B8CB1100599E60 /* ActionButton.swift */,
+				2221399B27B908E000599E60 /* AboutView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -187,7 +205,8 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
-				Base,
+				"zh-Hans",
+				"zh-Hant",
 			);
 			mainGroup = 2221393827B7CC7800599E60;
 			productRefGroup = 2221394627B7CC7900599E60 /* Products */;
@@ -206,6 +225,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2221395227B7CC7900599E60 /* Assets.xcassets in Resources */,
+				2221399727B902C100599E60 /* Localizable.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -214,6 +234,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2221395327B7CC7900599E60 /* Assets.xcassets in Resources */,
+				2221399827B902C100599E60 /* Localizable.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -225,8 +246,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				2221395027B7CC7900599E60 /* ContentView.swift in Sources */,
+				2221399F27B90D4B00599E60 /* AboutViewModel.swift in Sources */,
+				2221397627B8F06500599E60 /* ColorScheme.swift in Sources */,
 				2221394E27B7CC7900599E60 /* ProjectSortApp.swift in Sources */,
 				2221396927B81E0200599E60 /* MediaFolder.swift in Sources */,
+				2221399C27B908E000599E60 /* AboutView.swift in Sources */,
 				2221395D27B7D6C600599E60 /* MainViewModel.swift in Sources */,
 				2221396027B7DE3800599E60 /* UIExtensions.swift in Sources */,
 				2221396C27B8BFAA00599E60 /* DropAreaView.swift in Sources */,
@@ -240,8 +264,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				2221395127B7CC7900599E60 /* ContentView.swift in Sources */,
+				222139A027B90D4B00599E60 /* AboutViewModel.swift in Sources */,
+				2221397727B8F06500599E60 /* ColorScheme.swift in Sources */,
 				2221394F27B7CC7900599E60 /* ProjectSortApp.swift in Sources */,
 				2221396A27B81E0200599E60 /* MediaFolder.swift in Sources */,
+				2221399D27B908E000599E60 /* AboutView.swift in Sources */,
 				2221395E27B7D6C600599E60 /* MainViewModel.swift in Sources */,
 				2221396127B7DE3800599E60 /* UIExtensions.swift in Sources */,
 				2221396D27B8BFAA00599E60 /* DropAreaView.swift in Sources */,
@@ -252,11 +279,25 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXVariantGroup section */
+		2221399527B902C100599E60 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				2221399627B902C100599E60 /* en */,
+				2221399927B902C600599E60 /* zh-Hans */,
+				2221399A27B9076600599E60 /* zh-Hant */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
 /* Begin XCBuildConfiguration section */
 		2221395427B7CC7900599E60 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
@@ -316,6 +357,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";

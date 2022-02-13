@@ -12,12 +12,12 @@ enum MediaAction {
     case Delete
     case Group
     
-    func toString() -> String {
+    func toString() -> LocalizedStringKey {
         switch self {
         case .Delete:
-            return "Delete"
+            return LocalizedStringKey("ActionDelete")
         case .Group:
-            return "Group"
+            return LocalizedStringKey("ActionGroup")
         }
     }
 }

@@ -9,23 +9,26 @@ import Foundation
 import SwiftUI
 
 struct ActionButton: View {
+    @Environment(\.colorScheme) var colorScheme
+    
     @State var isHovered = false
     @State var isTapped = false
     
-    var title: String
+    var title: LocalizedStringKey
     var icon: String? = nil
-    var backgroundColor: Color = Color(hex: 0xf8dae4)
+    var foregroundColor: Color
+    var backgroundColor: Color
     var matchParent: Bool = false
     var onClick: ()-> Void
     
     var body: some View {
         HStack {
             if (icon != nil) {
-                Image(systemName: icon!)
+                Image(systemName: icon!).renderingMode(.template).foregroundColor(foregroundColor)
             }
             Text(title)
                 .font(.body.bold())
-                .foregroundColor(.black)
+                .foregroundColor(foregroundColor)
         }.padding(15)
             .modifier(matchParent ? MatchParent(matchWidth: true, matchHeight: false) : MatchParent(matchWidth: false, matchHeight: false))
             .background(background)

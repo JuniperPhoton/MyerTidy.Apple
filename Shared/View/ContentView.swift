@@ -8,30 +8,61 @@
 import SwiftUI
 import UniformTypeIdentifiers
 
+enum Page {
+    case Main
+    case About
+    case Settings
+}
+
 struct ContentView: View {
     @Environment(\.colorScheme) var colorScheme
     
     @StateObject var viewModel: MainViewModel = MainViewModel()
     
+    @State var page = Page.Main
+    
     var body: some View {
-        VStack(spacing: 12) {
-            HStack {
-                Text("ProjectC").font(.largeTitle.bold()).frame(maxWidth: .infinity, alignment: .topLeading)
+        switch page {
+        case .Main:
+            VStack(spacing: 12) {
+                HStack {
+                    Text("AppName").font(.largeTitle.bold()).frame(maxWidth: .infinity, alignment: .topLeading)
+                    
+                    Image(systemName: "gear").renderingMode(.template).resizable().frame(width: 20, height: 20, alignment: .center).foregroundColor(colorScheme.getBodyTextColor())
+                        .onTapGesture {
+                            navigateTo(page: .Settings)
+                        }
+                    Spacer().frame(width: 20)
+                    Image(systemName: "info.circle").renderingMode(.template).resizable().frame(width: 20, height: 20, alignment: .center).foregroundColor(colorScheme.getBodyTextColor())
+                        .onTapGesture {
+                            navigateTo(page: .About)
+                        }
+                    Spacer().frame(width: 16)
+                }
                 
-                Image(systemName: "gear").renderingMode(.template).resizable().frame(width: 20, height: 20, alignment: .center).foregroundColor(Color.black)
-                Spacer().frame(width: 20)
-                Image(systemName: "info.circle").renderingMode(.template).resizable().frame(width: 20, height: 20, alignment: .center).foregroundColor(Color.black)
-                Spacer().frame(width: 16)
-            }
-            
-            if (viewModel.hasSelctedFolder) {
-                contentView().transition(AnyTransition.asymmetric(insertion: .offset(x: -100, y: 0), removal: .offset(x: 100, y: 0)).combined(with: .opacity).animation(.easeInOut(duration: 0.2)))
-            } else {
-                emptyView().transition(AnyTransition.asymmetric(insertion: .offset(x: 100, y: 0), removal: .offset(x: -100, y: 0)).combined(with: .opacity).animation(.easeInOut(duration: 0.2)))
-            }
-        }.padding(24)
-            .frame(minWidth: 400, minHeight: 600, alignment: .topLeading)
-            .background(colorScheme == .dark ? Color(hex: 0x333232) : Color(hex: 0xfffbfe))
+                if (viewModel.hasSelctedFolder) {
+                    contentView().transition(AnyTransition.asymmetric(insertion: .offset(x: -100, y: 0), removal: .offset(x: 100, y: 0)).combined(with: .opacity).animation(.easeInOut(duration: 0.2)))
+                } else {
+                    emptyView().transition(AnyTransition.asymmetric(insertion: .offset(x: 100, y: 0), removal: .offset(x: -100, y: 0)).combined(with: .opacity).animation(.easeInOut(duration: 0.2)))
+                }
+            }.padding(24)
+                .mainPageFrame()
+                .background(colorScheme.getBackgroundColor())
+        case .About:
+            AboutView{
+                navigateTo(page: .Main)
+            }.mainPageFrame().transition(AnyTransition.asymmetric(insertion: .offset(x: 0, y: 500), removal: .offset(x: 0, y: 500)).combined(with: .opacity).animation(.easeIn(duration: 0.3)))
+        case .Settings:
+            AboutView{
+                navigateTo(page: .Main)
+            }.mainPageFrame()
+        }
+    }
+    
+    private func navigateTo(page: Page) {
+        withAnimation {
+            self.page = page
+        }
     }
     
     private func emptyView() -> some View {
@@ -41,7 +72,7 @@ struct ContentView: View {
             }
             
             VStack {
-                ActionButton(title: "SELECT FOLDER", icon: "folder.badge.plus") {
+                ActionButton(title: LocalizedStringKey("SelectFolderButton"), icon: "folder.badge.plus", foregroundColor: colorScheme.getOnSecondaryColor(), backgroundColor: colorScheme.getSecondaryColor()) {
                     selectFolder()
                 }.addShadow()
             }.frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottomTrailing)
@@ -64,17 +95,17 @@ struct ContentView: View {
             Spacer()
                                     
             HStack {
-                ActionButton(title: "TIDY UP!", icon: "wrench.and.screwdriver", matchParent: true) {
+                ActionButton(title: "TidyUpButton", icon: "wrench.and.screwdriver", foregroundColor: colorScheme.getOnSecondaryColor(), backgroundColor: colorScheme.getSecondaryColor(), matchParent: true) {
                     viewModel.performSort()
                 }.addShadow()
                 
                 Spacer()
                 
-                ActionButton(title: "ADD MORE", icon: "folder.badge.plus", backgroundColor: Color(hex: 0xf6f6f6)) {
+                ActionButton(title: "AddMoreButton", icon: "folder.badge.plus", foregroundColor: colorScheme.getBodyTextColor(), backgroundColor: colorScheme.getPrimaryComplementaryColor()) {
                     selectFolder()
                 }.addShadow()
                 
-                ActionButton(title: "CLEAR", icon: "xmark", backgroundColor: Color(hex: 0xf6f6f6)) {
+                ActionButton(title: "ClearButton", icon: "xmark", foregroundColor: colorScheme.getBodyTextColor(), backgroundColor: colorScheme.getPrimaryComplementaryColor()) {
                     withAnimation {
                         viewModel.clear()
                     }
@@ -109,6 +140,8 @@ struct ContentView: View {
 }
 
 struct CardView: View {
+    @Environment(\.colorScheme) var colorScheme
+    
     @ObservedObject var folder: MediaFolder
     @State var byKind = true
     @State var byDate = false
@@ -120,31 +153,34 @@ struct CardView: View {
             HStack {
                 Text(folder.displayName)
                     .font(.title2.bold())
-                    .foregroundColor(Color(hex: 0x6350a1))
+                    .foregroundColor(colorScheme.getPrimaryColor())
                 Image(systemName: "trash")
                     .onTapGesture {
                         onClickRemove()
                     }
             }
                         
-            Text("PATH")
+            Text("PathTitle")
                 .font(.body.bold())
-                .foregroundColor(Color(hex: 0x6350a1))
+                .foregroundColor(colorScheme.getPrimaryColor())
             
             Text(folder.selectedFolderURL.absoluteString.removingPercentEncoding ?? "")
             
-            Text("OPEREATION")
+            Text("OperationTitle")
                 .font(.body.bold())
-                .foregroundColor(Color(hex: 0x6350a1))
+                .foregroundColor(colorScheme.getPrimaryColor())
+            
+            Text("OperationByKindDesc")
             
             if (folder.mediaInfos.isEmpty) {
-                Text("No media info found")
+                Text("NoMediaFound")
             } else {
                 ForEach($folder.mediaInfos) { $info in
                     HStack(alignment: .center) {
                         Toggle(info.mediaExtension.uppercased(), isOn: $info.isSelected)
-                            .toggleStyle(CustomToggleStyle()).background(RoundedRectangle(cornerRadius: 6, style: .continuous).fill(Color(hex: 0xe6def7)))
-                        Text("\(info.urls.count) items")
+                            .toggleStyle(CustomToggleStyle()).background(RoundedRectangle(cornerRadius: 6, style: .continuous).fill(colorScheme.getOnSurfaceColor()))
+
+                        Text("\(String(info.urls.count))ItemsText")
                         
                         Spacer()
                         HStack {
@@ -153,28 +189,37 @@ struct CardView: View {
                             } else {
                                 Image(systemName: "trash")
                             }
-                            Text("\(info.action.toString())")
-                        }.padding(6).background(RoundedRectangle(cornerRadius: 6, style: .continuous).fill(Color(hex: 0xe6def7).opacity(0.5)))
+                            Text(info.action.toString())
+                        }.padding(6).background(RoundedRectangle(cornerRadius: 6, style: .continuous).fill(colorScheme.getOnSurfaceColor().opacity(0.5)))
                     }.frame(width: nil, height: nil, alignment: .leading)
+                    
                     if (folder.mediaInfos.last?.id != info.id) {
-                        Divider().foregroundColor(Color(hex: 0xf3dbe4)).opacity(0.3)
+                        Divider().foregroundColor(colorScheme.getDividerColor()).opacity(0.3)
                     }
                 }
             }
         }.padding(12)
             .frame(maxWidth: .infinity, alignment: .leading)
-            .background(RoundedRectangle(cornerRadius: 6, style: .continuous).fill(Color(hex: 0xf2edf7)).addShadow())
+            .background(RoundedRectangle(cornerRadius: 6, style: .continuous).fill(colorScheme.getSurfaceColor()).addShadow())
     }
 }
 
 struct CustomToggleStyle: ToggleStyle {
+    @Environment(\.colorScheme) var colorScheme
+    
     func makeBody(configuration: Self.Configuration) -> some View {
         HStack {
-            Image(systemName: configuration.isOn ? "checkmark.circle.fill" : "circle").renderingMode(.template).foregroundColor(Color(hex: 0x6350a1))
+            Image(systemName: configuration.isOn ? "checkmark.circle.fill" : "circle").renderingMode(.template).foregroundColor(colorScheme.getPrimaryColor())
             configuration.label
         }.padding(4).onTapGesture {
             configuration.isOn.toggle()
         }
+    }
+}
+
+extension View {
+    func mainPageFrame() -> some View {
+        self.frame(minWidth: 400, minHeight: 600, alignment: .topLeading)
     }
 }
 

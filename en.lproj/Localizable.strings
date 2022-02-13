@@ -1,0 +1,15 @@
+"AppName"="MyerTidy";
+"SelectFolderButton"="SELECT FOLDER";
+"DragAreaHint"="Click the button below to begin";
+"PathTitle"="PATH";
+"OperationTitle"="OPERATION";
+"ActionGroup"="Group";
+"ActionDelete"="Delete";
+"%@ItemsText"="%@ items";
+"TidyUpButton"="TIDY UP!";
+"AddMoreButton"="ADD MORE";
+"ClearButton"="CLEAR";
+"NoMediaFound"="No media info found";
+"OperationByKindDesc"="This operation will move files with same extension to one folder.";
+"Feedback"="Feedback by email";
+"AboutText"="MyerTidy helps you organize your media files before performing advanced edit operations.";
