@@ -51,6 +51,9 @@ struct ActionButton: View {
                     isHovered = hover
                 }
             }
+        #if os(iOS)
+            .hoverEffect()
+        #endif
     }
     
     private var background: some View {
