@@ -9,6 +9,10 @@
 /* Begin PBXBuildFile section */
 		2214FAEE27B94158000EE453 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2214FAED27B94158000EE453 /* SettingsView.swift */; };
 		2214FAEF27B94158000EE453 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2214FAED27B94158000EE453 /* SettingsView.swift */; };
+		2214FAF627C261AC000EE453 /* View+Effect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2214FAF427C26139000EE453 /* View+Effect.swift */; };
+		2214FAF827C261C8000EE453 /* View+Effect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2214FAF727C261C8000EE453 /* View+Effect.swift */; };
+		2214FAFB27C26507000EE453 /* View+FileImporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2214FAFA27C26507000EE453 /* View+FileImporter.swift */; };
+		2214FAFD27C267D3000EE453 /* MainNavigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2214FAFC27C267D3000EE453 /* MainNavigator.swift */; };
 		2221394E27B7CC7900599E60 /* ProjectSortApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2221393E27B7CC7800599E60 /* ProjectSortApp.swift */; };
 		2221394F27B7CC7900599E60 /* ProjectSortApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2221393E27B7CC7800599E60 /* ProjectSortApp.swift */; };
 		2221395027B7CC7900599E60 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2221393F27B7CC7800599E60 /* ContentView.swift */; };
@@ -39,6 +43,10 @@
 
 /* Begin PBXFileReference section */
 		2214FAED27B94158000EE453 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		2214FAF427C26139000EE453 /* View+Effect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Effect.swift"; sourceTree = "<group>"; };
+		2214FAF727C261C8000EE453 /* View+Effect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Effect.swift"; sourceTree = "<group>"; };
+		2214FAFA27C26507000EE453 /* View+FileImporter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+FileImporter.swift"; sourceTree = "<group>"; };
+		2214FAFC27C267D3000EE453 /* MainNavigator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainNavigator.swift; sourceTree = "<group>"; };
 		2221393E27B7CC7800599E60 /* ProjectSortApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectSortApp.swift; sourceTree = "<group>"; };
 		2221393F27B7CC7800599E60 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		2221394027B7CC7900599E60 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -77,9 +85,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2214FAF927C261D4000EE453 /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+				2214FAF427C26139000EE453 /* View+Effect.swift */,
+			);
+			path = iOS;
+			sourceTree = "<group>";
+		};
 		2221393827B7CC7800599E60 = {
 			isa = PBXGroup;
 			children = (
+				2214FAF927C261D4000EE453 /* iOS */,
 				2221399527B902C100599E60 /* Localizable.strings */,
 				2221393D27B7CC7800599E60 /* Shared */,
 				2221394C27B7CC7900599E60 /* macOS */,
@@ -113,6 +130,7 @@
 		2221394C27B7CC7900599E60 /* macOS */ = {
 			isa = PBXGroup;
 			children = (
+				2214FAF727C261C8000EE453 /* View+Effect.swift */,
 				2221394D27B7CC7900599E60 /* macOS.entitlements */,
 			);
 			path = macOS;
@@ -123,6 +141,7 @@
 			children = (
 				2221395C27B7D6C600599E60 /* MainViewModel.swift */,
 				2221399E27B90D4B00599E60 /* AboutViewModel.swift */,
+				2214FAFC27C267D3000EE453 /* MainNavigator.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -144,6 +163,7 @@
 				2221396E27B8CB1100599E60 /* ActionButton.swift */,
 				2221399B27B908E000599E60 /* AboutView.swift */,
 				2214FAED27B94158000EE453 /* SettingsView.swift */,
+				2214FAFA27C26507000EE453 /* View+FileImporter.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -260,6 +280,7 @@
 				2221396C27B8BFAA00599E60 /* DropAreaView.swift in Sources */,
 				2214FAEE27B94158000EE453 /* SettingsView.swift in Sources */,
 				2221396527B7F74400599E60 /* MediaInfo.swift in Sources */,
+				2214FAF627C261AC000EE453 /* View+Effect.swift in Sources */,
 				2221396F27B8CB1100599E60 /* ActionButton.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -270,15 +291,18 @@
 			files = (
 				2221395127B7CC7900599E60 /* ContentView.swift in Sources */,
 				222139A027B90D4B00599E60 /* AboutViewModel.swift in Sources */,
+				2214FAFB27C26507000EE453 /* View+FileImporter.swift in Sources */,
 				2221397727B8F06500599E60 /* ColorScheme.swift in Sources */,
 				2221394F27B7CC7900599E60 /* ProjectSortApp.swift in Sources */,
 				2221396A27B81E0200599E60 /* MediaFolder.swift in Sources */,
 				2221399D27B908E000599E60 /* AboutView.swift in Sources */,
+				2214FAFD27C267D3000EE453 /* MainNavigator.swift in Sources */,
 				2221395E27B7D6C600599E60 /* MainViewModel.swift in Sources */,
 				2221396127B7DE3800599E60 /* UIExtensions.swift in Sources */,
 				2221396D27B8BFAA00599E60 /* DropAreaView.swift in Sources */,
 				2214FAEF27B94158000EE453 /* SettingsView.swift in Sources */,
 				2221396627B7F74400599E60 /* MediaInfo.swift in Sources */,
+				2214FAF827C261C8000EE453 /* View+Effect.swift in Sources */,
 				2221397027B8CB1100599E60 /* ActionButton.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

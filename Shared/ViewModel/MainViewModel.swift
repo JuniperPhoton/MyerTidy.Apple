@@ -25,6 +25,8 @@ class MainViewModel: ObservableObject {
     
     @Published var toastText: LocalizedStringKey? = nil
     
+    @Published var openFilePicker: Bool = false
+
     private var toastDismissWorkItem: DispatchWorkItem? = nil
     
     var hasSelctedFolder: Bool {

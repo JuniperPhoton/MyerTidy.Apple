@@ -8,101 +8,86 @@
 import SwiftUI
 import UniformTypeIdentifiers
 
-#if os(iOS)
-import UIKit
-#endif
-
-enum Page {
-    case Main
-    case About
-    case Settings
-}
-
 struct ContentView: View {
     @Environment(\.colorScheme) var colorScheme
     
     @StateObject var viewModel: MainViewModel = MainViewModel()
-    
-    @State var page = Page.Main
+    @StateObject var mainNavigator = MainNavigator()
     
     var body: some View {
-        switch page {
+        switch mainNavigator.page {
         case .Main:
-            VStack(spacing: 12) {
-                HStack {
-                    Text("AppName").font(.largeTitle.bold()).frame(alignment: .topLeading)
-                    Spacer().frame(width: 20)
-
-                    if (viewModel.loading) {
-                        ProgressView().controlSize(.small).transition(.opacity)
-                    }
-                    
-                    Spacer()
-                    
-                    Image(systemName: "gear").renderingMode(.template).resizable().frame(width: 20, height: 20, alignment: .center).foregroundColor(colorScheme.getBodyTextColor())
-                        .hidden()
-                        .onTapGesture {
-                            navigateTo(page: .Settings)
-                        }
-                    
-                    VStack {
-                        if (viewModel.toastText != nil) {
-                            Text(viewModel.toastText!).foregroundColor(.black)
-                                .padding(8)
-                                .background(RoundedRectangle(cornerRadius: 6).fill(Color.white))
-                                .addShadow()
-                                .transition(.move(edge: .trailing))
-                        }
-                    }.padding(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 8)).frame(width: 200, height: 60, alignment: .trailing).clipped()
-                    
-                    Spacer().frame(width: 20)
-                    Image(systemName: "info.circle").renderingMode(.template).resizable().frame(width: 20, height: 20, alignment: .center).foregroundColor(colorScheme.getBodyTextColor())
-                        .onTapGesture {
-                            navigateTo(page: .About)
-                        }
-                    Spacer().frame(width: 16)
-                }.frame(height: 60)
-                
-                if (viewModel.hasSelctedFolder) {
-                    contentView().transition(AnyTransition.asymmetric(insertion: .offset(x: -100, y: 0), removal: .offset(x: 100, y: 0)).combined(with: .opacity).animation(.easeInOut(duration: 0.2)))
-                } else {
-                    emptyView().transition(AnyTransition.asymmetric(insertion: .offset(x: 100, y: 0), removal: .offset(x: -100, y: 0)).combined(with: .opacity).animation(.easeInOut(duration: 0.2)))
-                }
-            }.padding(24)
-                .mainPageFrame()
-                .background(colorScheme.getBackgroundColor())
-                .transition(AnyTransition.asymmetric(insertion: .offset(x: 0, y: 200), removal: .offset(x: 0, y: 200)).combined(with: .opacity).animation(.easeIn(duration: 0.2)))
+            MainPage(viewModel: viewModel, mainNavigator: mainNavigator)
         case .About:
             AboutView{
-                navigateTo(page: .Main)
+                mainNavigator.navigateTo(page: .Main)
             }.mainPageFrame()
                 .transition(AnyTransition.asymmetric(insertion: .offset(x: 0, y: 200), removal: .offset(x: 0, y: 200)).combined(with: .opacity).animation(.easeIn(duration: 0.2)))
         case .Settings:
             AboutView{
-                navigateTo(page: .Main)
+                mainNavigator.navigateTo(page: .Main)
             }.mainPageFrame()
         }
     }
+
+}
+
+struct MainPage: View {
+    @StateObject var viewModel: MainViewModel
+    @StateObject var mainNavigator: MainNavigator
+    @Environment(\.colorScheme) var colorScheme
     
-    private func navigateTo(page: Page) {
-        withAnimation {
-            self.page = page
-        }
-    }
-    
-    private func emptyView() -> some View {
-        ZStack {
-            DropAreaView { provider, location in
-                return viewModel.performDrop(providers: provider)
+    var body: some View {
+        VStack(spacing: 12) {
+            HStack {
+                Text("AppName").font(.largeTitle.bold()).frame(alignment: .topLeading)
+                    .foregroundColor(colorScheme.getPrimaryColor())
+                Spacer().frame(width: 20)
+
+                if (viewModel.loading) {
+                    ProgressView().controlSize(.small).transition(.opacity)
+                }
+                
+                Spacer()
+                
+                Image(systemName: "gear").renderingMode(.template).resizable().frame(width: 20, height: 20, alignment: .center).foregroundColor(colorScheme.getPrimaryColor())
+                    .hidden()
+                    .onTapGesture {
+                        mainNavigator.navigateTo(page: .Settings)
+                    }
+                
+                VStack {
+                    if (viewModel.toastText != nil) {
+                        Text(viewModel.toastText!).foregroundColor(.black)
+                            .padding(8)
+                            .background(RoundedRectangle(cornerRadius: 6).fill(Color.white))
+                            .addShadow()
+                            .transition(.move(edge: .trailing))
+                    }
+                }.padding(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 8)).frame(height: 60, alignment: .trailing).clipped()
+                
+                Spacer().frame(width: 20)
+                Image(systemName: "info.circle").renderingMode(.template).resizable().frame(width: 20, height: 20, alignment: .center).foregroundColor(colorScheme.getPrimaryColor())
+                    .onTapGesture {
+                        mainNavigator.navigateTo(page: .About)
+                    }
+                Spacer().frame(width: 16)
+            }.frame(height: 60)
+            
+            if (viewModel.hasSelctedFolder) {
+                contentView().transition(AnyTransition.asymmetric(insertion: .offset(x: -100, y: 0), removal: .offset(x: 100, y: 0)).combined(with: .opacity).animation(.easeInOut(duration: 0.2)))
+            } else {
+                emptyView().transition(AnyTransition.asymmetric(insertion: .offset(x: 100, y: 0), removal: .offset(x: -100, y: 0)).combined(with: .opacity).animation(.easeInOut(duration: 0.2)))
             }
-            
-            VStack {
-                ActionButton(title: LocalizedStringKey("SelectFolderButton"), icon: "folder.badge.plus", foregroundColor: colorScheme.getOnSecondaryColor(), backgroundColor: colorScheme.getSecondaryColor()) {
-                    selectFolder()
-                }.addShadow()
-            }.frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottomTrailing)
-            
-        }.frame(maxWidth: .infinity, maxHeight: .infinity)
+        }.padding(24)
+            .mainPageFrame()
+            .background(colorScheme.getBackgroundColor())
+            .transition(AnyTransition.asymmetric(insertion: .offset(x: 0, y: 200), removal: .offset(x: 0, y: 200)).combined(with: .opacity).animation(.easeIn(duration: 0.2)))
+            .importFolder(isPresented: $viewModel.openFilePicker, onSucess: { urls in
+                withAnimation {
+                    viewModel.addMediaFolders(urls: urls)
+                }
+            })
     }
     
     private func contentView() -> some View {
@@ -127,7 +112,7 @@ struct ContentView: View {
                 Spacer()
                 
                 ActionButton(title: "AddMoreButton", icon: "folder.badge.plus", foregroundColor: colorScheme.getOnSecondaryColor(), backgroundColor: colorScheme.getSecondaryColor().opacity(0.8)) {
-                    selectFolder()
+                    viewModel.openFilePicker = true
                 }.addShadow()
                 
                 ActionButton(title: "ClearButton", icon: "xmark", foregroundColor: colorScheme.getBodyTextColor(), backgroundColor: colorScheme.getPrimaryComplementaryColor()) {
@@ -140,52 +125,21 @@ struct ContentView: View {
         }.frame(maxWidth: .infinity, alignment: .leading)
     }
     
-#if os(iOS)
-    private var pickFileDelegate = UIDelegate()
-#endif
-    
-    private func selectFolder() {
-#if os(macOS)
-        let folderChooserPoint = CGPoint(x: 0, y: 0)
-        let folderChooserSize = CGSize(width: 500, height: 600)
-        let folderChooserRectangle = CGRect(origin: folderChooserPoint, size: folderChooserSize)
-        let folderPicker = NSOpenPanel(contentRect: folderChooserRectangle, styleMask: .miniaturizable, backing: .buffered, defer: true)
-
-        folderPicker.canChooseDirectories = true
-        folderPicker.canChooseFiles = false
-        folderPicker.allowsMultipleSelection = true
-        folderPicker.canDownloadUbiquitousContents = true
-        folderPicker.canResolveUbiquitousConflicts = true
-
-        folderPicker.begin { response in
-            if response == .OK {
-                withAnimation {
-                    viewModel.addMediaFolders(urls: folderPicker.urls)
-                }
+    private func emptyView() -> some View {
+        ZStack {
+            DropAreaView { provider, location in
+                return viewModel.performDrop(providers: provider)
             }
-        }
-#else
-        pickFileDelegate.vm = viewModel
-        
-        let documentPicker = UIDocumentPickerViewController(forOpeningContentTypes: [UTType.folder])
-        documentPicker.delegate = pickFileDelegate
-        documentPicker.allowsMultipleSelection = true
-        UIApplication.shared.windows[0].rootViewController?.present(documentPicker, animated: true) {
-            print("done presenting")
-        }
-#endif
+            
+            VStack {
+                ActionButton(title: LocalizedStringKey("SelectFolderButton"), icon: "folder.badge.plus", foregroundColor: colorScheme.getOnSecondaryColor(), backgroundColor: colorScheme.getSecondaryColor()) {
+                    viewModel.openFilePicker = true
+                }.addShadow()
+            }.frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottomTrailing)
+            
+        }.frame(maxWidth: .infinity, maxHeight: .infinity)
     }
 }
-
-#if os(iOS)
-class UIDelegate: NSObject, UIDocumentPickerDelegate {
-    weak var vm: MainViewModel? = nil
-    
-    func documentPicker(_ controller: UIDocumentPickerViewController, didPickDocumentsAt urls: [URL]) {
-        vm?.addMediaFolders(urls: urls)
-    }
-}
-#endif
 
 struct CardView: View {
     @Environment(\.colorScheme) var colorScheme
