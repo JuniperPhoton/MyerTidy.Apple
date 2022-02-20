@@ -44,3 +44,11 @@ class MediaInfo: Identifiable, ObservableObject {
         self.action = action
     }
 }
+
+extension URL: Identifiable {
+    public var id: String {
+        get {
+            return self.absoluteString
+        }
+    }
+}

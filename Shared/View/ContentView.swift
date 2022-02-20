@@ -178,17 +178,7 @@ struct CardView: View {
                 Text("NoMediaFound")
             } else {
                 ForEach($folder.mediaInfos) { $info in
-                    HStack(alignment: .center) {
-                        Toggle(info.mediaExtension.uppercased(), isOn: $info.isSelected)
-                            .toggleStyle(CustomToggleStyle()).background(RoundedRectangle(cornerRadius: 6, style: .continuous).fill(colorScheme.getOnSurfaceColor()))
-
-                        Text("\(String(info.urls.count))ItemsText")
-                        
-                        Spacer()
-                        HStack {
-                            ActionMenuView(mediaInfo: info)
-                        }.padding(6).background(RoundedRectangle(cornerRadius: 6, style: .continuous).fill(colorScheme.getOnSurfaceColor().opacity(0.5)))
-                    }.frame(width: nil, height: nil, alignment: .leading)
+                    MediaInfoView(info: info)
                     
                     if (folder.mediaInfos.last?.id != info.id) {
                         Divider().foregroundColor(colorScheme.getDividerColor()).opacity(0.3)
@@ -198,6 +188,63 @@ struct CardView: View {
         }.padding(12)
             .frame(maxWidth: .infinity, alignment: .leading)
             .background(RoundedRectangle(cornerRadius: 6, style: .continuous).fill(colorScheme.getSurfaceColor()).addShadow())
+    }
+}
+
+struct MediaInfoView: View {
+    @Environment(\.colorScheme) var colorScheme
+    @StateObject var info: MediaInfo
+    
+    @State var expand: Bool = false
+    
+    var body: some View {
+        VStack {
+            HStack(alignment: .center) {
+                Toggle(info.mediaExtension.uppercased(), isOn: $info.isSelected)
+                    .toggleStyle(CustomToggleStyle()).background(RoundedRectangle(cornerRadius: 6, style: .continuous).fill(colorScheme.getOnSurfaceColor()))
+                
+                HStack {
+                    Text("\(String(info.urls.count))ItemsText")
+                    Image(systemName: "chevron.down")
+                        .rotationEffect(.degrees(expand ? 180 : 0))
+                    
+                }.onTapGesture {
+                    withAnimation {
+                        expand.toggle()
+                    }
+                }
+                
+                
+                Spacer()
+                HStack {
+                    ActionMenuView(mediaInfo: info)
+                }.padding(6).background(RoundedRectangle(cornerRadius: 6, style: .continuous).fill(colorScheme.getOnSurfaceColor().opacity(0.5)))
+            }.frame(width: nil, height: nil, alignment: .leading)
+            
+            if (expand) {
+                ForEach(info.urls) {url in
+                    HStack(alignment: .lastTextBaseline) {
+                        imageFromMediaType(mediaInfo: info)
+                        Text(url.lastPathComponent).lineLimit(1)
+                            .truncationMode(.middle)
+                            .padding([.top])
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                    }.frame(alignment: .center)
+                }
+            }
+        }
+    }
+    
+    private func imageFromMediaType(mediaInfo: MediaInfo) -> some View {
+        if (["jpg", "jpeg"].contains(mediaInfo.mediaExtension.lowercased())) {
+            return Image(systemName: "photo")
+        } else if (["mp4", "mov"].contains(mediaInfo.mediaExtension.lowercased())) {
+            return Image(systemName: "video")
+        } else if (["txt"].contains(mediaInfo.mediaExtension.lowercased())){
+            return Image(systemName: "doc.text")
+        } else {
+            return Image(systemName: "doc")
+        }
     }
 }
 
