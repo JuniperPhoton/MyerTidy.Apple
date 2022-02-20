@@ -178,7 +178,7 @@ struct CardView: View {
                 Text("NoMediaFound")
             } else {
                 ForEach($folder.mediaInfos) { $info in
-                    MediaInfoView(info: info)
+                    MediaInfoView(info: $info)
                     
                     if (folder.mediaInfos.last?.id != info.id) {
                         Divider().foregroundColor(colorScheme.getDividerColor()).opacity(0.3)
@@ -193,7 +193,7 @@ struct CardView: View {
 
 struct MediaInfoView: View {
     @Environment(\.colorScheme) var colorScheme
-    @StateObject var info: MediaInfo
+    @Binding var info: MediaInfo
     
     @State var expand: Bool = false
     

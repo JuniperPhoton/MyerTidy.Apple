@@ -214,8 +214,7 @@ class MainViewModel: ObservableObject {
                 if (ext.isEmpty) {
                     return
                 }
-                let action = (ext.uppercased() == "SRT" || ext.uppercased() == "LRF") ? MediaAction.Delete : MediaAction.Group
-                result.append(MediaInfo(mediaExtension: ext, action: action, urls: urls))
+                result.append(MediaInfo(mediaExtension: ext, action: .Group, urls: urls))
             }
         }
         
