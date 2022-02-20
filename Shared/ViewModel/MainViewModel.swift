@@ -64,11 +64,6 @@ class MainViewModel: ObservableObject {
         showToast(text: nil)
     }
     
-    func addMediaFolder(folder: MediaFolder) {
-        self.mediaFolders.append(folder)
-        parseMediaInfos(mediaFolder: folder)
-    }
-    
     func addMediaFolders(urls: [URL]) {
         urls.forEach { url in
             addMediaFolder(forUrl: url)
@@ -78,6 +73,12 @@ class MainViewModel: ObservableObject {
     func addMediaFolder(forUrl: URL) {
         let folder = MediaFolder(url: forUrl, displayName:  forUrl.lastPathComponent)
         addMediaFolder(folder: folder)
+    }
+    
+    func addMediaFolder(folder: MediaFolder) {
+        self.removeMediaFolder(folder: folder)
+        self.mediaFolders.append(folder)
+        parseMediaInfos(mediaFolder: folder)
     }
     
     func removeMediaFolder(folder: MediaFolder) {
@@ -218,6 +219,8 @@ class MainViewModel: ObservableObject {
             }
         }
         
-        return result
+        return result.sorted { info0, info1 in
+            return info0.urls.count > info1.urls.count
+        }
     }
 }
