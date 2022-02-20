@@ -15,12 +15,13 @@
 		2214FAFD27C267D3000EE453 /* MainNavigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2214FAFC27C267D3000EE453 /* MainNavigator.swift */; };
 		2214FAFE27C272EE000EE453 /* MainNavigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2214FAFC27C267D3000EE453 /* MainNavigator.swift */; };
 		2214FAFF27C272FB000EE453 /* View+FileImporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2214FAFA27C26507000EE453 /* View+FileImporter.swift */; };
+		2214FB0427C299BB000EE453 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2221394027B7CC7900599E60 /* Assets.xcassets */; };
+		2214FB0627C299F5000EE453 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2214FB0527C299F5000EE453 /* Assets.xcassets */; };
+		2214FB0827C29A35000EE453 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2214FB0727C29A35000EE453 /* Assets.xcassets */; };
 		2221394E27B7CC7900599E60 /* ProjectSortApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2221393E27B7CC7800599E60 /* ProjectSortApp.swift */; };
 		2221394F27B7CC7900599E60 /* ProjectSortApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2221393E27B7CC7800599E60 /* ProjectSortApp.swift */; };
 		2221395027B7CC7900599E60 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2221393F27B7CC7800599E60 /* ContentView.swift */; };
 		2221395127B7CC7900599E60 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2221393F27B7CC7800599E60 /* ContentView.swift */; };
-		2221395227B7CC7900599E60 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2221394027B7CC7900599E60 /* Assets.xcassets */; };
-		2221395327B7CC7900599E60 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2221394027B7CC7900599E60 /* Assets.xcassets */; };
 		2221395D27B7D6C600599E60 /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2221395C27B7D6C600599E60 /* MainViewModel.swift */; };
 		2221395E27B7D6C600599E60 /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2221395C27B7D6C600599E60 /* MainViewModel.swift */; };
 		2221396027B7DE3800599E60 /* UIExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2221395F27B7DE3800599E60 /* UIExtensions.swift */; };
@@ -49,6 +50,8 @@
 		2214FAF727C261C8000EE453 /* View+Effect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Effect.swift"; sourceTree = "<group>"; };
 		2214FAFA27C26507000EE453 /* View+FileImporter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+FileImporter.swift"; sourceTree = "<group>"; };
 		2214FAFC27C267D3000EE453 /* MainNavigator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainNavigator.swift; sourceTree = "<group>"; };
+		2214FB0527C299F5000EE453 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		2214FB0727C29A35000EE453 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2221393E27B7CC7800599E60 /* ProjectSortApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectSortApp.swift; sourceTree = "<group>"; };
 		2221393F27B7CC7800599E60 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		2221394027B7CC7900599E60 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -90,6 +93,7 @@
 		2214FAF927C261D4000EE453 /* iOS */ = {
 			isa = PBXGroup;
 			children = (
+				2214FB0727C29A35000EE453 /* Assets.xcassets */,
 				2214FAF427C26139000EE453 /* View+Effect.swift */,
 			);
 			path = iOS;
@@ -132,6 +136,7 @@
 		2221394C27B7CC7900599E60 /* macOS */ = {
 			isa = PBXGroup;
 			children = (
+				2214FB0527C299F5000EE453 /* Assets.xcassets */,
 				2214FAF727C261C8000EE453 /* View+Effect.swift */,
 				2221394D27B7CC7900599E60 /* macOS.entitlements */,
 			);
@@ -250,7 +255,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2221395227B7CC7900599E60 /* Assets.xcassets in Resources */,
+				2214FB0427C299BB000EE453 /* Assets.xcassets in Resources */,
+				2214FB0827C29A35000EE453 /* Assets.xcassets in Resources */,
 				2221399727B902C100599E60 /* Localizable.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -259,7 +265,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2221395327B7CC7900599E60 /* Assets.xcassets in Resources */,
+				2214FB0627C299F5000EE453 /* Assets.xcassets in Resources */,
 				2221399827B902C100599E60 /* Localizable.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -446,7 +452,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 12;
 				DEVELOPMENT_TEAM = 7GB9CHCB87;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -476,7 +482,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 12;
 				DEVELOPMENT_TEAM = 7GB9CHCB87;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -509,7 +515,7 @@
 				CODE_SIGN_ENTITLEMENTS = macOS/macOS.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = 7GB9CHCB87;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
@@ -538,7 +544,7 @@
 				CODE_SIGN_ENTITLEMENTS = macOS/macOS.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = 7GB9CHCB87;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
