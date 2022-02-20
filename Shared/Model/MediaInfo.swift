@@ -8,7 +8,7 @@
 import Foundation
 import SwiftUI
 
-enum MediaAction {
+enum MediaAction: String, CaseIterable, Identifiable, RawRepresentable {
     case Delete
     case Group
     
@@ -20,9 +20,11 @@ enum MediaAction {
             return LocalizedStringKey("ActionGroup")
         }
     }
+    
+    var id: String { self.rawValue }
 }
 
-class MediaInfo: Identifiable {
+class MediaInfo: Identifiable, ObservableObject {
     var mediaExtension: String = ""
     var urls: [URL] = []
     
@@ -34,7 +36,7 @@ class MediaInfo: Identifiable {
         }
     }
     
-    var action: MediaAction = .Group
+    @Published var action: MediaAction = .Group
     
     init(mediaExtension: String, action: MediaAction, urls: [URL]) {
         self.mediaExtension = mediaExtension

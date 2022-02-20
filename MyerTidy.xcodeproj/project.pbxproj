@@ -13,6 +13,8 @@
 		2214FAF827C261C8000EE453 /* View+Effect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2214FAF727C261C8000EE453 /* View+Effect.swift */; };
 		2214FAFB27C26507000EE453 /* View+FileImporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2214FAFA27C26507000EE453 /* View+FileImporter.swift */; };
 		2214FAFD27C267D3000EE453 /* MainNavigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2214FAFC27C267D3000EE453 /* MainNavigator.swift */; };
+		2214FAFE27C272EE000EE453 /* MainNavigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2214FAFC27C267D3000EE453 /* MainNavigator.swift */; };
+		2214FAFF27C272FB000EE453 /* View+FileImporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2214FAFA27C26507000EE453 /* View+FileImporter.swift */; };
 		2221394E27B7CC7900599E60 /* ProjectSortApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2221393E27B7CC7800599E60 /* ProjectSortApp.swift */; };
 		2221394F27B7CC7900599E60 /* ProjectSortApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2221393E27B7CC7800599E60 /* ProjectSortApp.swift */; };
 		2221395027B7CC7900599E60 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2221393F27B7CC7800599E60 /* ContentView.swift */; };
@@ -269,6 +271,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2214FAFE27C272EE000EE453 /* MainNavigator.swift in Sources */,
 				2221395027B7CC7900599E60 /* ContentView.swift in Sources */,
 				2221399F27B90D4B00599E60 /* AboutViewModel.swift in Sources */,
 				2221397627B8F06500599E60 /* ColorScheme.swift in Sources */,
@@ -282,6 +285,7 @@
 				2221396527B7F74400599E60 /* MediaInfo.swift in Sources */,
 				2214FAF627C261AC000EE453 /* View+Effect.swift in Sources */,
 				2221396F27B8CB1100599E60 /* ActionButton.swift in Sources */,
+				2214FAFF27C272FB000EE453 /* View+FileImporter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

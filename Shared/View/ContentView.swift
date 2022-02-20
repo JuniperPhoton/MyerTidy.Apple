@@ -186,12 +186,7 @@ struct CardView: View {
                         
                         Spacer()
                         HStack {
-                            if (info.action == .Group) {
-                                Image(systemName: "folder")
-                            } else {
-                                Image(systemName: "trash")
-                            }
-                            Text(info.action.toString())
+                            ActionMenuView(mediaInfo: info)
                         }.padding(6).background(RoundedRectangle(cornerRadius: 6, style: .continuous).fill(colorScheme.getOnSurfaceColor().opacity(0.5)))
                     }.frame(width: nil, height: nil, alignment: .leading)
                     
@@ -203,6 +198,34 @@ struct CardView: View {
         }.padding(12)
             .frame(maxWidth: .infinity, alignment: .leading)
             .background(RoundedRectangle(cornerRadius: 6, style: .continuous).fill(colorScheme.getSurfaceColor()).addShadow())
+    }
+}
+
+struct ActionMenuView: View  {
+    @Environment(\.colorScheme) var colorScheme
+    @StateObject var mediaInfo: MediaInfo
+    
+    var body: some View {
+        Menu {
+            ForEach(MediaAction.allCases) { action in
+                Button(action: {
+                    mediaInfo.action = action
+                }) {
+                    Label(action.toString(), systemImage: action == .Group ? "folder" : "trash")
+                }
+            }
+        } label: {
+            HStack {
+                Text(mediaInfo.action.toString()).foregroundColor(colorScheme.getPrimaryColor())
+                    .frame(maxWidth: .infinity)
+                    .font(.body.bold())
+                Image(systemName: mediaInfo.action == .Group ? "folder" : "trash")
+                    .renderingMode(.template)
+                    .tint(colorScheme.getPrimaryColor())
+                    .foregroundColor(colorScheme.getPrimaryColor())
+            }
+        }.frame(width: 100)
+            .menuStyle(.borderlessButton)
     }
 }
 
