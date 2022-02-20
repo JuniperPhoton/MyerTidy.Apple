@@ -29,6 +29,7 @@ struct ActionButton: View {
             Text(title)
                 .font(.body.bold())
                 .foregroundColor(foregroundColor)
+                .lineLimit(1)
         }.padding(15)
             .modifier(matchParent ? MatchParent(matchWidth: true, matchHeight: false) : MatchParent(matchWidth: false, matchHeight: false))
             .background(background)

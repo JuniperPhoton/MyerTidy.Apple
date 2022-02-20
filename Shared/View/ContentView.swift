@@ -207,7 +207,6 @@ struct MediaInfoView: View {
                     Text("\(String(info.urls.count))ItemsText")
                     Image(systemName: "chevron.down")
                         .rotationEffect(.degrees(expand ? 180 : 0))
-                    
                 }.onTapGesture {
                     withAnimation {
                         expand.toggle()
