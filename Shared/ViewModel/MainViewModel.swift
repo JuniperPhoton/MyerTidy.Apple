@@ -26,6 +26,7 @@ class MainViewModel: ObservableObject {
     @Published var toastText: LocalizedStringKey? = nil
     
     @Published var openFilePicker: Bool = false
+    @Published var supportOpenFolder: Bool = URILauncher.supportOpenFolder()
 
     private var toastDismissWorkItem: DispatchWorkItem? = nil
     
@@ -85,6 +86,10 @@ class MainViewModel: ObservableObject {
         self.mediaFolders.removeAll { f in
             f.selectedFolderURL == folder.selectedFolderURL
         }
+    }
+    
+    func openFolder(folder: MediaFolder) {
+        URILauncher.openURI(url: folder.selectedFolderURL)
     }
     
     func performDrop(providers: [NSItemProvider]) -> Bool {

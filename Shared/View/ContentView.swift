@@ -94,10 +94,12 @@ struct MainPage: View {
         return VStack {
             ScrollView {
                 ForEach($viewModel.mediaFolders) { $folder in
-                    CardView(folder: folder, onClickRemove: {
+                    CardView(viewModel: viewModel, folder: folder, onClickRemove: {
                         withAnimation {
                             viewModel.removeMediaFolder(folder: folder)
                         }
+                    }, onClickOpenFolder: {
+                        viewModel.openFolder(folder: folder)
                     }).padding(EdgeInsets(top: 0, leading: 0, bottom: 12, trailing: 12))
                 }
             }
@@ -144,11 +146,14 @@ struct MainPage: View {
 struct CardView: View {
     @Environment(\.colorScheme) var colorScheme
     
+    @StateObject var viewModel: MainViewModel
+    
     @ObservedObject var folder: MediaFolder
     @State var byKind = true
     @State var byDate = false
 
     var onClickRemove: () -> Void
+    var onClickOpenFolder: () -> Void
     
     var body: some View {
         VStack(alignment: .leading, spacing: 16) {
@@ -160,6 +165,12 @@ struct CardView: View {
                     .onTapGesture {
                         onClickRemove()
                     }
+                if (viewModel.supportOpenFolder) {
+                    Image(systemName: "folder")
+                        .onTapGesture {
+                            onClickOpenFolder()
+                        }
+                }
             }
                         
             Text("PathTitle")
