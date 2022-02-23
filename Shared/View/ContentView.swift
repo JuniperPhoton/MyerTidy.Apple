@@ -108,7 +108,7 @@ struct MainPage: View {
                     viewModel.openFilePicker = true
                 }.addShadow()
                 
-                ActionButton(title: "ClearButton", icon: "xmark", foregroundColor: colorScheme.getBodyTextColor(), backgroundColor: colorScheme.getPrimaryComplementaryColor()) {
+                ActionButton(title: nil, icon: "xmark", foregroundColor: colorScheme.getBodyTextColor(), backgroundColor: colorScheme.getPrimaryComplementaryColor()) {
                     withAnimation {
                         viewModel.clear()
                     }

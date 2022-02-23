@@ -14,7 +14,7 @@ struct ActionButton: View {
     @State var isHovered = false
     @State var isTapped = false
     
-    var title: LocalizedStringKey
+    var title: LocalizedStringKey?
     var icon: String? = nil
     var foregroundColor: Color
     var backgroundColor: Color
@@ -22,14 +22,17 @@ struct ActionButton: View {
     var onClick: ()-> Void
     
     var body: some View {
-        HStack {
+        HStack(spacing: 0) {
             if (icon != nil) {
                 Image(systemName: icon!).renderingMode(.template).foregroundColor(foregroundColor)
             }
-            Text(title)
-                .font(.body.bold())
-                .foregroundColor(foregroundColor)
-                .lineLimit(1)
+            if (title != nil) {
+                Spacer().frame(width: 12)
+                Text(title!)
+                    .font(.body.bold())
+                    .foregroundColor(foregroundColor)
+                    .lineLimit(1)
+            }
         }.padding(15)
             .modifier(matchParent ? MatchParent(matchWidth: true, matchHeight: false) : MatchParent(matchWidth: false, matchHeight: false))
             .background(background)
