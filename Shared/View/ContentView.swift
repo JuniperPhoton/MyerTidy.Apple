@@ -50,21 +50,12 @@ struct MainPage: View {
                 
                 Spacer()
                 
+                ToastView().environmentObject(viewModel)
+                
                 Image(systemName: "gear").renderingMode(.template).resizable().frame(width: 20, height: 20, alignment: .center).foregroundColor(colorScheme.getPrimaryColor())
-                    .hidden()
                     .onTapGesture {
                         mainNavigator.navigateTo(page: .Settings)
                     }
-                
-                VStack {
-                    if (viewModel.toastText != nil) {
-                        Text(viewModel.toastText!).foregroundColor(.black)
-                            .padding(8)
-                            .background(RoundedRectangle(cornerRadius: 6).fill(Color.white))
-                            .addShadow()
-                            .transition(.move(edge: .trailing))
-                    }
-                }.padding(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 8)).frame(height: 60, alignment: .trailing).clipped()
                 
                 Spacer().frame(width: 20)
                 Image(systemName: "info.circle").renderingMode(.template).resizable().frame(width: 20, height: 20, alignment: .center).foregroundColor(colorScheme.getPrimaryColor())
@@ -140,6 +131,22 @@ struct MainPage: View {
             }.frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottomTrailing)
             
         }.frame(maxWidth: .infinity, maxHeight: .infinity)
+    }
+}
+
+struct ToastView: View {
+    @EnvironmentObject var viewModel: MainViewModel
+    
+    var body: some View {
+        VStack {
+            if (viewModel.toastText != nil) {
+                Text(viewModel.toastText!).foregroundColor(.black)
+                    .padding(8)
+                    .background(RoundedRectangle(cornerRadius: 6).fill(Color.white))
+                    .addShadow()
+                    .transition(.move(edge: .trailing))
+            }
+        }.padding(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 8)).frame(height: 60, alignment: .trailing).clipped()
     }
 }
 
