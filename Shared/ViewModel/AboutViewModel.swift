@@ -22,12 +22,6 @@ class AboutViewModel: ObservableObject {
     
     func navigateToGitHub() {
         let url = URL(string: "https://github.com/JuniperPhoton/ProjectSort")!
-#if os(macOS)
-        if NSWorkspace.shared.open(url) {
-            print("default browser was successfully opened")
-        }
-#else
-        UIApplication.shared.open(url, options: [:], completionHandler: nil)
-#endif
+        URILauncher.openURI(url: url)
     }
 }

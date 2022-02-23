@@ -19,6 +19,9 @@ struct AboutView: View {
         ZStack {
             VStack(spacing: 12) {
                 HStack {
+                    Image("AboutIcon", bundle: .main)
+                        .resizable()
+                        .frame(width: 70, height: 70)
                     Text("Myer")
                         .font(.system(size: 40).weight(.thin))
                         .foregroundColor(colorScheme.getPrimaryColor())
@@ -27,6 +30,18 @@ struct AboutView: View {
                         .font(.system(size: 40).bold())
                         .foregroundColor(colorScheme.getPrimaryColor())
                 }
+                
+                Text("For iOS, iPadOS & macOS")
+                    .font(.title3.bold())
+                    .multilineTextAlignment(.center)
+                    .frame(maxWidth: 300)
+                    .foregroundColor(colorScheme.getPrimaryColor())
+                
+                Text("AboutText")
+                    .font(.title3)
+                    .multilineTextAlignment(.center)
+                    .frame(maxWidth: 300)
+                    .foregroundColor(colorScheme.getPrimaryColor())
                 
                 Text("Versions \(viewModel.version)")
                     .font(.title.bold())
@@ -52,7 +67,7 @@ struct AboutView: View {
             VStack {
                 Image(systemName: "xmark")
                     .renderingMode(.template)
-                    .foregroundColor(colorScheme.getBodyTextColor())
+                    .foregroundColor(colorScheme.getPrimaryColor())
                     .padding(24)
                     .contentShape(Rectangle())
                     .onTapGesture(perform: onClickBack)
