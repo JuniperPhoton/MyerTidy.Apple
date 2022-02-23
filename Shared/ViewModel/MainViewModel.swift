@@ -41,7 +41,7 @@ class MainViewModel: ObservableObject {
         clearToast()
     }
     
-    func showToast(text: LocalizedStringKey?, duration: Double = 4.0) {
+    func showToast(text: LocalizedStringKey?, durationSec: Double = 4.0) {
         toastDismissWorkItem?.cancel()
 
         withAnimation {
@@ -58,11 +58,15 @@ class MainViewModel: ObservableObject {
             }
         }
         
-        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + duration, execute: toastDismissWorkItem!)
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + durationSec, execute: toastDismissWorkItem!)
     }
     
     func clearToast() {
         showToast(text: nil)
+    }
+    
+    func showComingSoon() {
+        showToast(text: "ToastCommingSoon", durationSec: 2)
     }
     
     func addMediaFolders(urls: [URL]) {
@@ -155,37 +159,7 @@ class MainViewModel: ObservableObject {
         mediaInfos.filter({ info in
             info.isSelected
         }).forEach { info in
-            if (info.action == .Group) {
-                let targetFolder = url.appendingPathComponent(info.targetFolderName, isDirectory: true)
-                let exists = FileManager.default.fileExists(atPath: targetFolder.absoluteString)
-                if (!exists) {
-                    do {
-                        try FileManager.default.createDirectory(at: targetFolder, withIntermediateDirectories: true, attributes: nil)
-                    } catch {
-                        print("dwccc create item error \(error)")
-                    }
-                } else {
-                    print("dwccc video folder \(String(describing: targetFolder.absoluteString.removingPercentEncoding)) exists \(exists)")
-                }
-                
-                info.urls.forEach { fileURL in
-                    let targetURL = targetFolder.appendingPathComponent(fileURL.lastPathComponent)
-
-                    do {
-                        try FileManager.default.moveItem(at: fileURL, to: targetURL)
-                    } catch {
-                        print("dwccc move item error \(error)")
-                    }
-                }
-            } else if (info.action == .Delete) {
-                info.urls.forEach { fileURL in
-                    do {
-                        try FileManager.default.removeItem(at: fileURL)
-                    } catch {
-                        print("dwccc remove item error \(error)")
-                    }
-                }
-            }
+            info.action.performAction(url: url, info: info)
         }
     }
     

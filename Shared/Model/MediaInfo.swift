@@ -8,22 +8,6 @@
 import Foundation
 import SwiftUI
 
-enum MediaAction: String, CaseIterable, Identifiable, RawRepresentable {
-    case Delete
-    case Group
-    
-    func toString() -> LocalizedStringKey {
-        switch self {
-        case .Delete:
-            return LocalizedStringKey("ActionDelete")
-        case .Group:
-            return LocalizedStringKey("ActionGroup")
-        }
-    }
-    
-    var id: String { self.rawValue }
-}
-
 class MediaInfo: Identifiable, ObservableObject {
     var mediaExtension: String = ""
     var urls: [URL] = []

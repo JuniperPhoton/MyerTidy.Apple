@@ -1,16 +1,63 @@
-"AppName"="MyerTidy";
-"SelectFolderButton"="選擇文件夾";
-"DragAreaHint"="點擊下方按鈕選擇文件夾以開始";
-"PathTitle"="路徑";
-"OperationTitle"="操作";
-"ActionGroup"="分組";
-"ActionDelete"="刪除";
-"%@ItemsText"="%@ 個文件";
-"TidyUpButton"="開始整理";
-"AddMoreButton"="添加更多文件夾";
-"ClearButton"="清除";
-"NoMediaFound"="沒有找到文件。";
-"OperationByKindDesc"="這操作會把擴展名一樣的文件移動到同一個文件夾裡。";
-"Feedback"="郵件反饋";
-"AboutText"="MyerTidy 幫助你整理你的媒體文件，以便方便後續編輯";
-"Success"="🎉 整理成功！";
+
+
+"%@ItemsText" = "%@ 個文件";
+
+
+"AboutText" = "MyerTidy 幫助你整理你的媒體文件，以便方便後續編輯";
+
+
+"ActionDelete" = "刪除";
+
+
+"ActionGroup" = "分組";
+
+
+"ActionTrash" = "移動到廢紙簍";
+
+
+"AddMoreButton" = "添加更多文件夾";
+
+
+"AppName" = "MyerTidy";
+
+
+"ClearButton" = "清除";
+
+
+"DragAreaHint" = "點擊下方按鈕選擇文件夾以開始";
+
+
+"Feedback" = "郵件反饋";
+
+
+"FileInfo" = "文件信息";
+
+
+"NoMediaFound" = "沒有找到文件。";
+
+
+"OperationByKindDesc" = "這操作會把擴展名一樣的文件移動到同一個文件夾裡。";
+
+
+"OperationByKindTitle" = "根據文件擴展名進行操作";
+
+
+"OperationMore" = "更多整理操作";
+
+
+"OperationTitle" = "整理操作";
+
+
+"PathTitle" = "路徑";
+
+
+"SelectFolderButton" = "選擇文件夾";
+
+
+"Success" = "🎉 整理成功！";
+
+
+"TidyUpButton" = "開始整理";
+
+
+"ToastCommingSoon" = "😃 此功能即將支持";

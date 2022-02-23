@@ -1,16 +1,63 @@
-"AppName"="MyerTidy";
-"SelectFolderButton"="SELECT FOLDER";
-"DragAreaHint"="Click the button below to begin";
-"PathTitle"="PATH";
-"OperationTitle"="OPERATION";
-"ActionGroup"="Group";
-"ActionDelete"="Delete";
-"%@ItemsText"="%@ files";
-"TidyUpButton"="TIDY UP!";
-"AddMoreButton"="ADD MORE";
-"ClearButton"="CLEAR";
-"NoMediaFound"="No media info found";
-"OperationByKindDesc"="This operation will move files with same extension to one folder.";
-"Feedback"="Feedback by email";
-"AboutText"="MyerTidy helps you organize your media files before performing advanced edit operations.";
-"Success"="🎉 Success to tidy up!";
+
+
+"%@ItemsText" = "%@ files";
+
+
+"AboutText" = "MyerTidy helps you organize your media files before performing advanced edit operations.";
+
+
+"ActionDelete" = "Delete";
+
+
+"ActionGroup" = "Group";
+
+
+"ActionTrash" = "Move to trash";
+
+
+"AddMoreButton" = "ADD MORE";
+
+
+"AppName" = "MyerTidy";
+
+
+"ClearButton" = "CLEAR";
+
+
+"DragAreaHint" = "Click the button below to begin";
+
+
+"Feedback" = "Feedback by email";
+
+
+"FileInfo" = "FILE INFORMATION";
+
+
+"NoMediaFound" = "No media info found";
+
+
+"OperationByKindDesc" = "This operation will move files with same extension to one folder.";
+
+
+"OperationByKindTitle" = "By file extension";
+
+
+"OperationMore" = "More tidy operations";
+
+
+"OperationTitle" = "TIDY OPERATIONS";
+
+
+"PathTitle" = "PATH";
+
+
+"SelectFolderButton" = "SELECT FOLDER";
+
+
+"Success" = "🎉 Success to tidy up!";
+
+
+"TidyUpButton" = "TIDY UP!";
+
+
+"ToastCommingSoon" = "😃 Coming soon!";

@@ -46,6 +46,8 @@
 		226F47BE27C6862100ED3198 /* URILuncher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 226F47BD27C6862100ED3198 /* URILuncher.swift */; };
 		226F47BF27C6862300ED3198 /* URILuncher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 226F47BD27C6862100ED3198 /* URILuncher.swift */; };
 		226F47C027C6862F00ED3198 /* URILauncher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 226F47BA27C6860000ED3198 /* URILauncher.swift */; };
+		226F47C227C6897500ED3198 /* MediaAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 226F47C127C6897400ED3198 /* MediaAction.swift */; };
+		226F47C327C6897500ED3198 /* MediaAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 226F47C127C6897400ED3198 /* MediaAction.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -77,6 +79,7 @@
 		226F47B827C685ED00ED3198 /* URILauncher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URILauncher.swift; sourceTree = "<group>"; };
 		226F47BA27C6860000ED3198 /* URILauncher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URILauncher.swift; sourceTree = "<group>"; };
 		226F47BD27C6862100ED3198 /* URILuncher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URILuncher.swift; sourceTree = "<group>"; };
+		226F47C127C6897400ED3198 /* MediaAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaAction.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -168,6 +171,7 @@
 			children = (
 				2221396427B7F74400599E60 /* MediaInfo.swift */,
 				2221396827B81E0200599E60 /* MediaFolder.swift */,
+				226F47C127C6897400ED3198 /* MediaAction.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -307,6 +311,7 @@
 				2221396C27B8BFAA00599E60 /* DropAreaView.swift in Sources */,
 				2214FAEE27B94158000EE453 /* SettingsView.swift in Sources */,
 				2221396527B7F74400599E60 /* MediaInfo.swift in Sources */,
+				226F47C227C6897500ED3198 /* MediaAction.swift in Sources */,
 				2214FAF627C261AC000EE453 /* View+Effect.swift in Sources */,
 				2221396F27B8CB1100599E60 /* ActionButton.swift in Sources */,
 				226F47BE27C6862100ED3198 /* URILuncher.swift in Sources */,
@@ -331,6 +336,7 @@
 				2221395E27B7D6C600599E60 /* MainViewModel.swift in Sources */,
 				2221396127B7DE3800599E60 /* UIExtensions.swift in Sources */,
 				2221396D27B8BFAA00599E60 /* DropAreaView.swift in Sources */,
+				226F47C327C6897500ED3198 /* MediaAction.swift in Sources */,
 				2214FAEF27B94158000EE453 /* SettingsView.swift in Sources */,
 				226F47BF27C6862300ED3198 /* URILuncher.swift in Sources */,
 				2221396627B7F74400599E60 /* MediaInfo.swift in Sources */,

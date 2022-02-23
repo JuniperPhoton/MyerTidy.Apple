@@ -54,7 +54,7 @@ struct MainPage: View {
                 
                 Image(systemName: "gear").renderingMode(.template).resizable().frame(width: 20, height: 20, alignment: .center).foregroundColor(colorScheme.getPrimaryColor())
                     .onTapGesture {
-                        mainNavigator.navigateTo(page: .Settings)
+                        viewModel.showComingSoon()
                     }
                 
                 Spacer().frame(width: 20)
@@ -85,13 +85,13 @@ struct MainPage: View {
         return VStack {
             ScrollView {
                 ForEach($viewModel.mediaFolders) { $folder in
-                    CardView(viewModel: viewModel, folder: folder, onClickRemove: {
+                    CardView(folder: folder, onClickRemove: {
                         withAnimation {
                             viewModel.removeMediaFolder(folder: folder)
                         }
                     }, onClickOpenFolder: {
                         viewModel.openFolder(folder: folder)
-                    }).padding(EdgeInsets(top: 0, leading: 0, bottom: 12, trailing: 12))
+                    }).padding(EdgeInsets(top: 0, leading: 0, bottom: 12, trailing: 12)).environmentObject(viewModel)
                 }
             }
             
@@ -152,8 +152,7 @@ struct ToastView: View {
 
 struct CardView: View {
     @Environment(\.colorScheme) var colorScheme
-    
-    @StateObject var viewModel: MainViewModel
+    @EnvironmentObject var viewModel: MainViewModel
     
     @ObservedObject var folder: MediaFolder
     @State var byKind = true
@@ -190,7 +189,16 @@ struct CardView: View {
                 .font(.body.bold())
                 .foregroundColor(colorScheme.getPrimaryColor())
             
-            Text("OperationByKindDesc")
+            HStack {
+                StyledToggle(label: LocalizedStringKey("OperationByKindTitle"), isOn: .constant(true)).disabled(true)
+                StyledToggle(label: LocalizedStringKey("OperationMore"), isOn: .constant(false)).disabled(true)
+            }.opacity(0.6).contentShape(Rectangle()).onTapGesture {
+                viewModel.showComingSoon()
+            }
+            
+            Text("FileInfo")
+                .font(.body.bold())
+                .foregroundColor(colorScheme.getPrimaryColor())
             
             if (folder.mediaInfos.isEmpty) {
                 Text("NoMediaFound")
@@ -218,19 +226,19 @@ struct MediaInfoView: View {
     var body: some View {
         VStack {
             HStack(alignment: .center) {
-                Toggle(info.mediaExtension.uppercased(), isOn: $info.isSelected)
-                    .toggleStyle(CustomToggleStyle()).background(RoundedRectangle(cornerRadius: 6, style: .continuous).fill(colorScheme.getOnSurfaceColor()))
+                StyledToggle(label: LocalizedStringKey(stringLiteral: info.mediaExtension.uppercased()), isOn: $info.isSelected)
                 
-                HStack {
-                    Text("\(String(info.urls.count))ItemsText")
-                    Image(systemName: "chevron.down")
-                        .rotationEffect(.degrees(expand ? 180 : 0))
-                }.onTapGesture {
+                Button(action: {
                     withAnimation {
                         expand.toggle()
                     }
-                }
-                
+                }) {
+                    HStack {
+                        Text("\(String(info.urls.count))ItemsText")
+                        Image(systemName: "chevron.down")
+                            .rotationEffect(.degrees(expand ? 180 : 0))
+                    }.contentShape(Rectangle())
+                }.buttonStyle(.plain)
                 
                 Spacer()
                 HStack {
@@ -288,8 +296,20 @@ struct ActionMenuView: View  {
                     .tint(colorScheme.getPrimaryColor())
                     .foregroundColor(colorScheme.getPrimaryColor())
             }
-        }.frame(width: 100)
+        }.frame(width: 130)
             .menuStyle(.borderlessButton)
+    }
+}
+
+struct StyledToggle: View {
+    @Environment(\.colorScheme) var colorScheme
+    
+    var label: LocalizedStringKey
+    var isOn: Binding<Bool>
+    
+    var body: some View {
+        Toggle(label, isOn: isOn)
+            .toggleStyle(CustomToggleStyle()).background(RoundedRectangle(cornerRadius: 6, style: .continuous).fill(colorScheme.getOnSurfaceColor()))
     }
 }
 
@@ -300,7 +320,7 @@ struct CustomToggleStyle: ToggleStyle {
         HStack {
             Image(systemName: configuration.isOn ? "checkmark.circle.fill" : "circle").renderingMode(.template).foregroundColor(colorScheme.getPrimaryColor())
             configuration.label
-        }.padding(4).onTapGesture {
+        }.padding(4).contentShape(Rectangle()).onTapGesture {
             configuration.isOn.toggle()
         }
     }
