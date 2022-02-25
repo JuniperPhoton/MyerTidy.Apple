@@ -14,18 +14,14 @@ class MediaInfo: Identifiable, ObservableObject {
     
     var isSelected: Bool = true
     
-    var targetFolderName: String {
-        get {
-            return groupKey.uppercased()
-        }
-    }
-    
     @Published var action: MediaAction = .Group
+    @Published var groupName: String
     
     init(groupKey: String, action: MediaAction, urls: [URL]) {
         self.groupKey = groupKey
         self.urls = urls
         self.action = action
+        self.groupName = groupKey.uppercased()
     }
 }
 

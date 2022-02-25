@@ -168,14 +168,20 @@ struct CardView: View {
                     .font(.title2.bold())
                     .foregroundColor(colorScheme.getPrimaryColor())
                 Image(systemName: "trash")
+                    .padding(4)
                     .onTapGesture {
                         onClickRemove()
                     }
                 if (viewModel.supportOpenFolder) {
                     Image(systemName: "folder")
+                        .padding(4)
                         .onTapGesture {
                             onClickOpenFolder()
                         }
+                }
+                Spacer().frame(width: 12)
+                if (folder.loading) {
+                    ProgressView().controlSize(.small).transition(.opacity)
                 }
             }
                         
@@ -195,7 +201,7 @@ struct CardView: View {
                         if (!($option.type.wrappedValue is EmptyTidyType)) {
                             ZStack {
                                 StyledToggle(label: option.type.getLocalizedName(), isOn: $option.isSelected).disabled(true)
-                            }.contentShape(Rectangle()).onTapGesture {
+                            }.disabled(folder.loading).opacity(folder.loading ? 0.3 : 1.0).contentShape(Rectangle()).onTapGesture {
                                 folder.selectType(newOption: option)
                             }
                         } else {
@@ -222,13 +228,15 @@ struct CardView: View {
             if (folder.mediaInfos.isEmpty) {
                 Text("NoMediaFound")
             } else {
-                ForEach($folder.mediaInfos) { $info in
-                    MediaInfoView(info: $info)
-                    
-                    if (folder.mediaInfos.last?.id != info.id) {
-                        Divider().foregroundColor(colorScheme.getDividerColor()).opacity(0.3)
+                LazyVStack {
+                    ForEach($folder.mediaInfos) { $info in
+                        MediaInfoView(info: $info)
+                        if (folder.mediaInfos.last?.id != info.id) {
+                            Divider().foregroundColor(colorScheme.getDividerColor()).opacity(0.3)
+                        }
                     }
                 }
+                
             }
         }.padding(12)
             .frame(maxWidth: .infinity, alignment: .leading)
@@ -243,38 +251,41 @@ struct MediaInfoView: View {
     @State var expand: Bool = false
     
     var body: some View {
-        VStack {
-            HStack(alignment: .center) {
-                StyledToggle(label: LocalizedStringKey(stringLiteral: info.groupKey.uppercased()), isOn: $info.isSelected)
-                
-                Button(action: {
-                    withAnimation {
-                        expand.toggle()
+        LazyVStack(alignment: .leading, spacing: 0, pinnedViews: .sectionHeaders) {
+            Section {
+                if (expand) {
+                    ForEach(info.urls) { url in
+                        HStack(alignment: .lastTextBaseline) {
+                            imageFromMediaType(mediaInfo: info)
+                            Text(url.lastPathComponent).lineLimit(1)
+                                .truncationMode(.middle)
+                                .padding([.top])
+                                .frame(maxWidth: .infinity, alignment: .leading)
+                        }.frame(alignment: .center)
                     }
-                }) {
-                    HStack {
-                        Text("\(String(info.urls.count))ItemsText")
-                        Image(systemName: "chevron.down")
-                            .rotationEffect(.degrees(expand ? 180 : 0))
-                    }.contentShape(Rectangle())
-                }.buttonStyle(.plain)
-                
-                Spacer()
-                HStack {
-                    ActionMenuView(mediaInfo: info)
-                }.padding(6).background(StyledRoundedRectangle(color: colorScheme.getOnSurfaceColor().opacity(0.5)))
-            }.frame(width: nil, height: nil, alignment: .leading)
-            
-            if (expand) {
-                ForEach(info.urls) { url in
-                    HStack(alignment: .lastTextBaseline) {
-                        imageFromMediaType(mediaInfo: info)
-                        Text(url.lastPathComponent).lineLimit(1)
-                            .truncationMode(.middle)
-                            .padding([.top])
-                            .frame(maxWidth: .infinity, alignment: .leading)
-                    }.frame(alignment: .center)
                 }
+            } header: {
+                HStack(alignment: .center) {
+                    StyledToggle(label: LocalizedStringKey(stringLiteral: info.groupKey.uppercased()), isOn: $info.isSelected)
+                    Button(action: {
+                        withAnimation {
+                            expand.toggle()
+                        }
+                    }) {
+                        HStack {
+                            Text("\(String(info.urls.count))ItemsText")
+                            Image(systemName: "chevron.down")
+                                .rotationEffect(.degrees(expand ? 180 : 0))
+                        }.contentShape(Rectangle())
+                    }.buttonStyle(.plain)
+                    
+                    Spacer()
+                    HStack {
+                        ActionMenuView(mediaInfo: info)
+                        GroupTextField(mediaInfo: info)
+                    }.padding(6).background(StyledRoundedRectangle(color: colorScheme.getOnSurfaceColor().opacity(0.5))).clipped()
+                    
+                }.frame(width: nil, height: 50, alignment: .leading).background(colorScheme.getSurfaceColor())
             }
         }
     }
@@ -292,6 +303,23 @@ struct MediaInfoView: View {
     }
 }
 
+struct GroupTextField: View {
+    @Environment(\.colorScheme) var colorScheme
+    @StateObject var mediaInfo: MediaInfo
+    
+    var body: some View {
+        if (mediaInfo.action == .Group) {
+            TextField("Group", text: $mediaInfo.groupName)
+                .foregroundColor(colorScheme.getBodyTextColor())
+                .textFieldStyle(.plain)
+                .frame(width: 80)
+                .transition(.move(edge: .trailing))
+        } else {
+            EmptyView()
+        }
+    }
+}
+
 struct ActionMenuView: View  {
     @Environment(\.colorScheme) var colorScheme
     @StateObject var mediaInfo: MediaInfo
@@ -300,9 +328,13 @@ struct ActionMenuView: View  {
         Menu {
             ForEach(MediaAction.allCases) { action in
                 Button(action: {
-                    mediaInfo.action = action
+                    withAnimation {
+                        mediaInfo.action = action
+                    }
                 }) {
                     Label(action.toString(), systemImage: action == .Group ? "folder" : "trash")
+                        .symbolRenderingMode(.monochrome)
+                        .foregroundColor(colorScheme.getPrimaryColor())
                 }
             }
         } label: {
@@ -315,7 +347,7 @@ struct ActionMenuView: View  {
                     .tint(colorScheme.getPrimaryColor())
                     .foregroundColor(colorScheme.getPrimaryColor())
             }
-        }.frame(width: 130)
+        }.frame(width: 80)
             .menuStyle(.borderlessButton)
     }
 }

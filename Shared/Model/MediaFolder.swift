@@ -18,6 +18,8 @@ class MediaFolder: Identifiable, ObservableObject {
         MediaTidyOption(isSelected: false, type: FileCreationDayTidyType()),
         MediaTidyOption(isSelected: false, type: EmptyTidyType())
     ]
+    
+    @Published var loading = false
         
     init(url: URL, displayName: String) {
         self.selectedFolderURL = url
@@ -39,11 +41,16 @@ class MediaFolder: Identifiable, ObservableObject {
             return
         }
         
+        withAnimation {
+            loading = true
+        }
+        
         DispatchQueue.global().async {
             let mediaInfos = self.parseDirectoryInfos(rootURL: self.selectedFolderURL, type: option.type)
             DispatchQueue.main.async {
                 withAnimation {
                     self.mediaInfos = mediaInfos
+                    self.loading = false
                 }
                 onComplete?()
             }

@@ -9,10 +9,10 @@ import Foundation
 import SwiftUI
 
 enum MediaAction: String, CaseIterable, Identifiable, RawRepresentable {
-    case Delete = "ActionDelete"
     case Group = "ActionGroup"
     case Trash = "ActionTrash"
-    
+    case Delete = "ActionDelete"
+
     var id: String { self.rawValue }
     
     func toString() -> LocalizedStringKey {
@@ -22,7 +22,7 @@ enum MediaAction: String, CaseIterable, Identifiable, RawRepresentable {
     func performAction(url: URL, info: MediaInfo) {
         switch info.action {
         case .Group:
-            let targetFolder = url.appendingPathComponent(info.targetFolderName, isDirectory: true)
+            let targetFolder = url.appendingPathComponent(info.groupName, isDirectory: true)
             let exists = FileManager.default.fileExists(atPath: targetFolder.absoluteString)
             if (!exists) {
                 do {
