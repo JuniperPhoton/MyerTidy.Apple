@@ -36,22 +36,28 @@
 "NoMediaFound" = "没有找到文件。";
 
 
-"OperationByCreationDayTitle" = "根据文件创建时间进行操作";
+"OperationByCreationDayTitle" = "文件创建日";
+
+
+"OperationByCreationMonthTitle" = "文件创建月份";
+
+
+"OperationByCreationYearTitle" = "文件创建年份";
 
 
 "OperationByKindDesc" = "此操作会把扩展名一样的文件移动到同一个文件夹里。";
 
 
-"OperationByKindTitle" = "根据文件扩展名进行操作";
+"OperationByKindTitle" = "文件扩展名";
 
 
-"OperationByModifiedDayTitle" = "根据文件修改时间进行操作";
+"OperationByModifiedDayTitle" = "文件修改日";
 
 
-"OperationMore" = "更多整理操作";
+"OperationMore" = "自定义归类操作";
 
 
-"OperationTitle" = "整理操作";
+"OperationTitle" = "归类操作";
 
 
 "PathTitle" = "路径";

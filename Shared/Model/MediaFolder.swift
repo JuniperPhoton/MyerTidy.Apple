@@ -16,6 +16,11 @@ class MediaFolder: Identifiable, ObservableObject {
     @Published var tidyOptions: [MediaTidyOption] = [
         MediaTidyOption(isSelected: true, type: FileExtensionTidyType()),
         MediaTidyOption(isSelected: false, type: FileCreationDayTidyType()),
+        MediaTidyOption(isSelected: false, type: FileCreationMonthTidyType()),
+        MediaTidyOption(isSelected: false, type: FileCreationYearTidyType()),
+        MediaTidyOption(isSelected: false, type: ExifModelTidyType()),
+        MediaTidyOption(isSelected: false, type: ExifFNumberTidyType()),
+        MediaTidyOption(isSelected: false, type: ExifPortraitTidyType()),
         MediaTidyOption(isSelected: false, type: EmptyTidyType())
     ]
     

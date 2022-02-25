@@ -92,6 +92,10 @@ class MainViewModel: ObservableObject {
         }
     }
     
+    func openUrl(url: URL) {
+        URILauncher.openURI(url: url)
+    }
+    
     func openFolder(folder: MediaFolder) {
         URILauncher.openURI(url: folder.selectedFolderURL)
     }

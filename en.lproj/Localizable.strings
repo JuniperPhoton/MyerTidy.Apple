@@ -39,6 +39,12 @@
 "OperationByCreationDayTitle" = "By create day";
 
 
+"OperationByCreationMonthTitle" = "By create month";
+
+
+"OperationByCreationYearTitle" = "By create year";
+
+
 "OperationByKindDesc" = "This operation will move files with same extension to one folder.";
 
 

@@ -1,5 +1,3 @@
-
-
 "%@ItemsText" = "%@ 個文件";
 
 
@@ -12,7 +10,7 @@
 "ActionGroup" = "分組";
 
 
-"ActionTrash" = "移動到廢紙簍";
+"ActionTrash" = "廢紙簍";
 
 
 "AddMoreButton" = "添加更多文件夾";
@@ -36,22 +34,28 @@
 "NoMediaFound" = "沒有找到文件。";
 
 
-"OperationByCreationDayTitle" = "根据文件创建时间进行操作";
+"OperationByCreationDayTitle" = "文件創建日";
 
 
-"OperationByKindDesc" = "這操作會把擴展名一樣的文件移動到同一個文件夾裡。";
+"OperationByCreationMonthTitle" = "文件創建月份";
 
 
-"OperationByKindTitle" = "根據文件擴展名進行操作";
+"OperationByCreationYearTitle" = "文件創建年份";
 
 
-"OperationByModifiedDayTitle" = "根据文件修改时间进行操作";
+"OperationByKindDesc" = "此操作會把擴展名一樣的文件移動到同一個文件夾裡。";
 
 
-"OperationMore" = "更多整理操作";
+"OperationByKindTitle" = "文件擴展名";
 
 
-"OperationTitle" = "整理操作";
+"OperationByModifiedDayTitle" = "文件修改日";
+
+
+"OperationMore" = "自定義歸類操作";
+
+
+"OperationTitle" = "歸類操作";
 
 
 "PathTitle" = "路徑";

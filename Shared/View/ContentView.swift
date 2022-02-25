@@ -195,30 +195,37 @@ struct CardView: View {
                 .font(.body.bold())
                 .foregroundColor(colorScheme.getPrimaryColor())
             
-            ScrollView(.horizontal, showsIndicators: false) {
-                LazyHStack {
-                    ForEach($folder.tidyOptions) { $option in
-                        if (!($option.type.wrappedValue is EmptyTidyType)) {
-                            ZStack {
-                                StyledToggle(label: option.type.getLocalizedName(), isOn: $option.isSelected).disabled(true)
-                            }.disabled(folder.loading).opacity(folder.loading ? 0.3 : 1.0).contentShape(Rectangle()).onTapGesture {
-                                folder.selectType(newOption: option)
+            ZStack {
+                ScrollView(.horizontal, showsIndicators: false) {
+                    LazyHStack {
+                        ForEach($folder.tidyOptions) { $option in
+                            if (!($option.type.wrappedValue is EmptyTidyType)) {
+                                ZStack {
+                                    StyledToggle(label: option.type.getLocalizedName(), isOn: $option.isSelected).disabled(true)
+                                }.disabled(folder.loading).opacity(folder.loading ? 0.3 : 1.0).contentShape(Rectangle()).onTapGesture {
+                                    folder.selectType(newOption: option)
+                                }
+                            } else {
+                                Button {
+                                    viewModel.showComingSoon()
+                                } label: {
+                                    HStack(spacing: 4) {
+                                        Image(systemName: "plus.circle").renderingMode(.template)
+                                            .foregroundColor(.white)
+                                        Text(option.type.getLocalizedName())
+                                            .foregroundColor(.white)
+                                            .padding(4)
+                                    }.padding(.horizontal, 8).background(StyledRoundedRectangle(color: colorScheme.getPrimaryColor()))
+                                }.buttonStyle(.plain)
                             }
-                        } else {
-                            Button {
-                                viewModel.showComingSoon()
-                            } label: {
-                                HStack(spacing: 4) {
-                                    Image(systemName: "plus.circle").renderingMode(.template)
-                                        .foregroundColor(.white)
-                                    Text(option.type.getLocalizedName())
-                                        .foregroundColor(.white)
-                                        .padding(4)
-                                }.padding(.horizontal, 8).background(StyledRoundedRectangle(color: colorScheme.getPrimaryColor()))
-                            }.buttonStyle(.plain)
                         }
+                        Spacer().frame(width: 30)
                     }
                 }
+                HStack {
+                    LinearGradient(colors: [colorScheme.getSurfaceColor().opacity(0), colorScheme.getSurfaceColor()], startPoint: .leading, endPoint: .trailing)
+                        .frame(width: 50)
+                }.frame(maxWidth: .infinity, alignment: .trailing)
             }
             
             Text("FileInfo")
@@ -245,15 +252,38 @@ struct CardView: View {
 }
 
 struct MediaInfoView: View {
+    @EnvironmentObject var viewModel: MainViewModel
     @Environment(\.colorScheme) var colorScheme
     @Binding var info: MediaInfo
     
     @State var expand: Bool = false
     
     var body: some View {
-        LazyVStack(alignment: .leading, spacing: 0, pinnedViews: .sectionHeaders) {
-            Section {
-                if (expand) {
+        VStack {
+            HStack(alignment: .center) {
+                StyledToggle(label: LocalizedStringKey(stringLiteral: info.groupKey.uppercased()), isOn: $info.isSelected)
+                Button(action: {
+                    withAnimation {
+                        expand.toggle()
+                    }
+                }) {
+                    HStack {
+                        Text("\(String(info.urls.count))ItemsText")
+                        Image(systemName: "chevron.down")
+                            .rotationEffect(.degrees(expand ? 180 : 0))
+                    }.contentShape(Rectangle())
+                }.buttonStyle(.plain)
+                
+                Spacer()
+                HStack {
+                    ActionMenuView(mediaInfo: info)
+                    GroupTextField(mediaInfo: info)
+                }.padding(6).background(StyledRoundedRectangle(color: colorScheme.getOnSurfaceColor().opacity(0.5))).clipped()
+                
+            }.frame(width: nil, height: 50, alignment: .leading).background(colorScheme.getSurfaceColor())
+            
+            if (expand) {
+                LazyVStack {
                     ForEach(info.urls) { url in
                         HStack(alignment: .lastTextBaseline) {
                             imageFromMediaType(mediaInfo: info)
@@ -261,31 +291,13 @@ struct MediaInfoView: View {
                                 .truncationMode(.middle)
                                 .padding([.top])
                                 .frame(maxWidth: .infinity, alignment: .leading)
-                        }.frame(alignment: .center)
+                        }.frame(alignment: .center).contentShape(Rectangle())
+                            .onTapGesture {
+                                viewModel.openUrl(url: url)
+                            }
                     }
                 }
-            } header: {
-                HStack(alignment: .center) {
-                    StyledToggle(label: LocalizedStringKey(stringLiteral: info.groupKey.uppercased()), isOn: $info.isSelected)
-                    Button(action: {
-                        withAnimation {
-                            expand.toggle()
-                        }
-                    }) {
-                        HStack {
-                            Text("\(String(info.urls.count))ItemsText")
-                            Image(systemName: "chevron.down")
-                                .rotationEffect(.degrees(expand ? 180 : 0))
-                        }.contentShape(Rectangle())
-                    }.buttonStyle(.plain)
-                    
-                    Spacer()
-                    HStack {
-                        ActionMenuView(mediaInfo: info)
-                        GroupTextField(mediaInfo: info)
-                    }.padding(6).background(StyledRoundedRectangle(color: colorScheme.getOnSurfaceColor().opacity(0.5))).clipped()
-                    
-                }.frame(width: nil, height: 50, alignment: .leading).background(colorScheme.getSurfaceColor())
+                
             }
         }
     }
