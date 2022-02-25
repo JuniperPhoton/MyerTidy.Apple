@@ -62,7 +62,7 @@ class MediaFolder: Identifiable, ObservableObject {
         
         var error: NSError? = nil
         NSFileCoordinator().coordinate(readingItemAt: rootURL, error: &error) { (url) in
-            guard let dirEnumerator = FileManager.default.enumerator(at: url, includingPropertiesForKeys: [], options: .skipsSubdirectoryDescendants) else {
+            guard let dirEnumerator = FileManager.default.enumerator(at: url, includingPropertiesForKeys: [], options: [.skipsHiddenFiles, .skipsSubdirectoryDescendants]) else {
                 Swift.debugPrint("*** dwccc Unable to access the contents of \(url.path) ***\n")
                 return
             }
