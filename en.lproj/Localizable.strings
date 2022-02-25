@@ -36,10 +36,16 @@
 "NoMediaFound" = "No media info found";
 
 
+"OperationByCreationDayTitle" = "By create day";
+
+
 "OperationByKindDesc" = "This operation will move files with same extension to one folder.";
 
 
 "OperationByKindTitle" = "By file extension";
+
+
+"OperationByModifiedDayTitle" = "By modified day";
 
 
 "OperationMore" = "More tidy operations";

@@ -142,7 +142,7 @@ struct ToastView: View {
             if (viewModel.toastText != nil) {
                 Text(viewModel.toastText!).foregroundColor(.black)
                     .padding(8)
-                    .background(RoundedRectangle(cornerRadius: 6).fill(Color.white))
+                    .background(StyledRoundedRectangle(color: .white))
                     .addShadow()
                     .transition(.move(edge: .trailing))
             }
@@ -189,11 +189,30 @@ struct CardView: View {
                 .font(.body.bold())
                 .foregroundColor(colorScheme.getPrimaryColor())
             
-            HStack {
-                StyledToggle(label: LocalizedStringKey("OperationByKindTitle"), isOn: .constant(true)).disabled(true)
-                StyledToggle(label: LocalizedStringKey("OperationMore"), isOn: .constant(false)).disabled(true)
-            }.opacity(0.6).contentShape(Rectangle()).onTapGesture {
-                viewModel.showComingSoon()
+            ScrollView(.horizontal, showsIndicators: false) {
+                LazyHStack {
+                    ForEach($folder.tidyOptions) { $option in
+                        if (!($option.type.wrappedValue is EmptyTidyType)) {
+                            ZStack {
+                                StyledToggle(label: option.type.getLocalizedName(), isOn: $option.isSelected).disabled(true)
+                            }.contentShape(Rectangle()).onTapGesture {
+                                folder.selectType(newOption: option)
+                            }
+                        } else {
+                            Button {
+                                viewModel.showComingSoon()
+                            } label: {
+                                HStack(spacing: 4) {
+                                    Image(systemName: "plus.circle").renderingMode(.template)
+                                        .foregroundColor(.white)
+                                    Text(option.type.getLocalizedName())
+                                        .foregroundColor(.white)
+                                        .padding(4)
+                                }.padding(.horizontal, 8).background(StyledRoundedRectangle(color: colorScheme.getPrimaryColor()))
+                            }.buttonStyle(.plain)
+                        }
+                    }
+                }
             }
             
             Text("FileInfo")
@@ -213,7 +232,7 @@ struct CardView: View {
             }
         }.padding(12)
             .frame(maxWidth: .infinity, alignment: .leading)
-            .background(RoundedRectangle(cornerRadius: 6, style: .continuous).fill(colorScheme.getSurfaceColor()).addShadow())
+            .background(StyledRoundedRectangle(color: colorScheme.getSurfaceColor()).addShadow())
     }
 }
 
@@ -226,7 +245,7 @@ struct MediaInfoView: View {
     var body: some View {
         VStack {
             HStack(alignment: .center) {
-                StyledToggle(label: LocalizedStringKey(stringLiteral: info.mediaExtension.uppercased()), isOn: $info.isSelected)
+                StyledToggle(label: LocalizedStringKey(stringLiteral: info.groupKey.uppercased()), isOn: $info.isSelected)
                 
                 Button(action: {
                     withAnimation {
@@ -243,11 +262,11 @@ struct MediaInfoView: View {
                 Spacer()
                 HStack {
                     ActionMenuView(mediaInfo: info)
-                }.padding(6).background(RoundedRectangle(cornerRadius: 6, style: .continuous).fill(colorScheme.getOnSurfaceColor().opacity(0.5)))
+                }.padding(6).background(StyledRoundedRectangle(color: colorScheme.getOnSurfaceColor().opacity(0.5)))
             }.frame(width: nil, height: nil, alignment: .leading)
             
             if (expand) {
-                ForEach(info.urls) {url in
+                ForEach(info.urls) { url in
                     HStack(alignment: .lastTextBaseline) {
                         imageFromMediaType(mediaInfo: info)
                         Text(url.lastPathComponent).lineLimit(1)
@@ -261,11 +280,11 @@ struct MediaInfoView: View {
     }
     
     private func imageFromMediaType(mediaInfo: MediaInfo) -> some View {
-        if (["jpg", "jpeg"].contains(mediaInfo.mediaExtension.lowercased())) {
+        if (["jpg", "jpeg", "dng"].contains(mediaInfo.groupKey.lowercased())) {
             return Image(systemName: "photo")
-        } else if (["mp4", "mov"].contains(mediaInfo.mediaExtension.lowercased())) {
+        } else if (["mp4", "mov"].contains(mediaInfo.groupKey.lowercased())) {
             return Image(systemName: "video")
-        } else if (["txt"].contains(mediaInfo.mediaExtension.lowercased())){
+        } else if (["txt"].contains(mediaInfo.groupKey.lowercased())){
             return Image(systemName: "doc.text")
         } else {
             return Image(systemName: "doc")
@@ -309,7 +328,17 @@ struct StyledToggle: View {
     
     var body: some View {
         Toggle(label, isOn: isOn)
-            .toggleStyle(CustomToggleStyle()).background(RoundedRectangle(cornerRadius: 6, style: .continuous).fill(colorScheme.getOnSurfaceColor()))
+            .toggleStyle(CustomToggleStyle()).background(StyledRoundedRectangle(color: colorScheme.getOnSurfaceColor()))
+    }
+}
+
+struct StyledRoundedRectangle: View {
+    @Environment(\.colorScheme) var colorScheme
+    
+    var color: Color
+    
+    var body: some View {
+        RoundedRectangle(cornerRadius: 6, style: .continuous).fill(color)
     }
 }
 

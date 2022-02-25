@@ -9,21 +9,21 @@ import Foundation
 import SwiftUI
 
 class MediaInfo: Identifiable, ObservableObject {
-    var mediaExtension: String = ""
+    var groupKey: String = ""
     var urls: [URL] = []
     
     var isSelected: Bool = true
     
     var targetFolderName: String {
         get {
-            return mediaExtension.uppercased()
+            return groupKey.uppercased()
         }
     }
     
     @Published var action: MediaAction = .Group
     
-    init(mediaExtension: String, action: MediaAction, urls: [URL]) {
-        self.mediaExtension = mediaExtension
+    init(groupKey: String, action: MediaAction, urls: [URL]) {
+        self.groupKey = groupKey
         self.urls = urls
         self.action = action
     }

@@ -36,10 +36,16 @@
 "NoMediaFound" = "没有找到文件。";
 
 
+"OperationByCreationDayTitle" = "根据文件创建时间进行操作";
+
+
 "OperationByKindDesc" = "此操作会把扩展名一样的文件移动到同一个文件夹里。";
 
 
 "OperationByKindTitle" = "根据文件扩展名进行操作";
+
+
+"OperationByModifiedDayTitle" = "根据文件修改时间进行操作";
 
 
 "OperationMore" = "更多整理操作";

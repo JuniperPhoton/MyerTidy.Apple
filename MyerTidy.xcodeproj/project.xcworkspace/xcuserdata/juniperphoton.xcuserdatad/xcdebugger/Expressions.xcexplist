@@ -3,6 +3,22 @@
    version = "1.0">
    <ContextStates>
       <ContextState
+         contextName = "closure #1 in closure #1 in MainViewModel.performDeleteSrt(url:):MainViewModel.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "fileURL.absoluteString">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "MediaFolder.selectType(newOption:):MediaFolder.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "tidyOptions">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "closure #1 in ContentView.selectFolder():ContentView.swift">
          <PersistentStrings>
             <PersistentString
@@ -12,14 +28,6 @@
       </ContextState>
       <ContextState
          contextName = "closure #1 in MainViewModel.performDeleteSrt(url:):MainViewModel.swift">
-      </ContextState>
-      <ContextState
-         contextName = "closure #1 in closure #1 in MainViewModel.performDeleteSrt(url:):MainViewModel.swift">
-         <PersistentStrings>
-            <PersistentString
-               value = "fileURL.absoluteString">
-            </PersistentString>
-         </PersistentStrings>
       </ContextState>
    </ContextStates>
 </VariablesViewState>

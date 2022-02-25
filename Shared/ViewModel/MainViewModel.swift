@@ -27,7 +27,7 @@ class MainViewModel: ObservableObject {
     
     @Published var openFilePicker: Bool = false
     @Published var supportOpenFolder: Bool = URILauncher.supportOpenFolder()
-
+    
     private var toastDismissWorkItem: DispatchWorkItem? = nil
     
     var hasSelctedFolder: Bool {
@@ -121,7 +121,7 @@ class MainViewModel: ObservableObject {
         }
         DispatchQueue.global().asyncAfter(deadline: DispatchTime.now() + 0.5) {
             self.mediaFolders.forEach { folder in
-                self.performSort(url: folder.selectedFolderURL, mediaInfos: folder.mediaInfos)
+                self.performSort(folder: folder)
             }
             DispatchQueue.main.async {
                 withAnimation {
@@ -136,69 +136,29 @@ class MainViewModel: ObservableObject {
         withAnimation {
             loading = true
         }
-        DispatchQueue.global().async {
-            let mediaInfos = self.parseDirectoryInfos(rootURL: mediaFolder.selectedFolderURL)
-            DispatchQueue.main.async {
-                mediaFolder.mediaInfos = mediaInfos
-                withAnimation {
-                    self.loading = false
-                }
+        mediaFolder.updateMediaInfoByTidyType {
+            withAnimation {
+                self.loading = false
             }
         }
     }
     
-    private func performSort(url: URL, mediaInfos: [MediaInfo]) {
+    private func performSort(folder: MediaFolder) {
+        let url = folder.selectedFolderURL
         // Start accessing a security-scoped resource.
-            guard url.startAccessingSecurityScopedResource() else {
-                print("dwccc startAccessingSecurityScopedResource failed")
-                return
-            }
+        guard url.startAccessingSecurityScopedResource() else {
+            print("dwccc startAccessingSecurityScopedResource failed")
+            return
+        }
         
         defer { url.stopAccessingSecurityScopedResource() }
         
-        mediaInfos.filter({ info in
+        folder.mediaInfos.filter({ info in
             info.isSelected
         }).forEach { info in
             info.action.performAction(url: url, info: info)
         }
-    }
-    
-    private func parseDirectoryInfos(rootURL: URL) -> [MediaInfo] {
-        var result: [MediaInfo] = []
         
-        guard rootURL.startAccessingSecurityScopedResource() else {
-            print("dwccc startAccessingSecurityScopedResource failed")
-            return result
-        }
-        
-        defer { rootURL.stopAccessingSecurityScopedResource() }
-        
-        var error: NSError? = nil
-        NSFileCoordinator().coordinate(readingItemAt: rootURL, error: &error) { (url) in
-            guard let dirEnumerator = FileManager.default.enumerator(at: url, includingPropertiesForKeys: [], options: .skipsSubdirectoryDescendants) else {
-                Swift.debugPrint("*** dwccc Unable to access the contents of \(url.path) ***\n")
-                return
-            }
-            
-            let files = dirEnumerator.filter { item in
-                let fileURL = item as! URL
-                return !fileURL.hasDirectoryPath
-            }.map { item in
-                item as! URL
-            }
-            
-            Dictionary(grouping: files) { file in
-                file.pathExtension
-            }.forEach { (ext, urls) in
-                if (ext.isEmpty) {
-                    return
-                }
-                result.append(MediaInfo(mediaExtension: ext, action: .Group, urls: urls))
-            }
-        }
-        
-        return result.sorted { info0, info1 in
-            return info0.urls.count > info1.urls.count
-        }
+        folder.updateMediaInfoByTidyType()
     }
 }
