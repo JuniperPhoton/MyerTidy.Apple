@@ -39,6 +39,9 @@
 "NoMediaFound" = "没有找到文件。";
 
 
+"NonDragAreaHint" = "点击下方按钮以开始";
+
+
 "OperationByColorModel" = "EXIF 颜色模型";
 
 

@@ -9,6 +9,6 @@ import Foundation
 
 extension NSItemProvider {
     func loadUrl(onComplete: (URL?) -> Void) {
-        onComplete?(nil)
+        onComplete(nil)
     }
 }

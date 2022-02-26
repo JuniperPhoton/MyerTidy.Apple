@@ -10,6 +10,10 @@ import SwiftUI
 import UniformTypeIdentifiers
 
 extension View {
+    func supportDrop() -> Bool {
+        return true
+    }
+    
     func performDrop(isTargeted: Binding<Bool>, onSelectedProviders: @escaping ([NSItemProvider], CGPoint) -> Bool) -> some View {
         self.onDrop(of: [UTType.fileURL, UTType.folder], isTargeted: isTargeted, perform: onSelectedProviders)
     }

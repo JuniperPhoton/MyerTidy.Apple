@@ -9,7 +9,11 @@ import Foundation
 import SwiftUI
 
 extension View {
-    func performDrop() -> some View {
+    func supportDrop() -> Bool {
+        return false
+    }
+    
+    func performDrop(isTargeted: Binding<Bool>, onSelectedProviders: @escaping ([NSItemProvider], CGPoint) -> Bool) -> some View {
         return self
     }
 }

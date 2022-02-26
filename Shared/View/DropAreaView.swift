@@ -28,7 +28,7 @@ struct DropHintView: View {
         VStack(spacing: 12) {
             Image(systemName: "folder.badge.plus").renderingMode(.template)
                 .foregroundColor(colorScheme.getPrimaryColor().opacity(0.5)).font(.system(size: 120, weight: .bold))
-            Text(isTargeted ? "DropHereHint" : "DragAreaHint").transition(.opacity)
+            Text(isTargeted ? "DropHereHint" : (supportDrop() ? "DragAreaHint" : "NonDragAreaHint")).transition(.opacity)
         }.frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
             .background($isTargeted.wrappedValue ? colorScheme.getSurfaceColor().opacity(0.5): Color.clear)
     }

@@ -24,7 +24,7 @@
 "ClearButton" = "CLEAR";
 
 
-"DragAreaHint" = "Click the button below to begin";
+"DragAreaHint" = "Click the button below or drag fold here to begin";
 
 
 "DropHereHint" = "Drop here";
@@ -37,6 +37,9 @@
 
 
 "NoMediaFound" = "No media info found";
+
+
+"NonDragAreaHint" = "Click the button below to begin";
 
 
 "OperationByColorModel" = "By EXIF Color Model";

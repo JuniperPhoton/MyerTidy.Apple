@@ -39,7 +39,10 @@
 "NoMediaFound" = "沒有找到文件。";
 
 
-"OperationByColorModel" = "";
+"NonDragAreaHint" = "點擊下方按鈕以開始";
+
+
+"OperationByColorModel" = "EXIF 颜色模型";
 
 
 "OperationByCreationDayTitle" = "文件创建日期";
