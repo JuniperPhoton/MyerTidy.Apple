@@ -38,47 +38,53 @@ struct MainPage: View {
     @Environment(\.colorScheme) var colorScheme
     
     var body: some View {
-        VStack(spacing: 12) {
-            HStack {
-                Text("AppName").font(.largeTitle.bold()).frame(alignment: .topLeading)
-                    .foregroundColor(colorScheme.getPrimaryColor())
-                Spacer().frame(width: 20)
+        ZStack {
+            VStack(spacing: 12) {
+                HStack {
+                    Text("AppName").font(.largeTitle.bold()).frame(alignment: .topLeading)
+                        .foregroundColor(colorScheme.getPrimaryColor())
+                    Spacer().frame(width: 20)
 
-                if (viewModel.loading) {
-                    ProgressView().controlSize(.small).transition(.opacity)
+                    if (viewModel.loading) {
+                        ProgressView().controlSize(.small).transition(.opacity)
+                    }
+                    
+                    Spacer()
+                    
+                    Image(systemName: "gear").renderingMode(.template).resizable().frame(width: 20, height: 20, alignment: .center).foregroundColor(colorScheme.getPrimaryColor())
+                        .onTapGesture {
+                            viewModel.showComingSoon()
+                        }
+                    
+                    Spacer().frame(width: 20)
+                    Image(systemName: "info.circle").renderingMode(.template).resizable().frame(width: 20, height: 20, alignment: .center).foregroundColor(colorScheme.getPrimaryColor())
+                        .onTapGesture {
+                            mainNavigator.navigateTo(page: .About)
+                        }
+                    Spacer().frame(width: 16)
+                }.frame(height: 60)
+                
+                if (viewModel.hasSelctedFolder) {
+                    contentView().transition(AnyTransition.asymmetric(insertion: .offset(x: -100, y: 0), removal: .offset(x: 100, y: 0)).combined(with: .opacity).animation(.easeInOut(duration: 0.2)))
+                } else {
+                    emptyView().transition(AnyTransition.asymmetric(insertion: .offset(x: 100, y: 0), removal: .offset(x: -100, y: 0)).combined(with: .opacity).animation(.easeInOut(duration: 0.2)))
                 }
-                
-                Spacer()
-                
-                ToastView().environmentObject(viewModel)
-                
-                Image(systemName: "gear").renderingMode(.template).resizable().frame(width: 20, height: 20, alignment: .center).foregroundColor(colorScheme.getPrimaryColor())
-                    .onTapGesture {
-                        viewModel.showComingSoon()
+            }.padding(24)
+                .mainPageFrame()
+                .background(colorScheme.getBackgroundColor())
+                .transition(AnyTransition.asymmetric(insertion: .offset(x: 0, y: 200), removal: .offset(x: 0, y: 200)).combined(with: .opacity).animation(.easeIn(duration: 0.2)))
+                .importFolder(isPresented: $viewModel.openFilePicker, onSucess: { urls in
+                    withAnimation {
+                        viewModel.addMediaFolders(urls: urls)
                     }
-                
-                Spacer().frame(width: 20)
-                Image(systemName: "info.circle").renderingMode(.template).resizable().frame(width: 20, height: 20, alignment: .center).foregroundColor(colorScheme.getPrimaryColor())
-                    .onTapGesture {
-                        mainNavigator.navigateTo(page: .About)
-                    }
-                Spacer().frame(width: 16)
-            }.frame(height: 60)
+                })
             
-            if (viewModel.hasSelctedFolder) {
-                contentView().transition(AnyTransition.asymmetric(insertion: .offset(x: -100, y: 0), removal: .offset(x: 100, y: 0)).combined(with: .opacity).animation(.easeInOut(duration: 0.2)))
-            } else {
-                emptyView().transition(AnyTransition.asymmetric(insertion: .offset(x: 100, y: 0), removal: .offset(x: -100, y: 0)).combined(with: .opacity).animation(.easeInOut(duration: 0.2)))
-            }
-        }.padding(24)
-            .mainPageFrame()
-            .background(colorScheme.getBackgroundColor())
-            .transition(AnyTransition.asymmetric(insertion: .offset(x: 0, y: 200), removal: .offset(x: 0, y: 200)).combined(with: .opacity).animation(.easeIn(duration: 0.2)))
-            .importFolder(isPresented: $viewModel.openFilePicker, onSucess: { urls in
-                withAnimation {
-                    viewModel.addMediaFolders(urls: urls)
-                }
-            })
+            VStack {
+                Spacer().frame(height: 30)
+                ToastView().environmentObject(viewModel)
+                    .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
+            }.mainPageFrame()
+        }.mainPageFrame()
     }
     
     private func contentView() -> some View {
@@ -144,7 +150,7 @@ struct ToastView: View {
                     .padding(8)
                     .background(StyledRoundedRectangle(color: .white))
                     .addShadow()
-                    .transition(.move(edge: .trailing))
+                    .transition(.opacity)
             }
         }.padding(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 8)).frame(height: 60, alignment: .trailing).clipped()
     }
