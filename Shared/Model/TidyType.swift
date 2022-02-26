@@ -197,7 +197,10 @@ class ExifFNumberTidyType: ImageExifTidyType {
             guard let exifMap = map["{Exif}"] as? Dictionary<String, Any> else {
                 return nil
             }
-            return "f/\(String(exifMap["FNumber"] as! Double))"
+            guard let fNumber = exifMap["FNumber"] as? Double else {
+                return nil
+            }
+            return "F\(String(fNumber))"
         } getName: {
             LocalizedStringKey(stringLiteral: "FNumber")
         }

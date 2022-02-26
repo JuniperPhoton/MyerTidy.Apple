@@ -22,7 +22,10 @@
 "ClearButton" = "清除";
 
 
-"DragAreaHint" = "點擊下方按鈕選擇文件夾以開始";
+"DragAreaHint" = "拖動文件夾到這里或者點擊下方按鈕以開始";
+
+
+"DropHereHint" = "拖到這裡";
 
 
 "Feedback" = "郵件反饋";
@@ -34,7 +37,7 @@
 "NoMediaFound" = "沒有找到文件。";
 
 
-"OperationByCreationDayTitle" = "文件創建日";
+"OperationByCreationDayTitle" = "文件創建日期";
 
 
 "OperationByCreationMonthTitle" = "文件創建月份";

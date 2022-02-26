@@ -27,6 +27,9 @@
 "DragAreaHint" = "Click the button below to begin";
 
 
+"DropHereHint" = "Drop here";
+
+
 "Feedback" = "Feedback by email";
 
 

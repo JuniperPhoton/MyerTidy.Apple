@@ -28,10 +28,10 @@ enum MediaAction: String, CaseIterable, Identifiable, RawRepresentable {
                 do {
                     try FileManager.default.createDirectory(at: targetFolder, withIntermediateDirectories: true, attributes: nil)
                 } catch {
-                    print("dwccc create item error \(error)")
+                    Logger.logW(message: "performAction create item error \(error)")
                 }
             } else {
-                print("dwccc video folder \(String(describing: targetFolder.absoluteString.removingPercentEncoding)) exists \(exists)")
+                Logger.logW(message: "video folder \(String(describing: targetFolder.absoluteString.removingPercentEncoding)) exists \(exists)")
             }
             
             info.urls.forEach { fileURL in
@@ -40,7 +40,7 @@ enum MediaAction: String, CaseIterable, Identifiable, RawRepresentable {
                 do {
                     try FileManager.default.moveItem(at: fileURL, to: targetURL)
                 } catch {
-                    print("dwccc move item error \(error)")
+                    Logger.logW(message: "move item error \(error)")
                 }
             }
             break
@@ -49,7 +49,7 @@ enum MediaAction: String, CaseIterable, Identifiable, RawRepresentable {
                 do {
                     try FileManager.default.trashItem(at: fileURL, resultingItemURL: nil)
                 } catch {
-                    print("dwccc trash item error \(error)")
+                    Logger.logW(message: "trash item error \(error)")
                 }
             }
             break
@@ -58,7 +58,7 @@ enum MediaAction: String, CaseIterable, Identifiable, RawRepresentable {
                 do {
                     try FileManager.default.removeItem(at: fileURL)
                 } catch {
-                    print("dwccc remove item error \(error)")
+                    Logger.logW(message: "delete item error \(error)")
                 }
             }
             break

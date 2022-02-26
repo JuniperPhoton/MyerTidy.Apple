@@ -76,7 +76,7 @@ class MainViewModel: ObservableObject {
     }
     
     func addMediaFolder(forUrl: URL) {
-        let folder = MediaFolder(url: forUrl, displayName:  forUrl.lastPathComponent)
+        let folder = MediaFolder(url: forUrl, displayName: forUrl.lastPathComponent)
         addMediaFolder(folder: folder)
     }
     
@@ -103,17 +103,21 @@ class MainViewModel: ObservableObject {
     func performDrop(providers: [NSItemProvider]) -> Bool {
         providers.forEach { provider in
             let identifier = provider.registeredTypeIdentifiers.first
-            if (identifier == "public.url" || identifier == "public.file-url") {
-                provider.loadFileRepresentation(forTypeIdentifier: identifier!) { [weak self] url, error in
+            if (identifier == "public.url" || identifier == "public.file-url" || identifier == "public.folder") {
+                provider.loadUrl { [weak self] url in
+                    Logger.logI(message: "performDrop load url: \(String(describing: url))")
                     guard let self = self else {
                         return
                     }
-                    if url != nil {
-                        DispatchQueue.main.async {
-                            self.addMediaFolder(forUrl: url!)
-                        }
+                    guard let url = url else {
+                        return
+                    }
+                    DispatchQueue.main.async {
+                        self.addMediaFolder(forUrl: url)
                     }
                 }
+            } else {
+                Logger.logW(message: "identifier is unknown: \(String(describing: identifier))")
             }
         }
         return true
@@ -150,12 +154,14 @@ class MainViewModel: ObservableObject {
     private func performSort(folder: MediaFolder) {
         let url = folder.selectedFolderURL
         // Start accessing a security-scoped resource.
-        guard url.startAccessingSecurityScopedResource() else {
-            print("dwccc startAccessingSecurityScopedResource failed")
-            return
-        }
+        let granted = url.startAccessingSecurityScopedResource()
+        Logger.logW(message: "performSort startAccessingSecurityScopedResource \(granted)")
         
-        defer { url.stopAccessingSecurityScopedResource() }
+        defer {
+            if (granted) {
+                url.stopAccessingSecurityScopedResource()
+            }
+        }
         
         folder.mediaInfos.filter({ info in
             info.isSelected

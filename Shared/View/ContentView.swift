@@ -37,6 +37,8 @@ struct MainPage: View {
     @StateObject var mainNavigator: MainNavigator
     @Environment(\.colorScheme) var colorScheme
     
+    @State var isDropTarget = false
+    
     var body: some View {
         ZStack {
             VStack(spacing: 12) {
@@ -65,7 +67,16 @@ struct MainPage: View {
                 }.frame(height: 60)
                 
                 if (viewModel.hasSelctedFolder) {
-                    contentView().transition(AnyTransition.asymmetric(insertion: .offset(x: -100, y: 0), removal: .offset(x: 100, y: 0)).combined(with: .opacity).animation(.easeInOut(duration: 0.2)))
+                    ZStack {
+                        contentView()
+                            .transition(AnyTransition.asymmetric(insertion: .offset(x: -100, y: 0), removal: .offset(x: 100, y: 0)).combined(with: .opacity).animation(.easeInOut(duration: 0.2)))
+                            .performDrop(isTargeted: $isDropTarget) { provider, _ in
+                                viewModel.performDrop(providers: provider)
+                            }
+                        if (isDropTarget) {
+                            DropHintView(isTargeted: $isDropTarget)
+                        }
+                    }
                 } else {
                     emptyView().transition(AnyTransition.asymmetric(insertion: .offset(x: 100, y: 0), removal: .offset(x: -100, y: 0)).combined(with: .opacity).animation(.easeInOut(duration: 0.2)))
                 }

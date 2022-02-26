@@ -24,7 +24,10 @@
 "ClearButton" = "清除";
 
 
-"DragAreaHint" = "点击下方按钮选择文件夹以开始";
+"DragAreaHint" = "拖动文件夹到这里或者点击下方按钮以开始";
+
+
+"DropHereHint" = "拖到这里";
 
 
 "Feedback" = "邮件反馈";
@@ -36,7 +39,7 @@
 "NoMediaFound" = "没有找到文件。";
 
 
-"OperationByCreationDayTitle" = "文件创建日";
+"OperationByCreationDayTitle" = "文件创建日期";
 
 
 "OperationByCreationMonthTitle" = "文件创建月份";

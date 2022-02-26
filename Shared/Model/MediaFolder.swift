@@ -46,8 +46,10 @@ class MediaFolder: Identifiable, ObservableObject {
             return
         }
         
-        withAnimation {
-            loading = true
+        DispatchQueue.main.async {
+            withAnimation {
+                self.loading = true
+            }
         }
         
         DispatchQueue.global().async {
@@ -65,17 +67,21 @@ class MediaFolder: Identifiable, ObservableObject {
     private func parseDirectoryInfos(rootURL: URL, type: URLTidyType) -> [MediaInfo] {
         var result: [MediaInfo] = []
         
-        guard rootURL.startAccessingSecurityScopedResource() else {
-            print("dwccc startAccessingSecurityScopedResource failed")
-            return result
+        let granted = rootURL.startAccessingSecurityScopedResource()
+        Logger.logW(message: "parseDirectoryInfos startAccessingSecurityScopedResource granted: \(granted)")
+
+        defer {
+            if (granted) {
+                rootURL.stopAccessingSecurityScopedResource()
+            }
         }
-        
-        defer { rootURL.stopAccessingSecurityScopedResource() }
-        
+
         var error: NSError? = nil
         NSFileCoordinator().coordinate(readingItemAt: rootURL, error: &error) { (url) in
+            Logger.logI(message: "parseDirectoryInfos after coordinate, url is \(url)")
+            
             guard let dirEnumerator = FileManager.default.enumerator(at: url, includingPropertiesForKeys: [], options: [.skipsHiddenFiles, .skipsSubdirectoryDescendants]) else {
-                Swift.debugPrint("*** dwccc Unable to access the contents of \(url.path) ***\n")
+                Logger.logW(message: "Unable to access the contents of \(url.path)")
                 return
             }
             
@@ -85,6 +91,8 @@ class MediaFolder: Identifiable, ObservableObject {
             }.map { item in
                 item as! URL
             }
+                        
+            Logger.logI(message: "parseDirectoryInfos dirEnumerator files count \(files.count)")
             
             Dictionary(grouping: files) { file in
                 return type.getGroupKey(input: file)

@@ -22,6 +22,12 @@
 		221665CA27C9305D0061F189 /* TidyType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221665C827C9305D0061F189 /* TidyType.swift */; };
 		221665CC27C95A7F0061F189 /* Date+Get.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221665CB27C95A7F0061F189 /* Date+Get.swift */; };
 		221665CD27C95A7F0061F189 /* Date+Get.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221665CB27C95A7F0061F189 /* Date+Get.swift */; };
+		221665CF27C9EDFA0061F189 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221665CE27C9EDFA0061F189 /* Logger.swift */; };
+		221665D027C9EDFA0061F189 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221665CE27C9EDFA0061F189 /* Logger.swift */; };
+		221665D227C9FBE60061F189 /* View+Drop.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221665D127C9FBE60061F189 /* View+Drop.swift */; };
+		221665D427C9FBF90061F189 /* View+Drop.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221665D327C9FBF90061F189 /* View+Drop.swift */; };
+		221665D627CA040E0061F189 /* NSItemProvider+GetUrl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221665D527CA040E0061F189 /* NSItemProvider+GetUrl.swift */; };
+		221665D827CA04810061F189 /* NSItemProvider+GetUrl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221665D727CA04810061F189 /* NSItemProvider+GetUrl.swift */; };
 		2221394E27B7CC7900599E60 /* ProjectSortApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2221393E27B7CC7800599E60 /* ProjectSortApp.swift */; };
 		2221394F27B7CC7900599E60 /* ProjectSortApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2221393E27B7CC7800599E60 /* ProjectSortApp.swift */; };
 		2221395027B7CC7900599E60 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2221393F27B7CC7800599E60 /* ContentView.swift */; };
@@ -65,6 +71,11 @@
 		2214FB0727C29A35000EE453 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		221665C827C9305D0061F189 /* TidyType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TidyType.swift; sourceTree = "<group>"; };
 		221665CB27C95A7F0061F189 /* Date+Get.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Get.swift"; sourceTree = "<group>"; };
+		221665CE27C9EDFA0061F189 /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
+		221665D127C9FBE60061F189 /* View+Drop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Drop.swift"; sourceTree = "<group>"; };
+		221665D327C9FBF90061F189 /* View+Drop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Drop.swift"; sourceTree = "<group>"; };
+		221665D527CA040E0061F189 /* NSItemProvider+GetUrl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSItemProvider+GetUrl.swift"; sourceTree = "<group>"; };
+		221665D727CA04810061F189 /* NSItemProvider+GetUrl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSItemProvider+GetUrl.swift"; sourceTree = "<group>"; };
 		2221393E27B7CC7800599E60 /* ProjectSortApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectSortApp.swift; sourceTree = "<group>"; };
 		2221393F27B7CC7800599E60 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		2221394027B7CC7900599E60 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -113,6 +124,8 @@
 				2214FB0727C29A35000EE453 /* Assets.xcassets */,
 				2214FAF427C26139000EE453 /* View+Effect.swift */,
 				226F47B827C685ED00ED3198 /* URILauncher.swift */,
+				221665D127C9FBE60061F189 /* View+Drop.swift */,
+				221665D527CA040E0061F189 /* NSItemProvider+GetUrl.swift */,
 			);
 			path = iOS;
 			sourceTree = "<group>";
@@ -159,6 +172,8 @@
 				2214FAF727C261C8000EE453 /* View+Effect.swift */,
 				2221394D27B7CC7900599E60 /* macOS.entitlements */,
 				226F47BA27C6860000ED3198 /* URILauncher.swift */,
+				221665D327C9FBF90061F189 /* View+Drop.swift */,
+				221665D727CA04810061F189 /* NSItemProvider+GetUrl.swift */,
 			);
 			path = macOS;
 			sourceTree = "<group>";
@@ -202,6 +217,7 @@
 			children = (
 				226F47BD27C6862100ED3198 /* URILuncher.swift */,
 				221665CB27C95A7F0061F189 /* Date+Get.swift */,
+				221665CE27C9EDFA0061F189 /* Logger.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -313,8 +329,11 @@
 				2221395027B7CC7900599E60 /* ContentView.swift in Sources */,
 				2221399F27B90D4B00599E60 /* AboutViewModel.swift in Sources */,
 				2221397627B8F06500599E60 /* ColorScheme.swift in Sources */,
+				221665D627CA040E0061F189 /* NSItemProvider+GetUrl.swift in Sources */,
+				221665CF27C9EDFA0061F189 /* Logger.swift in Sources */,
 				2221394E27B7CC7900599E60 /* ProjectSortApp.swift in Sources */,
 				2221396927B81E0200599E60 /* MediaFolder.swift in Sources */,
+				221665D227C9FBE60061F189 /* View+Drop.swift in Sources */,
 				2221399C27B908E000599E60 /* AboutView.swift in Sources */,
 				2221395D27B7D6C600599E60 /* MainViewModel.swift in Sources */,
 				2221396027B7DE3800599E60 /* UIExtensions.swift in Sources */,
@@ -340,8 +359,11 @@
 				222139A027B90D4B00599E60 /* AboutViewModel.swift in Sources */,
 				2214FAFB27C26507000EE453 /* View+FileImporter.swift in Sources */,
 				2221397727B8F06500599E60 /* ColorScheme.swift in Sources */,
+				221665D827CA04810061F189 /* NSItemProvider+GetUrl.swift in Sources */,
+				221665D027C9EDFA0061F189 /* Logger.swift in Sources */,
 				2221394F27B7CC7900599E60 /* ProjectSortApp.swift in Sources */,
 				226F47C027C6862F00ED3198 /* URILauncher.swift in Sources */,
+				221665D427C9FBF90061F189 /* View+Drop.swift in Sources */,
 				2221396A27B81E0200599E60 /* MediaFolder.swift in Sources */,
 				2221399D27B908E000599E60 /* AboutView.swift in Sources */,
 				2214FAFD27C267D3000EE453 /* MainNavigator.swift in Sources */,
