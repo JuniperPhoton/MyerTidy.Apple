@@ -7,6 +7,7 @@
 
 import Foundation
 import SwiftUI
+import UniformTypeIdentifiers
 
 protocol TidyType {
     associatedtype Input
@@ -163,16 +164,28 @@ class ImageExifTidyType: URLTidyType {
     }
     
     override func getGroupKey(input: URL) -> String? {
-        let data = NSData(contentsOf: input)!
+        guard let typeID = try? input.resourceValues(forKeys: [.typeIdentifierKey]).typeIdentifier else {
+            return nil
+        }
+        
+        guard let supertypes = UTType(typeID)?.supertypes else { return nil }
+        if (!supertypes.contains(.image)) {
+            return nil
+        }
+        
+        guard let data = NSData(contentsOf: input) else {
+            return nil
+        }
         guard let source = CGImageSourceCreateWithData(data as CFData, nil) else {
             return nil
         }
         guard let metadata = CGImageSourceCopyPropertiesAtIndex(source, 0, nil) else {
             return nil
         }
-        let map = metadata as! Dictionary<String, Any>
-        print("===begin")
-        print(map)
+        guard let map = metadata as? Dictionary<String, Any> else {
+            return nil
+        }
+        Logger.logI(message: "\(map)")
         return getExifValue(map) ?? nil
     }
     
@@ -186,7 +199,7 @@ class ExifColorModelTidyType: ImageExifTidyType {
         super.init { map in
             return map["ColorModel"] as? String
         } getName: {
-            LocalizedStringKey(stringLiteral: "ColorModel")
+            LocalizedStringKey("OperationByColorModel")
         }
     }
 }
@@ -202,7 +215,7 @@ class ExifFNumberTidyType: ImageExifTidyType {
             }
             return "F\(String(fNumber))"
         } getName: {
-            LocalizedStringKey(stringLiteral: "FNumber")
+            LocalizedStringKey("OperationByFNumber")
         }
     }
 }
@@ -217,7 +230,7 @@ class ExifPortraitTidyType: ImageExifTidyType {
             }
             return width > height ? "Landscape" : "Portrait"
         } getName: {
-            LocalizedStringKey(stringLiteral: "Ratio")
+            LocalizedStringKey("OperationByRatio")
         }
     }
 }
@@ -230,7 +243,7 @@ class ExifModelTidyType: ImageExifTidyType {
             }
             return "\(exifMap["Make"] as? String ?? "") \(exifMap["Model"] as? String ?? "")"
         } getName: {
-            LocalizedStringKey(stringLiteral: "Model")
+            LocalizedStringKey("OperationByModel")
         }
     }
 }

@@ -3,7 +3,7 @@
 "%@ItemsText" = "%@ 个文件";
 
 
-"AboutText" = "MyerTidy 以简单的方式帮助整理你的媒体文件，让你后续创作无阻碍。";
+"AboutText" = "MyerTidy 提供简单的方式帮助整理你的媒体文件，支持按照不同的归类方式进行分类，然后可以进行分组、删除等操作，让你后续创作无阻碍。";
 
 
 "ActionDelete" = "删除";
@@ -39,6 +39,9 @@
 "NoMediaFound" = "没有找到文件。";
 
 
+"OperationByColorModel" = "EXIF 颜色模型";
+
+
 "OperationByCreationDayTitle" = "文件创建日期";
 
 
@@ -48,13 +51,22 @@
 "OperationByCreationYearTitle" = "文件创建年份";
 
 
+"OperationByFNumber" = "EXIF 光圈值";
+
+
 "OperationByKindDesc" = "此操作会把扩展名一样的文件移动到同一个文件夹里。";
 
 
 "OperationByKindTitle" = "文件扩展名";
 
 
+"OperationByModel" = "EXIF 拍摄设备";
+
+
 "OperationByModifiedDayTitle" = "文件修改日";
+
+
+"OperationByRatio" = "EXIF 媒体长宽比";
 
 
 "OperationMore" = "自定义归类操作";

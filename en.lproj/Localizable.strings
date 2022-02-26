@@ -3,7 +3,7 @@
 "%@ItemsText" = "%@ files";
 
 
-"AboutText" = "MyerTidy helps you organize your media files before performing advanced edit operations.";
+"AboutText" = "MyerTidy helps you organize your media files by grouping them with various schemes, helping you tidy up before advance editing.";
 
 
 "ActionDelete" = "Delete";
@@ -39,6 +39,9 @@
 "NoMediaFound" = "No media info found";
 
 
+"OperationByColorModel" = "By EXIF Color Model";
+
+
 "OperationByCreationDayTitle" = "By create day";
 
 
@@ -48,19 +51,28 @@
 "OperationByCreationYearTitle" = "By create year";
 
 
+"OperationByFNumber" = "By EXIF FNumber";
+
+
 "OperationByKindDesc" = "This operation will move files with same extension to one folder.";
 
 
 "OperationByKindTitle" = "By file extension";
 
 
+"OperationByModel" = "By EXIF device Model";
+
+
 "OperationByModifiedDayTitle" = "By modified day";
+
+
+"OperationByRatio" = "By EXIF media ratio";
 
 
 "OperationMore" = "More tidy operations";
 
 
-"OperationTitle" = "TIDY OPERATIONS";
+"OperationTitle" = "GROUP OPERATIONS";
 
 
 "PathTitle" = "PATH";

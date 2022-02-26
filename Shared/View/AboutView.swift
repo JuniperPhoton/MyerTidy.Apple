@@ -17,7 +17,7 @@ struct AboutView: View {
     
     var body: some View {
         ZStack {
-            VStack(spacing: 12) {
+            VStack(spacing: 16) {
                 HStack {
                     Image("AboutIcon", bundle: .main)
                         .resizable()
@@ -37,18 +37,20 @@ struct AboutView: View {
                     .frame(maxWidth: 300)
                     .foregroundColor(colorScheme.getPrimaryColor())
                 
-                Text("AboutText")
-                    .font(.title3)
-                    .multilineTextAlignment(.center)
-                    .frame(maxWidth: 300)
-                    .foregroundColor(colorScheme.getPrimaryColor())
-                
-                Text("Versions \(viewModel.version)")
-                    .font(.title.bold())
+                Text("v.\(viewModel.version), Powered by SwiftUI")
+                    .font(.title3.bold())
                     .foregroundColor(colorScheme.getOnSecondaryColor())
                     .padding(EdgeInsets(top: 8, leading: 16, bottom: 8, trailing: 16))
                     .background(RoundedRectangle(cornerRadius: 30).fill(colorScheme.getSecondaryColor()))
+
+                Text("AboutText")
+                    .font(.title3)
+                    .multilineTextAlignment(.center)
+                    .frame(maxWidth: 400)
+                    .foregroundColor(colorScheme.getPrimaryColor())
                 
+                Spacer().frame(height: 20)
+                                
                 Text("Feedback")
                     .font(.title.bold())
                     .underline()
@@ -56,12 +58,12 @@ struct AboutView: View {
                     .onTapGesture {
                         viewModel.sendFeedback()
                     }
-                Text("GitHub")
+                Text("Twitter")
                     .font(.title.bold())
                     .underline()
                     .foregroundColor(colorScheme.getPrimaryColor())
                     .onTapGesture {
-                        viewModel.navigateToGitHub()
+                        viewModel.navigateToTwitter()
                     }
             }
             VStack {

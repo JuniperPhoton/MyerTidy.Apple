@@ -20,8 +20,8 @@ class AboutViewModel: ObservableObject {
         URILauncher.openURI(url: url)
     }
     
-    func navigateToGitHub() {
-        let url = URL(string: "https://github.com/JuniperPhoton/ProjectSort")!
+    func navigateToTwitter() {
+        let url = URL(string: "https://twitter.com/JuniperPhoton")!
         URILauncher.openURI(url: url)
     }
 }

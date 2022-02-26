@@ -1,7 +1,9 @@
+
+
 "%@ItemsText" = "%@ 個文件";
 
 
-"AboutText" = "MyerTidy 以簡單的方式幫助整理你的媒體文件，讓你後續創作無阻礙。";
+"AboutText" = "MyerTidy 提供簡單的方式幫助整理你的媒體文件，支持按照不同的歸類方式進行分類，然後可以進行分組、刪除等操作，讓你後續創作無阻礙。";
 
 
 "ActionDelete" = "刪除";
@@ -22,10 +24,10 @@
 "ClearButton" = "清除";
 
 
-"DragAreaHint" = "拖動文件夾到這里或者點擊下方按鈕以開始";
+"DragAreaHint" = "點擊下方按鈕選擇文件夾以開始";
 
 
-"DropHereHint" = "拖到這裡";
+"DropHereHint" = "拖到这里";
 
 
 "Feedback" = "郵件反饋";
@@ -37,28 +39,40 @@
 "NoMediaFound" = "沒有找到文件。";
 
 
-"OperationByCreationDayTitle" = "文件創建日期";
+"OperationByColorModel" = "";
 
 
-"OperationByCreationMonthTitle" = "文件創建月份";
+"OperationByCreationDayTitle" = "文件创建日期";
 
 
-"OperationByCreationYearTitle" = "文件創建年份";
+"OperationByCreationMonthTitle" = "文件创建月份";
 
 
-"OperationByKindDesc" = "此操作會把擴展名一樣的文件移動到同一個文件夾裡。";
+"OperationByCreationYearTitle" = "文件创建年份";
+
+
+"OperationByFNumber" = "EXIF 光圈值";
+
+
+"OperationByKindDesc" = "這操作會把擴展名一樣的文件移動到同一個文件夾裡。";
 
 
 "OperationByKindTitle" = "文件擴展名";
 
 
+"OperationByModel" = "EXIF 拍摄设备";
+
+
 "OperationByModifiedDayTitle" = "文件修改日";
 
 
-"OperationMore" = "自定義歸類操作";
+"OperationByRatio" = "EXIF 媒体长宽比";
 
 
-"OperationTitle" = "歸類操作";
+"OperationMore" = "自定义归类操作";
+
+
+"OperationTitle" = "归类操作";
 
 
 "PathTitle" = "路徑";
