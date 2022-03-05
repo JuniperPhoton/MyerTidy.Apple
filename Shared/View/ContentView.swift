@@ -22,7 +22,7 @@ struct ContentView: View {
             AboutView{
                 mainNavigator.navigateTo(page: .Main)
             }.mainPageFrame()
-                .transition(AnyTransition.asymmetric(insertion: .offset(x: 0, y: 200), removal: .offset(x: 0, y: 200)).combined(with: .opacity).animation(.easeIn(duration: 0.2)))
+                .transition(.move(edge: .bottom))
         case .Settings:
             AboutView{
                 mainNavigator.navigateTo(page: .Main)
@@ -69,16 +69,15 @@ struct MainPage: View {
                 if (viewModel.hasSelctedFolder) {
                     ZStack {
                         contentView()
-                            .transition(AnyTransition.asymmetric(insertion: .offset(x: -100, y: 0), removal: .offset(x: 100, y: 0)).combined(with: .opacity).animation(.easeInOut(duration: 0.2)))
                             .performDrop(isTargeted: $isDropTarget) { provider, _ in
                                 viewModel.performDrop(providers: provider)
                             }
                         if (isDropTarget) {
                             DropHintView(isTargeted: $isDropTarget)
                         }
-                    }
+                    }.transition(AnyTransition.asymmetric(insertion: .offset(x: -300, y: 0), removal: .offset(x: 300, y: 0)).combined(with: .opacity).animation(.easeInOut(duration: 0.2)))
                 } else {
-                    emptyView().transition(AnyTransition.asymmetric(insertion: .offset(x: 100, y: 0), removal: .offset(x: -100, y: 0)).combined(with: .opacity).animation(.easeInOut(duration: 0.2)))
+                    emptyView().transition(AnyTransition.asymmetric(insertion: .offset(x: 300, y: 0), removal: .offset(x: -300, y: 0)).combined(with: .opacity).animation(.easeInOut(duration: 0.2)))
                 }
             }.padding(24)
                 .mainPageFrame()

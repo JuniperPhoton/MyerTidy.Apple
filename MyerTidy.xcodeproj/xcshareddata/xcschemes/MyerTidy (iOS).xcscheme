@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "2221394A27B7CC7900599E60"
+               BlueprintIdentifier = "2221394427B7CC7900599E60"
                BuildableName = "MyerTidy.app"
-               BlueprintName = "MyerTidy (macOS)"
+               BlueprintName = "MyerTidy (iOS)"
                ReferencedContainer = "container:MyerTidy.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -45,9 +45,9 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "2221394A27B7CC7900599E60"
+            BlueprintIdentifier = "2221394427B7CC7900599E60"
             BuildableName = "MyerTidy.app"
-            BlueprintName = "MyerTidy (macOS)"
+            BlueprintName = "MyerTidy (iOS)"
             ReferencedContainer = "container:MyerTidy.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
@@ -62,9 +62,9 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "2221394A27B7CC7900599E60"
+            BlueprintIdentifier = "2221394427B7CC7900599E60"
             BuildableName = "MyerTidy.app"
-            BlueprintName = "MyerTidy (macOS)"
+            BlueprintName = "MyerTidy (iOS)"
             ReferencedContainer = "container:MyerTidy.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
