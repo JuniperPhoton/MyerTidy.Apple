@@ -57,6 +57,7 @@ struct MainPage: View {
                         .onTapGesture {
                             viewModel.showComingSoon()
                         }
+                        .hidden()
                     
                     Spacer().frame(width: 20)
                     Image(systemName: "info.circle").renderingMode(.template).resizable().frame(width: 20, height: 20, alignment: .center).foregroundColor(colorScheme.getPrimaryColor())
@@ -222,17 +223,17 @@ struct CardView: View {
                                     folder.selectType(newOption: option)
                                 }
                             } else {
-                                Button {
-                                    viewModel.showComingSoon()
-                                } label: {
-                                    HStack(spacing: 4) {
-                                        Image(systemName: "plus.circle").renderingMode(.template)
-                                            .foregroundColor(.white)
-                                        Text(option.type.getLocalizedName())
-                                            .foregroundColor(.white)
-                                            .padding(4)
-                                    }.padding(.horizontal, 8).background(StyledRoundedRectangle(color: colorScheme.getPrimaryColor()))
-                                }.buttonStyle(.plain)
+//                                Button {
+//                                    viewModel.showComingSoon()
+//                                } label: {
+//                                    HStack(spacing: 4) {
+//                                        Image(systemName: "plus.circle").renderingMode(.template)
+//                                            .foregroundColor(.white)
+//                                        Text(option.type.getLocalizedName())
+//                                            .foregroundColor(.white)
+//                                            .padding(4)
+//                                    }.padding(.horizontal, 8).background(StyledRoundedRectangle(color: colorScheme.getPrimaryColor()))
+//                                }.buttonStyle(.plain)
                             }
                         }
                         Spacer().frame(width: 30)
