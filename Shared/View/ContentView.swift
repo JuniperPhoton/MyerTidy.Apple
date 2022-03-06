@@ -362,7 +362,6 @@ struct ActionMenuView: View  {
                     }
                 }) {
                     Label(action.toString(), systemImage: action == .Group ? "folder" : "trash")
-                        .symbolRenderingMode(.monochrome)
                         .foregroundColor(colorScheme.getPrimaryColor())
                 }
             }
@@ -373,7 +372,6 @@ struct ActionMenuView: View  {
                     .font(.body.bold())
                 Image(systemName: mediaInfo.action == .Group ? "folder" : "trash")
                     .renderingMode(.template)
-                    .tint(colorScheme.getPrimaryColor())
                     .foregroundColor(colorScheme.getPrimaryColor())
             }
         }.frame(width: 80)
