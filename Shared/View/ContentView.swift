@@ -29,7 +29,7 @@ struct ContentView: View {
             }.mainPageFrame()
         }
     }
-
+    
 }
 
 struct MainPage: View {
@@ -46,7 +46,7 @@ struct MainPage: View {
                     Text("AppName").font(.largeTitle.bold()).frame(alignment: .topLeading)
                         .foregroundColor(colorScheme.getPrimaryColor())
                     Spacer().frame(width: 20)
-
+                    
                     if (viewModel.loading) {
                         ProgressView().controlSize(.small).transition(.opacity)
                     }
@@ -113,7 +113,7 @@ struct MainPage: View {
             }
             
             Spacer()
-                                    
+            
             HStack {
                 ActionButton(title: "TidyUpButton", icon: "wrench.and.screwdriver", foregroundColor: colorScheme.getOnSecondaryColor(), backgroundColor: colorScheme.getSecondaryColor(), matchParent: true) {
                     viewModel.performSort()
@@ -121,7 +121,10 @@ struct MainPage: View {
                 
                 Spacer()
                 
-                ActionButton(title: "AddMoreButton", icon: "folder.badge.plus", foregroundColor: colorScheme.getOnSecondaryColor(), backgroundColor: colorScheme.getSecondaryColor().opacity(0.8)) {
+                ActionButton(title: "AddMoreButton", icon: "folder.badge.plus",
+                             foregroundColor: colorScheme.getOnSecondaryColor(),
+                             backgroundColor: colorScheme.getSecondaryColor().opacity(0.8),
+                             adaptOnUISizeClassChanged: true) {
                     viewModel.openFilePicker = true
                 }.addShadow()
                 
@@ -151,187 +154,6 @@ struct MainPage: View {
     }
 }
 
-struct ToastView: View {
-    @EnvironmentObject var viewModel: MainViewModel
-    
-    var body: some View {
-        VStack {
-            if (viewModel.toastText != nil) {
-                Text(viewModel.toastText!).foregroundColor(.black)
-                    .padding(8)
-                    .background(StyledRoundedRectangle(color: .white))
-                    .addShadow()
-                    .transition(.opacity)
-            }
-        }.padding(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 8)).frame(height: 60, alignment: .trailing).clipped()
-    }
-}
-
-struct CardView: View {
-    @Environment(\.colorScheme) var colorScheme
-    @EnvironmentObject var viewModel: MainViewModel
-    
-    @ObservedObject var folder: MediaFolder
-    @State var byKind = true
-    @State var byDate = false
-
-    var onClickRemove: () -> Void
-    var onClickOpenFolder: () -> Void
-    
-    var body: some View {
-        VStack(alignment: .leading, spacing: 16) {
-            HStack {
-                Text(folder.displayName)
-                    .font(.title2.bold())
-                    .foregroundColor(colorScheme.getPrimaryColor())
-                Image(systemName: "trash")
-                    .padding(4)
-                    .onTapGesture {
-                        onClickRemove()
-                    }
-                if (viewModel.supportOpenFolder) {
-                    Image(systemName: "folder")
-                        .padding(4)
-                        .onTapGesture {
-                            onClickOpenFolder()
-                        }
-                }
-                Spacer().frame(width: 12)
-                if (folder.loading) {
-                    ProgressView().controlSize(.small).transition(.opacity)
-                }
-            }
-                        
-            Text("PathTitle")
-                .font(.body.bold())
-                .foregroundColor(colorScheme.getPrimaryColor())
-            
-            Text(folder.selectedFolderURL.absoluteString.removingPercentEncoding ?? "")
-            
-            Text("OperationTitle")
-                .font(.body.bold())
-                .foregroundColor(colorScheme.getPrimaryColor())
-            
-            ZStack {
-                ScrollView(.horizontal, showsIndicators: false) {
-                    LazyHStack {
-                        ForEach($folder.tidyOptions) { $option in
-                            if (!($option.type.wrappedValue is EmptyTidyType)) {
-                                ZStack {
-                                    StyledToggle(label: option.type.getLocalizedName(), isOn: $option.isSelected).disabled(true)
-                                }.disabled(folder.loading).opacity(folder.loading ? 0.3 : 1.0).contentShape(Rectangle()).onTapGesture {
-                                    folder.selectType(newOption: option)
-                                }
-                            } else {
-//                                Button {
-//                                    viewModel.showComingSoon()
-//                                } label: {
-//                                    HStack(spacing: 4) {
-//                                        Image(systemName: "plus.circle").renderingMode(.template)
-//                                            .foregroundColor(.white)
-//                                        Text(option.type.getLocalizedName())
-//                                            .foregroundColor(.white)
-//                                            .padding(4)
-//                                    }.padding(.horizontal, 8).background(StyledRoundedRectangle(color: colorScheme.getPrimaryColor()))
-//                                }.buttonStyle(.plain)
-                            }
-                        }
-                        Spacer().frame(width: 30)
-                    }
-                }
-                HStack {
-                    LinearGradient(colors: [colorScheme.getSurfaceColor().opacity(0), colorScheme.getSurfaceColor()], startPoint: .leading, endPoint: .trailing)
-                        .frame(width: 50)
-                }.frame(maxWidth: .infinity, alignment: .trailing)
-            }
-            
-            Text("FileInfo")
-                .font(.body.bold())
-                .foregroundColor(colorScheme.getPrimaryColor())
-            
-            if (folder.mediaInfos.isEmpty) {
-                Text("NoMediaFound")
-            } else {
-                LazyVStack {
-                    ForEach($folder.mediaInfos) { $info in
-                        MediaInfoView(info: $info)
-                        if (folder.mediaInfos.last?.id != info.id) {
-                            Divider().foregroundColor(colorScheme.getDividerColor()).opacity(0.3)
-                        }
-                    }
-                }
-                
-            }
-        }.padding(12)
-            .frame(maxWidth: .infinity, alignment: .leading)
-            .background(StyledRoundedRectangle(color: colorScheme.getSurfaceColor()).addShadow())
-    }
-}
-
-struct MediaInfoView: View {
-    @EnvironmentObject var viewModel: MainViewModel
-    @Environment(\.colorScheme) var colorScheme
-    @Binding var info: MediaInfo
-    
-    @State var expand: Bool = false
-    
-    var body: some View {
-        VStack {
-            HStack(alignment: .center) {
-                StyledToggle(label: LocalizedStringKey(stringLiteral: info.groupKey.uppercased()), isOn: $info.isSelected)
-                Button(action: {
-                    withAnimation {
-                        expand.toggle()
-                    }
-                }) {
-                    HStack {
-                        Text("\(String(info.urls.count))ItemsText")
-                        Image(systemName: "chevron.down")
-                            .rotationEffect(.degrees(expand ? 180 : 0))
-                    }.contentShape(Rectangle())
-                }.buttonStyle(.plain)
-                
-                Spacer()
-                HStack {
-                    ActionMenuView(mediaInfo: info)
-                    GroupTextField(mediaInfo: info)
-                }.padding(6).background(StyledRoundedRectangle(color: colorScheme.getOnSurfaceColor().opacity(0.5))).clipped()
-                
-            }.frame(width: nil, height: 50, alignment: .leading).background(colorScheme.getSurfaceColor())
-            
-            if (expand) {
-                LazyVStack {
-                    ForEach(info.urls) { url in
-                        HStack(alignment: .lastTextBaseline) {
-                            imageFromMediaType(mediaInfo: info)
-                            Text(url.lastPathComponent).lineLimit(1)
-                                .truncationMode(.middle)
-                                .padding([.top])
-                                .frame(maxWidth: .infinity, alignment: .leading)
-                        }.frame(alignment: .center).contentShape(Rectangle())
-                            .onTapGesture {
-                                viewModel.openUrl(url: url)
-                            }
-                    }
-                }
-                
-            }
-        }
-    }
-    
-    private func imageFromMediaType(mediaInfo: MediaInfo) -> some View {
-        if (["jpg", "jpeg", "dng"].contains(mediaInfo.groupKey.lowercased())) {
-            return Image(systemName: "photo")
-        } else if (["mp4", "mov"].contains(mediaInfo.groupKey.lowercased())) {
-            return Image(systemName: "video")
-        } else if (["txt"].contains(mediaInfo.groupKey.lowercased())){
-            return Image(systemName: "doc.text")
-        } else {
-            return Image(systemName: "doc")
-        }
-    }
-}
-
 struct GroupTextField: View {
     @Environment(\.colorScheme) var colorScheme
     @StateObject var mediaInfo: MediaInfo
@@ -346,36 +168,6 @@ struct GroupTextField: View {
         } else {
             EmptyView()
         }
-    }
-}
-
-struct ActionMenuView: View  {
-    @Environment(\.colorScheme) var colorScheme
-    @StateObject var mediaInfo: MediaInfo
-    
-    var body: some View {
-        Menu {
-            ForEach(MediaAction.allCases) { action in
-                Button(action: {
-                    withAnimation {
-                        mediaInfo.action = action
-                    }
-                }) {
-                    Label(action.toString(), systemImage: action == .Group ? "folder" : "trash")
-                        .foregroundColor(colorScheme.getPrimaryColor())
-                }
-            }
-        } label: {
-            HStack {
-                Text(mediaInfo.action.toString()).foregroundColor(colorScheme.getPrimaryColor())
-                    .frame(maxWidth: .infinity)
-                    .font(.body.bold())
-                Image(systemName: mediaInfo.action == .Group ? "folder" : "trash")
-                    .renderingMode(.template)
-                    .foregroundColor(colorScheme.getPrimaryColor())
-            }
-        }.frame(width: 80)
-            .menuStyle(.borderlessButton)
     }
 }
 

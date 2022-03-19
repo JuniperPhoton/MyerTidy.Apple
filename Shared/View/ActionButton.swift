@@ -19,14 +19,35 @@ struct ActionButton: View {
     var foregroundColor: Color
     var backgroundColor: Color
     var matchParent: Bool = false
+    var adaptOnUISizeClassChanged = false
     var onClick: ()-> Void
+    
+#if os(iOS)
+    @Environment(\.horizontalSizeClass) var sizeClass
+#endif
+    
+    private func shouldShowTitle() -> Bool {
+        if (title == nil) {
+            return false
+        }
+        
+#if os(macOS)
+        return title != nil
+#else
+        if (!adaptOnUISizeClassChanged) {
+            return title != nil
+        }
+        return sizeClass == .regular && title != nil
+#endif
+    }
     
     var body: some View {
         HStack(spacing: 0) {
             if (icon != nil) {
                 Image(systemName: icon!).renderingMode(.template).foregroundColor(foregroundColor)
             }
-            if (title != nil) {
+            
+            if (shouldShowTitle()) {
                 Spacer().frame(width: 12)
                 Text(title!)
                     .font(.body.bold())
