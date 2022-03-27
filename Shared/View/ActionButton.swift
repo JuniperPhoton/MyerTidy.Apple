@@ -55,6 +55,7 @@ struct ActionButton: View {
                     .lineLimit(1)
             }
         }.padding(15)
+            .frame(minWidth: 50, minHeight: 50)
             .modifier(matchParent ? MatchParent(matchWidth: true, matchHeight: false) : MatchParent(matchWidth: false, matchHeight: false))
             .background(background)
             .onTapGesture {
