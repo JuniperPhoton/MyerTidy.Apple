@@ -8,6 +8,7 @@
 import Foundation
 import SwiftUI
 import UniformTypeIdentifiers
+import AVFoundation
 
 protocol TidyType {
     associatedtype Input
@@ -17,6 +18,7 @@ protocol TidyType {
     func getLocalizedName() -> LocalizedStringKey
 }
 
+// MARK: URLTidyType
 class URLTidyType: TidyType, Identifiable, Equatable {
     static func == (lhs: URLTidyType, rhs: URLTidyType) -> Bool {
         return lhs.id == rhs.id
@@ -35,12 +37,14 @@ class URLTidyType: TidyType, Identifiable, Equatable {
     typealias GroupKey = String?
 }
 
+// MARK: EmptyTidyType
 class EmptyTidyType: URLTidyType {
     override func getLocalizedName() -> LocalizedStringKey {
         return LocalizedStringKey("OperationMore")
     }
 }
 
+// MARK: FileAttrsTidyType
 class FileAttrsTidyType: URLTidyType {
     typealias GetAttributeKey = ()-> FileAttributeKey
     typealias GetAttributeValue = (Any)-> GroupKey?
@@ -78,6 +82,7 @@ class FileAttrsTidyType: URLTidyType {
     }
 }
 
+// MARK: FileExtensionTidyType
 class FileExtensionTidyType: URLTidyType {
     override func getGroupKey(input: URL) -> String? {
         return input.pathExtension
@@ -88,6 +93,7 @@ class FileExtensionTidyType: URLTidyType {
     }
 }
 
+// MARK: FileCreationDayTidyType
 class FileCreationDayTidyType: FileAttrsTidyType {
     init() {
         super.init(getKey: {
@@ -104,6 +110,7 @@ class FileCreationDayTidyType: FileAttrsTidyType {
     }
 }
 
+// MARK: FileCreationMonthTidyType
 class FileCreationMonthTidyType: FileAttrsTidyType {
     init() {
         super.init(getKey: {
@@ -120,6 +127,7 @@ class FileCreationMonthTidyType: FileAttrsTidyType {
     }
 }
 
+// MARK: FileCreationYearTidyType
 class FileCreationYearTidyType: FileAttrsTidyType {
     init() {
         super.init(getKey: {
@@ -136,6 +144,7 @@ class FileCreationYearTidyType: FileAttrsTidyType {
     }
 }
 
+// MARK: FileModifyDayTidyType
 class FileModifyDayTidyType: FileAttrsTidyType {
     init() {
         super.init(getKey: {
@@ -152,11 +161,27 @@ class FileModifyDayTidyType: FileAttrsTidyType {
     }
 }
 
+// MARK: MultiTidyType
+class MultiTidyType: URLTidyType {
+    private let types: [URLTidyType]
+    
+    init(types: [URLTidyType]) {
+        self.types = types
+    }
+    
+    func getTidyType<T>() -> T {
+        return types.first { type in
+            type is T
+        } as! T
+    }
+}
+
+// MARK: ImageExifTidyType
 class ImageExifTidyType: URLTidyType {
     typealias GetExifValue = (Dictionary<String, Any>)-> GroupKey?
     
-    private var getExifValue: GetExifValue
-    private var getName: (() -> LocalizedStringKey)
+    private let getExifValue: GetExifValue
+    private let getName: (() -> LocalizedStringKey)
     
     init(getValue: @escaping GetExifValue, getName: @escaping (() -> LocalizedStringKey)) {
         self.getExifValue = getValue
@@ -194,6 +219,7 @@ class ImageExifTidyType: URLTidyType {
     }
 }
 
+// MARK: ExifColorModelTidyType
 class ExifColorModelTidyType: ImageExifTidyType {
     init() {
         super.init { map in
@@ -204,6 +230,7 @@ class ExifColorModelTidyType: ImageExifTidyType {
     }
 }
 
+// MARK: ExifFNumberTidyType
 class ExifFNumberTidyType: ImageExifTidyType {
     init() {
         super.init { map in
@@ -220,6 +247,7 @@ class ExifFNumberTidyType: ImageExifTidyType {
     }
 }
 
+// MARK: ExifPortraitTidyType
 class ExifPortraitTidyType: ImageExifTidyType {
     init() {
         super.init { map in
@@ -235,6 +263,7 @@ class ExifPortraitTidyType: ImageExifTidyType {
     }
 }
 
+// MARK: ExifModelTidyType
 class ExifModelTidyType: ImageExifTidyType {
     init() {
         super.init { map in
@@ -245,5 +274,70 @@ class ExifModelTidyType: ImageExifTidyType {
         } getName: {
             LocalizedStringKey("OperationByModel")
         }
+    }
+}
+
+// MARK: AVInfoTidyType
+class AVInfoTidyType: URLTidyType {
+    private let getGroupKey: (AVURLAsset) -> String?
+    private let getName: (() -> LocalizedStringKey)
+    
+    init(getGroupKey: @escaping (AVURLAsset) -> String?, getName: @escaping (() -> LocalizedStringKey)) {
+        self.getGroupKey = getGroupKey
+        self.getName = getName
+    }
+    
+    override func getGroupKey(input: URL) -> String? {
+        let asset = AVURLAsset(url: input)
+        return getGroupKey(asset)
+    }
+    
+    override func getLocalizedName() -> LocalizedStringKey {
+        return getName()
+    }
+}
+
+// MARK: AVOrientationTidyType
+class AVOrientationTidyType: AVInfoTidyType {
+    init() {
+        super.init { asset in
+            guard let track = asset.tracks(withMediaType: .video).first else { return nil }
+            let size = track.naturalSize.applying(track.preferredTransform)
+            let width = size.width
+            let height = size.height
+            if (width == height) {
+                return "Square"
+            }
+            return width > height ? "Landscape" : "Portrait"
+        } getName: {
+            LocalizedStringKey("OperationByRatio")
+        }
+    }
+}
+
+class OrientationTidyType: MultiTidyType {
+    init() {
+        super.init(types: [ExifPortraitTidyType(), AVOrientationTidyType()])
+    }
+    
+    override func getGroupKey(input: URL) -> String? {
+        guard let typeID = try? input.resourceValues(forKeys: [.typeIdentifierKey]).typeIdentifier else {
+            return nil
+        }
+        
+        let type = UTType(typeID)
+        if (type == .jpeg) {
+            let type: ExifPortraitTidyType? = getTidyType()
+            return type?.getGroupKey(input: input)
+        } else if (type == .mpeg4Movie) {
+            let type: AVOrientationTidyType? = getTidyType()
+            return type?.getGroupKey(input: input)
+        }
+        
+        return nil
+    }
+    
+    override func getLocalizedName() -> LocalizedStringKey {
+        return LocalizedStringKey("OperationByRatio")
     }
 }

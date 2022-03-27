@@ -3,6 +3,29 @@
    version = "1.0">
    <ContextStates>
       <ContextState
+         contextName = "AVInfoTidyType.getGroupKey(input:):TidyType.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "track.availableMetadataFormats">
+            </PersistentString>
+            <PersistentString
+               value = "track.commonMetadata">
+            </PersistentString>
+            <PersistentString
+               value = "track.isPlayable">
+            </PersistentString>
+            <PersistentString
+               value = "track.naturalSize.applying(track.preferredTransform)">
+            </PersistentString>
+            <PersistentString
+               value = "track.mediaType">
+            </PersistentString>
+            <PersistentString
+               value = "track.metadata">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "closure #1 in ContentView.selectFolder():ContentView.swift">
          <PersistentStrings>
             <PersistentString
