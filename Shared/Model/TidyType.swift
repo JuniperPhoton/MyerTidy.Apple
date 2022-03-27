@@ -303,8 +303,8 @@ class AVOrientationTidyType: AVInfoTidyType {
         super.init { asset in
             guard let track = asset.tracks(withMediaType: .video).first else { return nil }
             let size = track.naturalSize.applying(track.preferredTransform)
-            let width = size.width
-            let height = size.height
+            let width = abs(size.width)
+            let height = abs(size.height)
             if (width == height) {
                 return "Square"
             }
