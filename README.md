@@ -29,7 +29,7 @@ The screenshot below shows the result of the previous process.
 - [x] 1.0 Support
 - [x] Support running on macOS, iPadOS and iOS
 - [x] Support drag & drop from Finder
-- [ ] Tailor UI for iPhone
+- [x] Tailor UI for iPhone
 - [ ] Support custom grouping scheme
 - [ ] Support chaining process
 
