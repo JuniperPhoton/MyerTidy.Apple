@@ -65,6 +65,13 @@ struct AboutView: View {
                     .onTapGesture {
                         viewModel.navigateToTwitter()
                     }
+                Text("GitHub")
+                    .font(.title.bold())
+                    .underline()
+                    .foregroundColor(colorScheme.getPrimaryColor())
+                    .onTapGesture {
+                        viewModel.navigateToGitHub()
+                    }
             }
             VStack {
                 Image(systemName: "xmark")

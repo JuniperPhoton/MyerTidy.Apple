@@ -18,10 +18,10 @@ class MediaFolder: Identifiable, ObservableObject {
         MediaTidyOption(isSelected: false, type: FileCreationDayTidyType()),
         MediaTidyOption(isSelected: false, type: FileCreationMonthTidyType()),
         MediaTidyOption(isSelected: false, type: FileCreationYearTidyType()),
+        MediaTidyOption(isSelected: false, type: OrientationTidyType()),
         MediaTidyOption(isSelected: false, type: ExifModelTidyType()),
         MediaTidyOption(isSelected: false, type: ExifFNumberTidyType()),
         MediaTidyOption(isSelected: false, type: ExifColorModelTidyType()),
-        MediaTidyOption(isSelected: false, type: OrientationTidyType()),
         MediaTidyOption(isSelected: false, type: EmptyTidyType())
     ]
     
