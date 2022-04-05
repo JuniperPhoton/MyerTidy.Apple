@@ -18,11 +18,17 @@ struct ContentView: View {
         switch mainNavigator.page {
         case .Main:
             MainPage(viewModel: viewModel, mainNavigator: mainNavigator)
+#if os(macOS)
+                .ignoresSafeArea()
+#endif
         case .About:
             AboutView{
                 mainNavigator.navigateTo(page: .Main)
             }.mainPageFrame()
                 .transition(.move(edge: .bottom))
+#if os(macOS)
+                .ignoresSafeArea()
+#endif
         case .Settings:
             AboutView{
                 mainNavigator.navigateTo(page: .Main)
