@@ -21,6 +21,12 @@
 "AppName" = "MyerTidy";
 
 
+"ApplyToAllOption" = "应用到当前所有文件夹";
+
+
+"CancelCommand" = "取消";
+
+
 "ClearButton" = "清除";
 
 
@@ -66,13 +72,19 @@
 "OperationByModel" = "EXIF 拍摄设备";
 
 
-"OperationByModifiedDayTitle" = "文件修改日";
+"OperationByModificationDayTitle" = "文件修改日期";
+
+
+"OperationByModificationMonthTitle" = "文件修改月份";
+
+
+"OperationByModificationYearTitle" = "文件修改年份";
 
 
 "OperationByRatio" = "媒体长宽比";
 
 
-"OperationMore" = "自定义归类操作";
+"OperationMore" = "管理归类操作";
 
 
 "OperationTitle" = "归类操作";
@@ -81,7 +93,19 @@
 "PathTitle" = "路径";
 
 
+"SaveCommand" = "保存";
+
+
+"SaveToSettingsOption" = "保存到设置";
+
+
 "SelectFolderButton" = "选择文件夹";
+
+
+"SelectOperationsSubTitle" = "选择操作";
+
+
+"SelectOperationsTitle" = "管理归类操作";
 
 
 "Success" = "🎉 整理成功!";
@@ -91,3 +115,6 @@
 
 
 "ToastCommingSoon" = "😃 此功能即将支持";
+
+
+"ToastSelectAtLeastOne" = "需要选择至少一个操作";

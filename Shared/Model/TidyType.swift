@@ -16,6 +16,7 @@ protocol TidyType {
     
     func getGroupKey(input: Input) -> GroupKey
     func getLocalizedName() -> LocalizedStringKey
+    func getId() -> String
 }
 
 // MARK: URLTidyType
@@ -32,15 +33,28 @@ class URLTidyType: TidyType, Identifiable, Equatable {
         return LocalizedStringKey("")
     }
     
-    typealias Input = URL
+    func getId() -> String {
+        return "url"
+    }
     
+    typealias Input = URL
     typealias GroupKey = String?
 }
 
 // MARK: EmptyTidyType
 class EmptyTidyType: URLTidyType {
+    static let instance = EmptyTidyType()
+    
+    private override init() {
+        
+    }
+    
     override func getLocalizedName() -> LocalizedStringKey {
         return LocalizedStringKey("OperationMore")
+    }
+    
+    override func getId() -> String {
+        return "empty"
     }
 }
 
@@ -57,6 +71,10 @@ class FileAttrsTidyType: URLTidyType {
         self.getAttributeKey = getKey
         self.getAttributeValue = getValue
         self.getName = getName
+    }
+    
+    override func getId() -> String {
+        return "file_attrs"
     }
     
     override func getGroupKey(input: URL) -> String? {
@@ -84,6 +102,12 @@ class FileAttrsTidyType: URLTidyType {
 
 // MARK: FileExtensionTidyType
 class FileExtensionTidyType: URLTidyType {
+    static let instance = FileExtensionTidyType()
+    
+    private override init() {
+        
+    }
+    
     override func getGroupKey(input: URL) -> String? {
         return input.pathExtension
     }
@@ -91,11 +115,17 @@ class FileExtensionTidyType: URLTidyType {
     override func getLocalizedName() -> LocalizedStringKey {
         return LocalizedStringKey("OperationByKindTitle")
     }
+    
+    override func getId() -> String {
+        return "file_extensions"
+    }
 }
 
 // MARK: FileCreationDayTidyType
 class FileCreationDayTidyType: FileAttrsTidyType {
-    init() {
+    static let instance = FileCreationDayTidyType()
+    
+    private init() {
         super.init(getKey: {
             return FileAttributeKey.creationDate
         }) { date in
@@ -108,11 +138,86 @@ class FileCreationDayTidyType: FileAttrsTidyType {
             LocalizedStringKey("OperationByCreationDayTitle")
         }
     }
+    
+    override func getId() -> String {
+        return "file_creation_day"
+    }
+}
+
+// MARK: FileModificationDayTidyType
+class FileModificationDayTidyType: FileAttrsTidyType {
+    static let instance = FileModificationDayTidyType()
+    
+    private init() {
+        super.init(getKey: {
+            return FileAttributeKey.modificationDate
+        }) { date in
+            guard let date = date as? Date else {
+                return nil
+            }
+            
+            return "\(date.get(.year))-\(date.get(.month))-\(date.get(.day))"
+        } getName: {
+            LocalizedStringKey("OperationByModificationDayTitle")
+        }
+    }
+    
+    override func getId() -> String {
+        return "file_modification_day"
+    }
+}
+
+// MARK: FileModificationMonthTidyType
+class FileModificationMonthTidyType: FileAttrsTidyType {
+    static let instance = FileModificationMonthTidyType()
+    
+    private init() {
+        super.init(getKey: {
+            return FileAttributeKey.modificationDate
+        }) { date in
+            guard let date = date as? Date else {
+                return nil
+            }
+            
+            return "\(date.get(.year))-\(date.get(.month))"
+        } getName: {
+            LocalizedStringKey("OperationByModificationMonthTitle")
+        }
+    }
+    
+    override func getId() -> String {
+        return "file_modification_month"
+    }
+}
+
+// MARK: FileModificationYearTidyType
+class FileModificationYearTidyType: FileAttrsTidyType {
+    static let instance = FileModificationYearTidyType()
+    
+    private init() {
+        super.init(getKey: {
+            return FileAttributeKey.modificationDate
+        }) { date in
+            guard let date = date as? Date else {
+                return nil
+            }
+            
+            return "\(date.get(.year))"
+        } getName: {
+            LocalizedStringKey("OperationByModificationYearTitle")
+        }
+    }
+    
+    override func getId() -> String {
+        return "file_modification_year"
+    }
 }
 
 // MARK: FileCreationMonthTidyType
 class FileCreationMonthTidyType: FileAttrsTidyType {
-    init() {
+    static let instance = FileCreationMonthTidyType()
+    
+    private init() {
         super.init(getKey: {
             return FileAttributeKey.creationDate
         }) { date in
@@ -125,11 +230,17 @@ class FileCreationMonthTidyType: FileAttrsTidyType {
             LocalizedStringKey("OperationByCreationMonthTitle")
         }
     }
+    
+    override func getId() -> String {
+        return "file_creation_month"
+    }
 }
 
 // MARK: FileCreationYearTidyType
 class FileCreationYearTidyType: FileAttrsTidyType {
-    init() {
+    static let instance = FileCreationYearTidyType()
+    
+    private init() {
         super.init(getKey: {
             return FileAttributeKey.creationDate
         }) { date in
@@ -142,22 +253,9 @@ class FileCreationYearTidyType: FileAttrsTidyType {
             LocalizedStringKey("OperationByCreationYearTitle")
         }
     }
-}
-
-// MARK: FileModifyDayTidyType
-class FileModifyDayTidyType: FileAttrsTidyType {
-    init() {
-        super.init(getKey: {
-            return FileAttributeKey.modificationDate
-        }) { date in
-            guard let date = date as? Date else {
-                return nil
-            }
-            
-            return String(Calendar.current.component(.day, from: date))
-        } getName: {
-            LocalizedStringKey("OperationByModifiedDayTitle")
-        }
+    
+    override func getId() -> String {
+        return "file_creation_year"
     }
 }
 
@@ -221,18 +319,26 @@ class ImageExifTidyType: URLTidyType {
 
 // MARK: ExifColorModelTidyType
 class ExifColorModelTidyType: ImageExifTidyType {
-    init() {
+    static let instance = ExifColorModelTidyType()
+    
+    private init() {
         super.init { map in
             return map["ColorModel"] as? String
         } getName: {
             LocalizedStringKey("OperationByColorModel")
         }
     }
+    
+    override func getId() -> String {
+        return "exif_color_model"
+    }
 }
 
 // MARK: ExifFNumberTidyType
 class ExifFNumberTidyType: ImageExifTidyType {
-    init() {
+    static let instance = ExifFNumberTidyType()
+    
+    private init() {
         super.init { map in
             guard let exifMap = map["{Exif}"] as? Dictionary<String, Any> else {
                 return nil
@@ -245,11 +351,17 @@ class ExifFNumberTidyType: ImageExifTidyType {
             LocalizedStringKey("OperationByFNumber")
         }
     }
+    
+    override func getId() -> String {
+        return "exif_fnumber"
+    }
 }
 
 // MARK: ExifPortraitTidyType
 class ExifPortraitTidyType: ImageExifTidyType {
-    init() {
+    static let instance = ExifPortraitTidyType()
+    
+    private init() {
         super.init { map in
             let width = map["PixelWidth"] as? Double ?? 0
             let height = map["PixelHeight"] as? Double ?? 0
@@ -261,11 +373,17 @@ class ExifPortraitTidyType: ImageExifTidyType {
             LocalizedStringKey("OperationByRatio")
         }
     }
+    
+    override func getId() -> String {
+        return "exif_ratio"
+    }
 }
 
 // MARK: ExifModelTidyType
 class ExifModelTidyType: ImageExifTidyType {
-    init() {
+    static let instance = ExifModelTidyType()
+    
+    private init() {
         super.init { map in
             guard let exifMap = map["{TIFF}"] as? Dictionary<String, Any> else {
                 return nil
@@ -274,6 +392,10 @@ class ExifModelTidyType: ImageExifTidyType {
         } getName: {
             LocalizedStringKey("OperationByModel")
         }
+    }
+    
+    override func getId() -> String {
+        return "exif_model"
     }
 }
 
@@ -295,11 +417,17 @@ class AVInfoTidyType: URLTidyType {
     override func getLocalizedName() -> LocalizedStringKey {
         return getName()
     }
+    
+    override func getId() -> String {
+        return "av_info"
+    }
 }
 
 // MARK: AVOrientationTidyType
 class AVOrientationTidyType: AVInfoTidyType {
-    init() {
+    static let instance = AVOrientationTidyType()
+    
+    private init() {
         super.init { asset in
             guard let track = asset.tracks(withMediaType: .video).first else { return nil }
             let size = track.naturalSize.applying(track.preferredTransform)
@@ -313,11 +441,17 @@ class AVOrientationTidyType: AVInfoTidyType {
             LocalizedStringKey("OperationByRatio")
         }
     }
+    
+    override func getId() -> String {
+        return "av_ratio"
+    }
 }
 
 class OrientationTidyType: MultiTidyType {
-    init() {
-        super.init(types: [ExifPortraitTidyType(), AVOrientationTidyType()])
+    static let instance = OrientationTidyType()
+    
+    private init() {
+        super.init(types: [ExifPortraitTidyType.instance, AVOrientationTidyType.instance])
     }
     
     override func getGroupKey(input: URL) -> String? {
@@ -339,5 +473,9 @@ class OrientationTidyType: MultiTidyType {
     
     override func getLocalizedName() -> LocalizedStringKey {
         return LocalizedStringKey("OperationByRatio")
+    }
+    
+    override func getId() -> String {
+        return "orientation"
     }
 }

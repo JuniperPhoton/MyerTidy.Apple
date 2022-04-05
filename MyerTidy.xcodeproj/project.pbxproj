@@ -52,6 +52,10 @@
 		2221399D27B908E000599E60 /* AboutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2221399B27B908E000599E60 /* AboutView.swift */; };
 		2221399F27B90D4B00599E60 /* AboutViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2221399E27B90D4B00599E60 /* AboutViewModel.swift */; };
 		222139A027B90D4B00599E60 /* AboutViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2221399E27B90D4B00599E60 /* AboutViewModel.swift */; };
+		2248D7EB27FBF0D5006AFFB1 /* TidyOperationsDialog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2248D7EA27FBF0D5006AFFB1 /* TidyOperationsDialog.swift */; };
+		2248D7EC27FBF0D5006AFFB1 /* TidyOperationsDialog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2248D7EA27FBF0D5006AFFB1 /* TidyOperationsDialog.swift */; };
+		2248D7EE27FC6209006AFFB1 /* TidyOperationsSelectViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2248D7ED27FC6209006AFFB1 /* TidyOperationsSelectViewModel.swift */; };
+		2248D7EF27FC6209006AFFB1 /* TidyOperationsSelectViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2248D7ED27FC6209006AFFB1 /* TidyOperationsSelectViewModel.swift */; };
 		226F47B927C685ED00ED3198 /* URILauncher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 226F47B827C685ED00ED3198 /* URILauncher.swift */; };
 		226F47BE27C6862100ED3198 /* URILuncher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 226F47BD27C6862100ED3198 /* URILuncher.swift */; };
 		226F47BF27C6862300ED3198 /* URILuncher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 226F47BD27C6862100ED3198 /* URILuncher.swift */; };
@@ -59,6 +63,12 @@
 		226F47C227C6897500ED3198 /* MediaAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 226F47C127C6897400ED3198 /* MediaAction.swift */; };
 		226F47C327C6897500ED3198 /* MediaAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 226F47C127C6897400ED3198 /* MediaAction.swift */; };
 		226F47C427C695C300ED3198 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2214FB0527C299F5000EE453 /* Assets.xcassets */; };
+		229D8C2827FC6DA400EE8520 /* Dialog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229D8C2727FC6DA400EE8520 /* Dialog.swift */; };
+		229D8C2927FC6DA400EE8520 /* Dialog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229D8C2727FC6DA400EE8520 /* Dialog.swift */; };
+		229D8C2B27FC747E00EE8520 /* Collections+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229D8C2A27FC747E00EE8520 /* Collections+.swift */; };
+		229D8C2C27FC747E00EE8520 /* Collections+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229D8C2A27FC747E00EE8520 /* Collections+.swift */; };
+		229D8C2F27FC7E2500EE8520 /* TidySettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229D8C2E27FC7E2500EE8520 /* TidySettings.swift */; };
+		229D8C3027FC7E2500EE8520 /* TidySettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229D8C2E27FC7E2500EE8520 /* TidySettings.swift */; };
 		22F5595B27E6264300CD9348 /* ActionMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22F5595A27E6264300CD9348 /* ActionMenuView.swift */; };
 		22F5595C27E6264300CD9348 /* ActionMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22F5595A27E6264300CD9348 /* ActionMenuView.swift */; };
 		22F5595E27E6266E00CD9348 /* MediaInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22F5595D27E6266E00CD9348 /* MediaInfoView.swift */; };
@@ -102,10 +112,15 @@
 		2221399A27B9076600599E60 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		2221399B27B908E000599E60 /* AboutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutView.swift; sourceTree = "<group>"; };
 		2221399E27B90D4B00599E60 /* AboutViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutViewModel.swift; sourceTree = "<group>"; };
+		2248D7EA27FBF0D5006AFFB1 /* TidyOperationsDialog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TidyOperationsDialog.swift; sourceTree = "<group>"; };
+		2248D7ED27FC6209006AFFB1 /* TidyOperationsSelectViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TidyOperationsSelectViewModel.swift; sourceTree = "<group>"; };
 		226F47B827C685ED00ED3198 /* URILauncher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URILauncher.swift; sourceTree = "<group>"; };
 		226F47BA27C6860000ED3198 /* URILauncher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URILauncher.swift; sourceTree = "<group>"; };
 		226F47BD27C6862100ED3198 /* URILuncher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URILuncher.swift; sourceTree = "<group>"; };
 		226F47C127C6897400ED3198 /* MediaAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaAction.swift; sourceTree = "<group>"; };
+		229D8C2727FC6DA400EE8520 /* Dialog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dialog.swift; sourceTree = "<group>"; };
+		229D8C2A27FC747E00EE8520 /* Collections+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Collections+.swift"; sourceTree = "<group>"; };
+		229D8C2E27FC7E2500EE8520 /* TidySettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TidySettings.swift; sourceTree = "<group>"; };
 		22D8EB4427D500FE004A968E /* MyerTidy--iOS--Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "MyerTidy--iOS--Info.plist"; sourceTree = "<group>"; };
 		22F5595A27E6264300CD9348 /* ActionMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionMenuView.swift; sourceTree = "<group>"; };
 		22F5595D27E6266E00CD9348 /* MediaInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaInfoView.swift; sourceTree = "<group>"; };
@@ -158,6 +173,7 @@
 		2221393D27B7CC7800599E60 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				229D8C2D27FC7E1C00EE8520 /* Settings */,
 				226F47BC27C6861500ED3198 /* Utils */,
 				2221396727B7F7C600599E60 /* View */,
 				2221396327B7F73900599E60 /* Model */,
@@ -198,6 +214,7 @@
 				2221395C27B7D6C600599E60 /* MainViewModel.swift */,
 				2221399E27B90D4B00599E60 /* AboutViewModel.swift */,
 				2214FAFC27C267D3000EE453 /* MainNavigator.swift */,
+				2248D7ED27FC6209006AFFB1 /* TidyOperationsSelectViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -226,6 +243,8 @@
 				22F5595D27E6266E00CD9348 /* MediaInfoView.swift */,
 				22F5596027E6268B00CD9348 /* ToastView.swift */,
 				22F5596327E626A700CD9348 /* CardView.swift */,
+				2248D7EA27FBF0D5006AFFB1 /* TidyOperationsDialog.swift */,
+				229D8C2727FC6DA400EE8520 /* Dialog.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -236,8 +255,17 @@
 				226F47BD27C6862100ED3198 /* URILuncher.swift */,
 				221665CB27C95A7F0061F189 /* Date+Get.swift */,
 				221665CE27C9EDFA0061F189 /* Logger.swift */,
+				229D8C2A27FC747E00EE8520 /* Collections+.swift */,
 			);
 			path = Utils;
+			sourceTree = "<group>";
+		};
+		229D8C2D27FC7E1C00EE8520 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				229D8C2E27FC7E2500EE8520 /* TidySettings.swift */,
+			);
+			path = Settings;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -345,15 +373,18 @@
 			buildActionMask = 2147483647;
 			files = (
 				2214FAFE27C272EE000EE453 /* MainNavigator.swift in Sources */,
+				229D8C2B27FC747E00EE8520 /* Collections+.swift in Sources */,
 				22F5596427E626A700CD9348 /* CardView.swift in Sources */,
 				2221395027B7CC7900599E60 /* ContentView.swift in Sources */,
 				2221399F27B90D4B00599E60 /* AboutViewModel.swift in Sources */,
 				2221397627B8F06500599E60 /* ColorScheme.swift in Sources */,
 				221665D627CA040E0061F189 /* NSItemProvider+GetUrl.swift in Sources */,
 				221665CF27C9EDFA0061F189 /* Logger.swift in Sources */,
+				2248D7EB27FBF0D5006AFFB1 /* TidyOperationsDialog.swift in Sources */,
 				2221394E27B7CC7900599E60 /* ProjectSortApp.swift in Sources */,
 				2221396927B81E0200599E60 /* MediaFolder.swift in Sources */,
 				221665D227C9FBE60061F189 /* View+Drop.swift in Sources */,
+				2248D7EE27FC6209006AFFB1 /* TidyOperationsSelectViewModel.swift in Sources */,
 				2221399C27B908E000599E60 /* AboutView.swift in Sources */,
 				2221395D27B7D6C600599E60 /* MainViewModel.swift in Sources */,
 				2221396027B7DE3800599E60 /* UIExtensions.swift in Sources */,
@@ -363,9 +394,11 @@
 				221665CC27C95A7F0061F189 /* Date+Get.swift in Sources */,
 				2214FAEE27B94158000EE453 /* SettingsView.swift in Sources */,
 				221665C927C9305D0061F189 /* TidyType.swift in Sources */,
+				229D8C2827FC6DA400EE8520 /* Dialog.swift in Sources */,
 				2221396527B7F74400599E60 /* MediaInfo.swift in Sources */,
 				226F47C227C6897500ED3198 /* MediaAction.swift in Sources */,
 				22F5596127E6268B00CD9348 /* ToastView.swift in Sources */,
+				229D8C2F27FC7E2500EE8520 /* TidySettings.swift in Sources */,
 				2214FAF627C261AC000EE453 /* View+Effect.swift in Sources */,
 				2221396F27B8CB1100599E60 /* ActionButton.swift in Sources */,
 				226F47BE27C6862100ED3198 /* URILuncher.swift in Sources */,
@@ -379,15 +412,18 @@
 			buildActionMask = 2147483647;
 			files = (
 				2221395127B7CC7900599E60 /* ContentView.swift in Sources */,
+				229D8C2C27FC747E00EE8520 /* Collections+.swift in Sources */,
 				22F5596527E626A700CD9348 /* CardView.swift in Sources */,
 				222139A027B90D4B00599E60 /* AboutViewModel.swift in Sources */,
 				2214FAFB27C26507000EE453 /* View+FileImporter.swift in Sources */,
 				2221397727B8F06500599E60 /* ColorScheme.swift in Sources */,
 				221665D827CA04810061F189 /* NSItemProvider+GetUrl.swift in Sources */,
 				221665D027C9EDFA0061F189 /* Logger.swift in Sources */,
+				2248D7EC27FBF0D5006AFFB1 /* TidyOperationsDialog.swift in Sources */,
 				2221394F27B7CC7900599E60 /* ProjectSortApp.swift in Sources */,
 				226F47C027C6862F00ED3198 /* URILauncher.swift in Sources */,
 				221665D427C9FBF90061F189 /* View+Drop.swift in Sources */,
+				2248D7EF27FC6209006AFFB1 /* TidyOperationsSelectViewModel.swift in Sources */,
 				2221396A27B81E0200599E60 /* MediaFolder.swift in Sources */,
 				2221399D27B908E000599E60 /* AboutView.swift in Sources */,
 				2214FAFD27C267D3000EE453 /* MainNavigator.swift in Sources */,
@@ -397,9 +433,11 @@
 				221665CD27C95A7F0061F189 /* Date+Get.swift in Sources */,
 				2221396127B7DE3800599E60 /* UIExtensions.swift in Sources */,
 				221665CA27C9305D0061F189 /* TidyType.swift in Sources */,
+				229D8C2927FC6DA400EE8520 /* Dialog.swift in Sources */,
 				2221396D27B8BFAA00599E60 /* DropAreaView.swift in Sources */,
 				226F47C327C6897500ED3198 /* MediaAction.swift in Sources */,
 				22F5596227E6268B00CD9348 /* ToastView.swift in Sources */,
+				229D8C3027FC7E2500EE8520 /* TidySettings.swift in Sources */,
 				2214FAEF27B94158000EE453 /* SettingsView.swift in Sources */,
 				226F47BF27C6862300ED3198 /* URILuncher.swift in Sources */,
 				2221396627B7F74400599E60 /* MediaInfo.swift in Sources */,

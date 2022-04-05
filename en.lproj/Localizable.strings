@@ -21,6 +21,12 @@
 "AppName" = "MyerTidy";
 
 
+"ApplyToAllOption" = "Apply to all current folders";
+
+
+"CancelCommand" = "CANCEL";
+
+
 "ClearButton" = "CLEAR";
 
 
@@ -42,34 +48,40 @@
 "NonDragAreaHint" = "Click the button below to begin";
 
 
-"OperationByColorModel" = "By EXIF Color Model";
+"OperationByColorModel" = "EXIF Color Model";
 
 
-"OperationByCreationDayTitle" = "By create day";
+"OperationByCreationDayTitle" = "Creation day";
 
 
-"OperationByCreationMonthTitle" = "By create month";
+"OperationByCreationMonthTitle" = "Creation month";
 
 
-"OperationByCreationYearTitle" = "By create year";
+"OperationByCreationYearTitle" = "Creation year";
 
 
-"OperationByFNumber" = "By EXIF FNumber";
+"OperationByFNumber" = "EXIF FNumber";
 
 
 "OperationByKindDesc" = "This operation will move files with same extension to one folder.";
 
 
-"OperationByKindTitle" = "By file extension";
+"OperationByKindTitle" = "File extension";
 
 
-"OperationByModel" = "By EXIF device Model";
+"OperationByModel" = "EXIF device Model";
 
 
-"OperationByModifiedDayTitle" = "By modified day";
+"OperationByModificationDayTitle" = "Modification day";
 
 
-"OperationByRatio" = "By media ratio";
+"OperationByModificationMonthTitle" = "Modification month";
+
+
+"OperationByModificationYearTitle" = "Modification year";
+
+
+"OperationByRatio" = "Media dimention ratio";
 
 
 "OperationMore" = "More tidy operations";
@@ -81,7 +93,19 @@
 "PathTitle" = "PATH";
 
 
+"SaveCommand" = "SAVE";
+
+
+"SaveToSettingsOption" = "Save to settingss";
+
+
 "SelectFolderButton" = "SELECT FOLDER";
+
+
+"SelectOperationsSubTitle" = "Select schemes";
+
+
+"SelectOperationsTitle" = "Manage your grouping schemes";
 
 
 "Success" = "🎉 Success to tidy up!";
@@ -91,3 +115,6 @@
 
 
 "ToastCommingSoon" = "😃 Coming soon!";
+
+
+"ToastSelectAtLeastOne" = "Should have at least one tidy operation";

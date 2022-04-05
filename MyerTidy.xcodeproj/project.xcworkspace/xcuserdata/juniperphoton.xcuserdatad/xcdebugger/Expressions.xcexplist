@@ -3,29 +3,6 @@
    version = "1.0">
    <ContextStates>
       <ContextState
-         contextName = "AVInfoTidyType.getGroupKey(input:):TidyType.swift">
-         <PersistentStrings>
-            <PersistentString
-               value = "track.availableMetadataFormats">
-            </PersistentString>
-            <PersistentString
-               value = "track.commonMetadata">
-            </PersistentString>
-            <PersistentString
-               value = "track.isPlayable">
-            </PersistentString>
-            <PersistentString
-               value = "track.naturalSize.applying(track.preferredTransform)">
-            </PersistentString>
-            <PersistentString
-               value = "track.mediaType">
-            </PersistentString>
-            <PersistentString
-               value = "track.metadata">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
          contextName = "closure #1 in ContentView.selectFolder():ContentView.swift">
          <PersistentStrings>
             <PersistentString
@@ -34,18 +11,27 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "closure #1 in MainViewModel.performDeleteSrt(url:):MainViewModel.swift">
-      </ContextState>
-      <ContextState
          contextName = "closure #1 in ExifFNumberTidyType.init():TidyType.swift">
       </ContextState>
       <ContextState
-         contextName = "closure #1 in closure #1 in MainViewModel.performDeleteSrt(url:):MainViewModel.swift">
+         contextName = "MainViewModel.addMediaFolder(forUrl:):MainViewModel.swift">
+      </ContextState>
+      <ContextState
+         contextName = "closure #3 in TidySettings.parseFromSettingsJson(settingsJson:enabledOnly:):Settings.swift">
          <PersistentStrings>
             <PersistentString
-               value = "fileURL.absoluteString">
+               value = "(enabledOnly ? o.isSelected : true) || o.type is EmptyTidyType">
+            </PersistentString>
+            <PersistentString
+               value = "o.isSelected">
             </PersistentString>
          </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "TidySettings.saveOptionsToSettings(options:):Settings.swift">
+      </ContextState>
+      <ContextState
+         contextName = "closure #1 in MainViewModel.performDeleteSrt(url:):MainViewModel.swift">
       </ContextState>
       <ContextState
          contextName = "MediaFolder.selectType(newOption:):MediaFolder.swift">
@@ -62,10 +48,60 @@
          contextName = "ImageExifTidyType.getGroupKey(input:):TidyType.swift">
       </ContextState>
       <ContextState
+         contextName = "AVInfoTidyType.getGroupKey(input:):TidyType.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "track.isPlayable">
+            </PersistentString>
+            <PersistentString
+               value = "track.availableMetadataFormats">
+            </PersistentString>
+            <PersistentString
+               value = "track.naturalSize.applying(track.preferredTransform)">
+            </PersistentString>
+            <PersistentString
+               value = "track.commonMetadata">
+            </PersistentString>
+            <PersistentString
+               value = "track.mediaType">
+            </PersistentString>
+            <PersistentString
+               value = "track.metadata">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "closure #1 in closure #1 in closure #1 in implicit closure #1 in closure #1 in closure #2 in closure #1 in TidyOperationDialog.body.getter:TidyOperationsDialog.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "viewModel.mediaTidyOptions">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "closure #1 in TidySettings.parseFromSettingsJson(settingsJson:enabledOnly:):Settings.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "option!.isSelected">
+            </PersistentString>
+            <PersistentString
+               value = "option.isSelected">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "closure #1 in MainViewModel.performDrop(providers:):MainViewModel.swift">
          <PersistentStrings>
             <PersistentString
                value = "provider.registeredTypeIdentifiers">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "closure #1 in closure #1 in MainViewModel.performDeleteSrt(url:):MainViewModel.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "fileURL.absoluteString">
             </PersistentString>
          </PersistentStrings>
       </ContextState>

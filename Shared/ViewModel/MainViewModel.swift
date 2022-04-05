@@ -16,6 +16,11 @@ enum SortState {
     case Complete
 }
 
+enum DialogType {
+    case CustomTidyOperations
+    case All
+}
+
 class MainViewModel: ObservableObject {
     @Published var mediaFolders: [MediaFolder] = []
     
@@ -27,6 +32,13 @@ class MainViewModel: ObservableObject {
     
     @Published var openFilePicker: Bool = false
     @Published var supportOpenFolder: Bool = URILauncher.supportOpenFolder()
+    
+    @Published var mediaFolderToCustom: MediaFolder? = nil
+    @Published var showDialog = false
+    
+    @Published var mediaTidyOptions: [MediaTidyOption] = TidySettings.allOptions.filter { o in
+        !(o.type is EmptyTidyType)
+    }
     
     private var toastDismissWorkItem: DispatchWorkItem? = nil
     
@@ -59,6 +71,77 @@ class MainViewModel: ObservableObject {
         }
         
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + durationSec, execute: toastDismissWorkItem!)
+    }
+    
+    func showCustomTidyOperation(folder: MediaFolder) {
+        mediaFolderToCustom = folder
+        mediaTidyOptions.forEach { option in
+            option.isSelected = folder.tidyOptions.contains(where: { o in
+                type(of: option.type) == type(of: o.type)
+            })
+        }
+        toggleDialog(type: .CustomTidyOperations, show: true)
+    }
+    
+    func saveCustomTidyOperations(applyToAllFolders: Bool, saveToSettings: Bool) {
+        guard let folder = mediaFolderToCustom else { return }
+        
+        withAnimation {
+            applyToFolder(folder: folder)
+            if (applyToAllFolders) {
+                mediaFolders.forEach { folder in
+                    applyToFolder(folder: folder)
+                }
+            }
+            
+            if (saveToSettings) {
+                TidySettings.instance.saveOptionsToSettings(options: mediaTidyOptions)
+            }
+        }
+    }
+    
+    private func applyToFolder(folder: MediaFolder) {
+        guard let selectedTidyOption = (folder.tidyOptions.first { o in
+            o.isSelected
+        }) else {
+            return
+        }
+        
+        folder.tidyOptions.removeAll()
+        mediaTidyOptions.filter { o in
+            o.isSelected
+        }.forEach { o in
+            folder.tidyOptions.append(MediaTidyOption(isSelected: false, type: o.type))
+        }
+        folder.tidyOptions.append(MediaTidyOption(isSelected: false, type: EmptyTidyType.instance))
+        
+        var selectedOption: MediaTidyOption? = nil
+        
+        folder.tidyOptions.forEach { o in
+            if (o == selectedTidyOption) {
+                o.isSelected = true
+                selectedOption = o
+            }
+        }
+        
+        if (selectedOption != nil) {
+            folder.selectType(newOption: selectedOption!)
+        } else {
+            folder.selectType(newOption: folder.tidyOptions.first!)
+        }
+    }
+    
+    func toggleOptionSelected(option: Binding<MediaTidyOption>) {
+        option.wrappedValue.isSelected.toggle()
+    }
+    
+    func toggleDialog(type: DialogType, show: Bool) {
+        withAnimation {
+            if (type == .CustomTidyOperations || type == .All) {
+                showDialog = show
+                Logger.logI(message: "toggle dialog for type \(type), show \(show)")
+            }
+        }
     }
     
     func clearToast() {

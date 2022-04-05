@@ -90,11 +90,19 @@ struct MainPage: View {
                     }
                 })
             
+            if (viewModel.showDialog) {
+                if (viewModel.mediaFolderToCustom != nil) {
+                    Dialog {
+                        TidyOperationDialog(viewModel: viewModel, mediaFolder: viewModel.mediaFolderToCustom!)
+                    }.environmentObject(viewModel).zIndex(50).transition(.opacity)
+                }
+            }
+            
             VStack {
                 Spacer().frame(height: 30)
                 ToastView().environmentObject(viewModel)
                     .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
-            }.mainPageFrame()
+            }.mainPageFrame().zIndex(100)
         }.mainPageFrame()
     }
     

@@ -13,17 +13,7 @@ class MediaFolder: Identifiable, ObservableObject {
     @Published var displayName: String
     @Published var mediaInfos: [MediaInfo] = []
     
-    @Published var tidyOptions: [MediaTidyOption] = [
-        MediaTidyOption(isSelected: true, type: FileExtensionTidyType()),
-        MediaTidyOption(isSelected: false, type: FileCreationDayTidyType()),
-        MediaTidyOption(isSelected: false, type: FileCreationMonthTidyType()),
-        MediaTidyOption(isSelected: false, type: FileCreationYearTidyType()),
-        MediaTidyOption(isSelected: false, type: OrientationTidyType()),
-        MediaTidyOption(isSelected: false, type: ExifModelTidyType()),
-        MediaTidyOption(isSelected: false, type: ExifFNumberTidyType()),
-        MediaTidyOption(isSelected: false, type: ExifColorModelTidyType()),
-        MediaTidyOption(isSelected: false, type: EmptyTidyType())
-    ]
+    @Published var tidyOptions: [MediaTidyOption] = TidySettings.instance.getSettingOptions(enabledOnly: true)
     
     @Published var loading = false
         
@@ -111,7 +101,7 @@ class MediaFolder: Identifiable, ObservableObject {
 }
 
 class MediaTidyOption: Identifiable {
-    @Published var isSelected = false
+    @Published var isSelected: Bool
     @Published var type: URLTidyType
     
     init(isSelected: Bool, type: URLTidyType) {

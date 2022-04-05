@@ -64,17 +64,17 @@ struct CardView: View {
                                     folder.selectType(newOption: option)
                                 }
                             } else {
-                                //                                Button {
-                                //                                    viewModel.showComingSoon()
-                                //                                } label: {
-                                //                                    HStack(spacing: 4) {
-                                //                                        Image(systemName: "plus.circle").renderingMode(.template)
-                                //                                            .foregroundColor(.white)
-                                //                                        Text(option.type.getLocalizedName())
-                                //                                            .foregroundColor(.white)
-                                //                                            .padding(4)
-                                //                                    }.padding(.horizontal, 8).background(StyledRoundedRectangle(color: colorScheme.getPrimaryColor()))
-                                //                                }.buttonStyle(.plain)
+                                Button {
+                                    viewModel.showCustomTidyOperation(folder: folder)
+                                } label: {
+                                    HStack(spacing: 4) {
+                                        Image(systemName: "plus.circle").renderingMode(.template)
+                                            .foregroundColor(colorScheme.getOnSurfaceColor())
+                                        Text(option.type.getLocalizedName())
+                                            .foregroundColor(colorScheme.getOnSurfaceColor())
+                                            .padding(4)
+                                    }.padding(.horizontal, 8).background(StyledRoundedRectangle(color: colorScheme.getPrimaryColor()))
+                                }.buttonStyle(.plain)
                             }
                         }
                         Spacer().frame(width: 30)
