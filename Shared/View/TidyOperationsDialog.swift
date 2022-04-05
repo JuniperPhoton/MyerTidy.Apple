@@ -88,6 +88,8 @@ struct TidyOperationDialog: View {
                                 }) == 0) {
                                     $option.isSelected.wrappedValue = true
                                     viewModel.showToast(text: LocalizedStringKey("ToastSelectAtLeastOne"))
+                                } else {
+                                    viewModel.clearToast()
                                 }
                             }
                     }.frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
