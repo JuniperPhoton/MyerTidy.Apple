@@ -26,6 +26,7 @@ struct Dialog<Content: View>: View {
                 }
             content.zIndex(100)
         }
+        .edgesIgnoringSafeArea(.all)
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
     }
 }
