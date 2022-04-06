@@ -24,7 +24,11 @@ struct Dialog<Content: View>: View {
                 .onTapGesture {
                     viewModel.toggleDialog(type: .All, show: false)
                 }
-            content.zIndex(100)
+            HStack {
+                Spacer().frame(width: 12)
+                content
+                Spacer().frame(width: 12)
+            }.zIndex(100)
         }
         .edgesIgnoringSafeArea(.all)
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)

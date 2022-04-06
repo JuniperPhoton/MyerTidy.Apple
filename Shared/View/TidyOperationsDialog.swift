@@ -98,7 +98,7 @@ struct TidyOperationDialog: View {
             }.padding(EdgeInsets(top: 0, leading: 8, bottom: 4, trailing: 8))
         }.contentShape(Rectangle())
             .padding(8)
-            .frame(minWidth: 400, maxWidth: 600, maxHeight: 500, alignment: .topLeading)
+            .frame(maxWidth: 600, maxHeight: 500, alignment: .topLeading)
             .background(StyledRoundedRectangle(color: colorScheme.getBackgroundColor()))
             .transition(.slide)
     }
